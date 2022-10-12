@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
+    protected $validationRules = [
+        'name'=> 'required|min:3',
+        'image'=> 'required|active_url|max:500',
+        'ingredients'=> 'required|min:5',
+        'price'=> 'required|numeric',
+        'visible'=> 'required|boolean',
+
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::where('restaurant_id', Auth::id())->get();
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
@@ -24,7 +35,10 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $dish = new Dish();
+        $route = route('admin.dishes.store');
+        $method = 'POST';
+        return view('admin.dishes.create&edit', compact(['dish', 'route', 'method']));
     }
 
     /**
@@ -35,7 +49,15 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validatedDate = $request->validate($this->validationRules);
+
+        $newDish = new Dish();
+        $data['restaurant_id'] = Auth::id(); 
+        $newDish->fill($data);
+        $newDish->save();
+        return redirect()->route('admin.dishes.index');
     }
 
     /**
@@ -57,7 +79,14 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+
+        
+        $dish = Dish::findOrFail($id);
+        $route = route('admin.dishes.update', $dish->id);
+        $method = 'PUT';
+        return view('admin.dishes.create&edit', compact(['dish', 'route', 'method']));
+
     }
 
     /**
@@ -69,7 +98,16 @@ class DishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $validatedDate = $request->validate($this->validationRules);
+
+        $dish = Dish::findOrFail($id);
+        $data['restaurant_id'] = Auth::id(); 
+        // dd($data);
+        $dish->fill($data);
+        $dish->save();
+        return redirect()->route('admin.dishes.index', $dish->id);
     }
 
     /**
@@ -80,6 +118,8 @@ class DishController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        $dish->delete();
+        return redirect()->route('admin.dishes.index');
     }
 }

@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dish extends Model
 {
+    protected $fillable = [
+        'name',
+        'restaurant_id',
+        'image',
+        'ingredients',
+        'price',
+        'visible',
+    ];
+
     public function restaurant(){
         return $this->belongsTo('App\Models\Restaurant');
     }

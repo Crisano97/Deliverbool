@@ -12,6 +12,14 @@ use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
+    protected $validationRules = [
+        'name'=> 'required|min:3|unique:restaurants',
+        'address'=> 'required|min:5',
+        'image'=> 'required|active_url|max:500',
+        'categories'=> 'required|min:1|exists:categories,id',
+        'p_iva'=> 'required|digits:11',
+
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -44,11 +52,15 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $validatedData = $request->validate($this->validationRules);
+
         $newRestaurant = new Restaurant;
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($data['name'], '-');
         $newRestaurant->fill($data);
         $newRestaurant->save();
+        $newRestaurant->categories()->sync($data['categories']);
 
         return redirect()->route('admin.restaurants.index');
     }
@@ -95,6 +107,8 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($id);
+        $restaurant->delete();
+        return redirect()->route('admin.restaurants.index');
     }
 }

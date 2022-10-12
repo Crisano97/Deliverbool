@@ -15,34 +15,59 @@
                             @method('POST')
                             <div class="mb-3 ">
                                 <label for="exampleFormControlInput1" class="form-label">Nome Attivitá</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome Attiviá" name="name">
+                                <input type="text" value="{{ old('name', $restaurant->name) }}" class="form-control" id="exampleFormControlInput1" placeholder="Nome Attiviá" name="name">
+                                @error('name')
+                                    <p class="text-danger fs-6">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Indirizzo</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Via Casa Micco" name="address">
+                                <input type="text" value="{{ old('address', $restaurant->address) }}" class="form-control" id="exampleFormControlInput1" placeholder="Via Casa Micco" name="address">
+                                @error('address')
+                                    <p class="text-danger fs-6">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Partita Iva</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="P.Iva" name="p_iva">
+                                <input type="text" value="{{ old('p_iva', $restaurant->p_iva) }}" class="form-control" id="exampleFormControlInput1" placeholder="12345678901" name="p_iva">
+                                @error('p_iva')
+                                    <p class="text-danger fs-6">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Scegli la tu immagine</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="image">
+                                <input type="text" value="{{ old('image', $restaurant->image) }}" class="form-control" id="exampleFormControlInput1" name="image">
+                                @error('image')
+                                    <p class="text-danger fs-6">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 @foreach ($categories as $category)
                                     <div class="form-check form-switch">
-                                        {{-- @if ($errors->any())
+                                        @if ($errors->any())
                                             <input type="checkbox" name="categories[]" id="input-categories" class="form-check-input" value="{{ $category->id }}"
                                             {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
-                                        @else --}}
+                                        @else
                                             <input type="checkbox" name="categories[]" id="input-categories" class="form-check-input" value="{{ $category->id }}"
                                             {{ $restaurant->categories->contains($category) ? 'checked' : '' }}>
-                                        {{-- @endif --}}
+                                        @endif
                                         <label for="input-categories" class="form-check-label">{{ $category->name }}</label>
                                     </div>
-                                @endforeach
-                                {{-- @include('admin.posts.includes.errors', ['value' => 'categories']) --}}
+                                    @endforeach
+                                    {{-- @include('admin.posts.includes.errors', ['value' => 'categories']) --}}
+                                    @error('categories')
+                                        <p class="text-danger fs-6">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                             </div>
 
 

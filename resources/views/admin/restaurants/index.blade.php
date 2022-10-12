@@ -27,21 +27,15 @@
                         @forelse ($restaurants as $restaurant)
                             <tr>
                                 <td>{{ $restaurant->name }}</td>
-                                <td>{{ $restaurant->p_iva}}</td>
+                                <td>IT{{ $restaurant->p_iva}}</td>
                                 <td>{{ $restaurant->address }}</td>
                                 <td>{{ $restaurant->image }}</td>
 
-                                {{-- <td>
-                                    <span class="badge text-white" 
-                                        @if (isset($post->category))
-                                            style="background-color: {{ $post->category->color }}">
-                                            {{ $post->category->name }}
-                                        @else
-                                            style="background-color: red">
-                                            -
-                                        @endif
-                                    </span>
-                                </td> --}}
+                                <td>
+                                    @foreach ($restaurant->categories as $category)
+                                        <span>{{ $category->name }} ;</span>
+                                    @endforeach
+                                </td>
                                 {{-- <td>
                                     <span>  
                                         @if (isset($post->tags))
@@ -53,20 +47,14 @@
                                         @endif
                                     </span>
                                 </td> --}}
-                                {{-- <td>
-                                    <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-sm btn-primary">
-                                        View
-                                    </a>
-                                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-success">
-                                        Edit
-                                    </a>
-                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="d-inline delete-comics">
+                                <td>
+                                    <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST" class="d-inline delete-comics">
                                         @csrf
                                         @method('DELETE')
                                         
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
-                                </td> --}}
+                                </td>
                                 
                                     
                             </tr>
