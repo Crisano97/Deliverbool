@@ -57,7 +57,7 @@ class DishController extends Controller
         $data['restaurant_id'] = Auth::id(); 
         $newDish->fill($data);
         $newDish->save();
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
     }
 
     /**
@@ -79,8 +79,6 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        
-
         
         $dish = Dish::findOrFail($id);
         $route = route('admin.dishes.update', $dish->id);
@@ -107,7 +105,7 @@ class DishController extends Controller
         // dd($data);
         $dish->fill($data);
         $dish->save();
-        return redirect()->route('admin.dishes.index', $dish->id);
+        return redirect()->route('admin.dishes.index', $dish->id)->with('edit', $data['name']. ' ' . 'è stato modificato con successo');
     }
 
     /**
@@ -120,7 +118,7 @@ class DishController extends Controller
     {
         $dish = Dish::findOrFail($id);
         $dish->delete();
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('delete', $dish->name . ' ' . 'è stato eliminato con successo');
     }
 
     public function softDeleted(){
@@ -131,6 +129,6 @@ class DishController extends Controller
     public function restore($id){
         $dish = Dish::onlyTrashed()->findOrFail($id);
         $dish->restore();
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('restore', $dish->name . ' ' . 'è stato ripristibato con successo');
     }
 }

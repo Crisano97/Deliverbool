@@ -62,7 +62,7 @@ class RestaurantController extends Controller
         $newRestaurant->save();
         $newRestaurant->categories()->sync($data['categories']);
 
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.index')->with('created', $data['name'] . ' ' . 'è stato creato con successo');
     }
 
     /**
@@ -82,9 +82,9 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Restaurant $restaurant)
     {
-        //
+        return view('admin.restaurants.edit', compact('restaurant'));
     }
 
     /**
@@ -94,9 +94,22 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $data = $request->all();
+        $request->validate([
+            'image'=>'activeurl|required',
+        ]);
+
+        $data['user_id'] = Auth::id();
+        
+        if(isset($data['name'])){
+            $data['slug'] = Str::slug($data['name'], '-');
+        }
+
+        $restaurant->update($data);  
+
+        return redirect()->route('admin.restaurants.index')->with('edited', "L'immagine è stata modificata con successo");
     }
 
     /**
@@ -109,7 +122,7 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::findOrFail($id);
         $restaurant->delete();
-        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->title . ' ' . 'é stato ripristinato con successo');;
+        return redirect()->route('admin.restaurants.index')->with('deleted', $restaurant->name . ' ' . 'é stato eliminato con successo');;
     }
 
     public function softDeleted(){
@@ -120,6 +133,6 @@ class RestaurantController extends Controller
     public function restore($id){
         $restaurant = Restaurant::onlyTrashed()->findOrFail($id);
         $restaurant->restore();
-        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->title . ' ' . 'é stato ripristinato con successo');
+        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->name . ' ' . 'é stato ripristinato con successo');
     }
 }
