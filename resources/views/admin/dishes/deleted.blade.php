@@ -4,7 +4,7 @@
     <div class="container my-5">
         <div class="row col-sm-12 d-flex justify-content-around">
             <div>
-                <h1>Elenco dei piatti</h1>
+                <h1>Cestino</h1>
             </div>
             {{-- <div class="text-right pt-1">
                 <a class="btn btn-primary" href="{{ route('admin.dishes.restore') }}">

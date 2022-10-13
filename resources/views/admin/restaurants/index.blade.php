@@ -19,12 +19,14 @@
                                 <img class="img-fluid" src="{{ $restaurant->image }}" alt="">
                                 <h4 class="mt-2">Modifica immagine:</h4>
                                 <div class=" row m-3 flex-column text-center">
-                                    <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST" class="">
+                                    <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST"
+                                        class="">
                                         @csrf
                                         @method('PATCH')
-                                        <input type="text" name="image" value="{{ old('image', $restaurant->image) }}" placeholder="Inserisci immagine" class="col-10">
+                                        <input type="text" name="image" value="{{ old('image', $restaurant->image) }}"
+                                            placeholder="Inserisci immagine" class="col-10">
                                         <button class="btn btn-primary">Carica</button>
-                                    </form>                                 
+                                    </form>
                                     <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST"
                                         class="d-inline delete-comics">
                                         @csrf
@@ -83,8 +85,8 @@
                             </div>
                         @empty
                             <h3>Aggiungi qui il tuo ristorante</h3>
-                            <a class="btn btn-primary" href="{{ route('admin.restaurants.create') }}">
-                                Create new post
+                            <a class="btn btn-primary ml-3" href="{{ route('admin.restaurants.create') }}">
+                                +
                             </a>
                         @endforelse
                     </div>
