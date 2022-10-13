@@ -6,14 +6,14 @@
             <div>
                 <h1>Elenco dei piatti</h1>
             </div>
-            <div class="text-right pt-1">
-                <a class="btn btn-primary" href="{{ route('admin.dishes.create') }}">
-                    Aggiungi
+            {{-- <div class="text-right pt-1">
+                <a class="btn btn-primary" href="{{ route('admin.dishes.restore') }}">
+                    Ripristina
                 </a>
-                <a class="btn btn-primary" href="{{ route('admin.dishes.deleted') }}">
-                    Cestino
+                <a class="btn btn-primary" href="{{ route('admin.dishes.destroy') }}">
+                    Elimina
                 </a>
-            </div>
+            </div> --}}
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
             @forelse ($dishes as $dish)
@@ -38,23 +38,13 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end">
-                                        <div class="btn_container">
-                                            <a href="{{ route('admin.dishes.edit', $dish->id) }}">
-                                                <button type="submit" class="my_btn">
-                                                    <div class="btn_container">
-                                                        <img class="img-btn" src="{{ asset('assets/images/pencil.png') }}"
-                                                            alt="">
-                                                    </div>
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
+                                        <form action="{{ route('admin.dishes.restore', $dish->id) }}" method="POST"
                                             class="d-inline delete-dishes ml-3">
                                             @csrf
-                                            @method('DELETE')
+                                            @method('PATCH')
                                             <button type="submit" class="my_btn">
                                                 <div class="btn_container">
-                                                    <img class="img-btn" src="{{ asset('assets/images/delete.png') }}"
+                                                    <img class="img-btn" src="{{ asset('assets/images/restore.png') }}"
                                                         alt="">
                                                 </div>
                                             </button>
