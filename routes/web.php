@@ -26,6 +26,10 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function(){
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/restaurants/deleted', 'RestaurantController@softDeleted')->name('restaurants.deleted');
+        Route::patch('/restaurants/deleted/{id}', 'RestaurantController@restore')->name('restaurants.restore');
+        Route::get('/dishes/deleted', 'DishController@softDeleted')->name('dishes.deleted');
+        Route::patch('/dishes/deleted/{id}', 'DishController@restore')->name('dishes.restore');
         Route::resource('/restaurants', 'RestaurantController');
         Route::resource('/dishes', 'DishController');
 

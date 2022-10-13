@@ -122,4 +122,15 @@ class DishController extends Controller
         $dish->delete();
         return redirect()->route('admin.dishes.index');
     }
+
+    public function softDeleted(){
+        $dishes = Dish::onlyTrashed()->get();
+        return view('admin.dishes.deleted', compact('dishes'));
+    }
+
+    public function restore($id){
+        $dish = Dish::onlyTrashed()->findOrFail($id);
+        $dish->restore();
+        return redirect()->route('admin.dishes.index');
+    }
 }
