@@ -49713,8 +49713,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/andrea/Desktop/boolean/Deliverbool/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/andrea/Desktop/boolean/Deliverbool/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Admin\Documents\BOOLEAN\ESERCIZI BOOLEAN\PHP\Deliverbool\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Admin\Documents\BOOLEAN\ESERCIZI BOOLEAN\PHP\Deliverbool\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
