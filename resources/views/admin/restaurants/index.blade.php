@@ -17,13 +17,20 @@
                             <div class="col-12 col-md-6 card p-3 rounded-lg">
                                 <h3>La Tua Immagine</h3>
                                 <img class="img-fluid" src="{{ $restaurant->image }}" alt="">
-                                <div class="text-right m-3">
+                                <h4 class="mt-2">Modifica immagine:</h4>
+                                <div class=" row m-3 flex-column text-center">
+                                    <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST" class="">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="text" name="image" value="{{ old('image', $restaurant->image) }}" placeholder="Inserisci immagine" class="col-10">
+                                        <button class="btn btn-primary">Carica</button>
+                                    </form>                                 
                                     <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST"
                                         class="d-inline delete-comics">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn btn-lg btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-lg btn-danger mt-2">Cancella</button>
                                     </form>
                                 </div>
                             </div>
