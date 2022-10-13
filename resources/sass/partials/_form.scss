@@ -1,0 +1,18 @@
+.form_page{
+    height: 100vh;
+    background-image: url('../../../public/assets/images/food-images-pictures-1600x1016.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+} 
+
+.from-content{
+    background-color: rgba(7, 7, 7, 0.7);
+    color: white;
+}
+
+.form-control{
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
