@@ -6,7 +6,7 @@
         <div class="row">
             <div class="w-75 mx-auto">
                     <h1 class="text-center text-white py-3">
-                        Compila il nostro form per iscriverti !
+                        Inserisci i dettagli del piatto !
                     </h1>
                     
                     <div class="container from-content p-5 rounded-5 my-2 ">
@@ -51,13 +51,17 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="radio-input-false" class="form-label">Prodotto non disponibile</label>
-                                <input type="radio" value="0" name="visible" id="radio-input-false"
-                                {{ old('visible', $dish->visible) == false ? 'checked' : ''}}>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <label for="radio-input-false" class="form-label pt-2 mr-1">Non disponibile</label>
+                                    <input type="radio" value="0" name="visible" id="radio-input-false" class="mr-2"
+                                    {{ old('visible', $dish->visible) == false ? 'checked' : ''}}>
+                                </div>
 
-                                <label for="radio-input-true" class="form-label" id="radio-input-false">Prodotto disponibile</label>
-                                <input type="radio" value="1" name="visible"
-                                {{ old('visible', $dish->visible) == true ? 'checked' : ''}}>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <label for="radio-input-true" class="form-label pt-2 mr-1" id="radio-input-false">Disponibile</label>
+                                    <input type="radio" value="1" name="visible"
+                                    {{ old('visible', $dish->visible) == true ? 'checked' : ''}}>
+                                </div>
                                 @error('visible')
                                     <p class="text-danger fs-6">
                                         {{ $message }}
