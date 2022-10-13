@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="form_page">
+    <div class="container ">
         <div class="row">
-            <div class="col-12">
-                <main >
-                    <h1 class="text-center text-white">
-                        Compila il nostro form per iscriverti !
+            <div class="w-75 mx-auto">
+                    <h1 class="text-center text-white py-3">
+                        Inserisci i dettagli del piatto !
                     </h1>
                     
-                    <div class="container from-content p-5 rounded-5 my-2 ">
-                        <form action="{{ $route }}" method="post" class="text row row-cols-1 row-cols-md-2 row-cols-lg-3" >
+                    <div class="container form_content p-5 rounded-5 my-2 ">
+                        <form action="{{ $route }}" method="post" class="text row row-cols-1 justify-content-center" >
                             @csrf
                             @method($method)
 
-                            <div class="mb-3 ">
+                            <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nome Piatto</label>
                                 <input type="text" value="{{ old('name', $dish->name )}}" class="form-control" id="exampleFormControlInput1" placeholder="Nome Piatto" name="name">
                                 @error('name')
@@ -51,25 +51,32 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="radio-input-false" class="form-label">Prodotto non disponibile</label>
-                                <input type="radio" value="0" name="visible" id="radio-input-false"
-                                {{ old('visible', $dish->visible) == false ? 'checked' : ''}}>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <label for="radio-input-false" class="form-label pt-2 mr-1">Non disponibile</label>
+                                    <input type="radio" value="0" name="visible" id="radio-input-false" class="mr-2"
+                                    {{ old('visible', $dish->visible) == false ? 'checked' : ''}}>
+                                </div>
 
-                                <label for="radio-input-true" class="form-label" id="radio-input-false">Prodotto disponibile</label>
-                                <input type="radio" value="1" name="visible"
-                                {{ old('visible', $dish->visible) == true ? 'checked' : ''}}>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <label for="radio-input-true" class="form-label pt-2 mr-1" id="radio-input-false">Disponibile</label>
+                                    <input type="radio" value="1" name="visible"
+                                    {{ old('visible', $dish->visible) == true ? 'checked' : ''}}>
+                                </div>
                                 @error('visible')
                                     <p class="text-danger fs-6">
                                         {{ $message }}
                                     </p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-xl">Submit</button>
+                            </div>
                         </form>
                     </div>
             
-                </main>
+                
             </div>
         </div>
     </div>
+</div>
 @endsection
