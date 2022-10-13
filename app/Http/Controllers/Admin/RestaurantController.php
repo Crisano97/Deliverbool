@@ -109,6 +109,17 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::findOrFail($id);
         $restaurant->delete();
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->title . ' ' . 'é stato ripristinato con successo');;
+    }
+
+    public function softDeleted(){
+        $restaurants = Restaurant::onlyTrashed()->get();
+        return view('admin.restaurants.deleted', compact('restaurants'));
+    }
+
+    public function restore($id){
+        $restaurant = Restaurant::onlyTrashed()->findOrFail($id);
+        $restaurant->restore();
+        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->title . ' ' . 'é stato ripristinato con successo');
     }
 }
