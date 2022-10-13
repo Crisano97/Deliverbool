@@ -9,7 +9,7 @@
                         Inserisci i dettagli del piatto !
                     </h1>
                     
-                    <div class="container from-content p-5 rounded-5 my-2 ">
+                    <div class="container form_content p-5 rounded-5 my-2 ">
                         <form action="{{ $route }}" method="post" class="text row row-cols-1 justify-content-center" >
                             @csrf
                             @method($method)

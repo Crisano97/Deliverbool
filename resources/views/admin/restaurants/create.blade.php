@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="form_page">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <main >
-                    <h1 class="text-center text-white">
-                        Compila il nostro form per iscriverti !
+            <div class="w-75 mx-auto">
+                    <h1 class="text-center text-white py-3">
+                        Inserisci i dettagli del tuo ristorante !
                     </h1>
                     
-                    <div class="container from-content p-5 rounded-5 my-2 ">
-                        <form action="{{ route('admin.restaurants.store') }}" method="post" class="text row row-cols-1 row-cols-md-2 row-cols-lg-3" >
+                    <div class="container form_content p-5 rounded-5 my-2 ">
+                        <form action="{{ route('admin.restaurants.store') }}" method="post" class="text row row-cols-1 justify-content-center" >
                             @csrf
                             @method('POST')
                             <div class="mb-3 ">
@@ -49,7 +49,7 @@
                                     </p>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 row row-cols-1 row-cols-md-3 row-cols-lg-4">
                                 @foreach ($categories as $category)
                                     <div class="form-check form-switch">
                                         @if ($errors->any())
@@ -69,15 +69,13 @@
                                         </p>
                                     @enderror
                             </div>
-
-
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary btn-xl">Submit</button>
+                            </div>
                         </form>
                     </div>
-            
-                </main>
             </div>
         </div>
     </div>
+</div>
 @endsection
