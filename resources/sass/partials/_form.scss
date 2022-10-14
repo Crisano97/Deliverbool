@@ -1,6 +1,7 @@
 .form_page{
-    height: 100vh;
-    background-image: url('../../../public/assets/images/food-images-pictures-1600x1016.jpg');
+    // height: 100vh;
+    background: linear-gradient(rgba(0,0,0,.5), rgba(141, 140, 140, 0.5)), url("../../../public/assets/images/food-images-pictures-1600x1016.jpg");
+
     background-repeat: no-repeat;
     background-size: cover; 
 } 
@@ -13,6 +14,17 @@
 .form-control{
     border-bottom: 1px solid white;
     background-color: transparent;
-    color: white;
+    //color: white;
     outline: none;
+}
+
+.text_form{
+    color: white;
+}
+
+
+.card_style{
+    border: 1px solid white;
+    color: white;
+    border-radius: 8px;
 }
