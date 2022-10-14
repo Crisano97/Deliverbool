@@ -49,7 +49,7 @@
                                             </a>
                                         </div>
                                         <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
-                                            class="d-inline delete-dishes ml-3">
+                                            class="d-inline delete-method ml-3">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="my_btn">
@@ -72,3 +72,16 @@
         </div>
     </div>
 @endsection
+
+{{-- SCRIP SECTION --}}
+@section('script')
+    <script>
+        const deleteElement = document.querySelectorAll(".delete-method");
+        deleteElement.forEach(elementForm => {
+            elementForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const result = window.confirm(`vuoi eliminare l'elemento ?`);
+                if (result) this.submit();
+            })
+        });
+    </script>

@@ -97,7 +97,7 @@
 @endsection
 
 {{-- SCRIP SECTION --}}
-@section('script-main')
+@section('script')
     <script>
         const deleteElement = document.querySelectorAll(".delete-method");
         deleteElement.forEach(elementForm => {

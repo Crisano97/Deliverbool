@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Restaurant extends Model
 {
-    use SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -16,21 +15,25 @@ class Restaurant extends Model
         'image',
         'p_iva',
         'slug',
-    ]; 
+    ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany('App\Models\Category');
     }
 
-    public function dishes(){
+    public function dishes()
+    {
         return $this->hasMany('App\Models\Dish');
     }
 
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany('App\Models\Order');
     }
 }
