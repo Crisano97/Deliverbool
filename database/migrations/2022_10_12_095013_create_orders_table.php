@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_code')->unique();
-            $table->float('total_price', 5,2);
+            $table->double('total_price', 5, 2);
             $table->string('customer_name');
             $table->string('customer_address');
-            $table->string('customer_phone_number', 10);
+            $table->string('customer_phone_number', 30);
             $table->dateTime('order_date');
             $table->boolean('is_payed')->default(false);
         });
