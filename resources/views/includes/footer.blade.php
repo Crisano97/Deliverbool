@@ -85,13 +85,13 @@
                             <img src="{{ asset('assets/images/facebook.png') }}" alt="">
                         </a>
                     </span>
-    
+
                     <span>
                         <a href="#" class="text-decoration-none">
                             <img src="{{ asset('assets/images/instagram.png') }}" alt="">
                         </a>
                     </span>
-    
+
                     <span>
                         <a href="#" class="text-decoration-none">
                             <img src="{{ asset('assets/images/twitter.png') }}" alt="">
@@ -100,10 +100,10 @@
                 </div>
                 <div class="col-6 col-sm-4 text-center">
                     <span>
-                        <h6>©️ 2021 Deliverbool</h6>
+                        <h6>©️ 2022 Deliverbool</h6>
                     </span>
                 </div>
             </div>
         </div>
     </div>
-<footer
+    <footer
