@@ -115,7 +115,7 @@ class DishController extends Controller
     {
         $data = $request->all();
 
-        $validatedDate = $request->validate($this->validationRules);
+        $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
 
         $dish = Dish::findOrFail($id);
         $data['restaurant_id'] = Auth::id(); 
