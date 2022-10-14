@@ -18,11 +18,13 @@ class Dish extends Model
         'visible',
     ];
 
-    public function restaurant(){
+    public function restaurant()
+    {
         return $this->belongsTo('App\Models\Restaurant');
     }
 
-    public function orders(){
-        return $this->belongsToMany('App\Models\Order');
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order')->withPivot(['amount']);
     }
 }
