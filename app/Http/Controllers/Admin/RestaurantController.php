@@ -31,7 +31,7 @@ class RestaurantController extends Controller
         'address.regex' => 'L\'Indirizzo puó contenere solo a-z, A,Z e 0-9',
         'image.required' => 'L\'immagine é obbligatoria',
         'image.active_url' => 'L\'immagine deve essere un link attivo',
-        'image.max' => 'L\'immagine puó essere lunga massimo 500 caratteri',
+        'image.max' => 'Il link dell\'immagine deve essere lunga massimo 500 caratteri',
         'p_iva.required' => 'La PIVA é obbligatoria',
         'p_iva.digits' => 'La PIVA deve essere obbligatoriamente di 11 numeri',
         'p_iva.regex' => 'La PIVA puó contenere solo numeri',
