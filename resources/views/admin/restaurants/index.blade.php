@@ -28,7 +28,7 @@
                                         <button class="btn btn-primary">Carica</button>
                                     </form>
                                     <form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST"
-                                        class="d-inline delete-comics">
+                                        class="d-inline delete-method">
                                         @csrf
                                         @method('DELETE')
 
@@ -95,3 +95,16 @@
         </div>
     </div>
 @endsection
+
+{{-- SCRIP SECTION --}}
+@section('script-main')
+    <script>
+        const deleteElement = document.querySelectorAll(".delete-method");
+        deleteElement.forEach(elementForm => {
+            elementForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const result = window.confirm(`vuoi eliminare l'elemento ?`);
+                if (result) this.submit();
+            })
+        });
+    </script>
