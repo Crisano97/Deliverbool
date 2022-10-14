@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        $orders = Order::where('restaurant_id', Auth::id())->get();
+        return view('admin.restaurants.orderIndex', compact(['orders', 'restaurants']));
     }
 
     /**
