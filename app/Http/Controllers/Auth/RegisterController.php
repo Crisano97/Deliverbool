@@ -47,13 +47,30 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data )
     {
+        $message = array(
+            'name.required' => 'Il nome utente é obbligatorio',
+            'name.string' => 'Il nome utente non ha un formato valido',
+            'name.min' => 'Il nome utente deve avere almeno 5 caratteri',
+            'name.max' => 'Il nome utente puó avere al massimo 255 caratteri',
+            'name.regex' => 'Il nome utente puó contenere solo a-z, A-Z',
+            'email.required' => 'L\'email é obbligatoria',
+            'email.string' => 'L\'email non ha un formato valido',
+            'email.email' => 'L\'email deve essere un email',
+            'email.max' => 'L\'email puó avere al massimo 255 caratteri',
+            'email.unique' => 'L\'email inserita é giá presente, inserisci una nuova email',
+            'password.required' => 'La password é obbligatoria',
+            'password.string' => 'La password non ha un formato valido',
+            'password.min' => 'La password deve avere una lunghezza minima di 8 caratteri',
+            'password.confirm' => 'La password deve essere confermata',
+        );
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:5','max:255', 'regex:/[a-zA-Z]/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $message);
     }
 
     /**
