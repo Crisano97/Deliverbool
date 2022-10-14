@@ -96,7 +96,7 @@
     </div>
 @endsection
 
-{{-- SCRIP SECTION --}}
+{{-- SCRIP SECTION
 @section('script-content')
     <script>
         const deleteElement = document.getElementById('delete-method');
@@ -108,4 +108,4 @@
             if (result) this.submit();
         })
     </script>
-@endsection
+@endsection --}}
