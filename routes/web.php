@@ -28,8 +28,10 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/dishes/deleted', 'DishController@softDeleted')->name('dishes.deleted');
         Route::patch('/dishes/deleted/{id}', 'DishController@restore')->name('dishes.restore');
+        Route::delete('/dishes/deleted/{id}', 'DishController@hardDeleted')->name('dishes.hardDeleted');
         Route::resource('/restaurants', 'RestaurantController');
         Route::resource('/dishes', 'DishController');
+        Route::resource('/order', 'OrderController');
     });
 
 // Route::get('/home', 'HomeController@index')->name('home');

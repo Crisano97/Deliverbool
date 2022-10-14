@@ -82,7 +82,7 @@ class RestaurantController extends Controller
         $newRestaurant->save();
         $newRestaurant->categories()->sync($data['categories']);
 
-        return redirect()->route('admin.restaurants.index')->with('created', $data['name'] . ' ' . 'è stato creato con successo');
+        return redirect()->route('admin.restaurants.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
     }
 
     /**
@@ -129,7 +129,7 @@ class RestaurantController extends Controller
 
         $restaurant->update($data);
 
-        return redirect()->route('admin.restaurants.index')->with('edited', "L'immagine è stata modificata con successo");
+        return redirect()->route('admin.restaurants.index')->with('edit', "L'immagine è stata modificata con successo");
     }
 
     /**
