@@ -135,7 +135,7 @@ class DishController extends Controller
     {
         $dish = Dish::findOrFail($id);
         $dish->delete();
-        return redirect()->route('admin.dishes.index')->with('delete', $dish->name . ' ' . 'è stato eliminato con successo');
+        return redirect()->route('admin.dishes.index')->with('delete', $dish->name . ' ' . 'è stato spostato nel cestino');
     }
 
     public function softDeleted(){
@@ -146,6 +146,12 @@ class DishController extends Controller
     public function restore($id){
         $dish = Dish::onlyTrashed()->findOrFail($id);
         $dish->restore();
-        return redirect()->route('admin.dishes.index')->with('restore', $dish->name . ' ' . 'è stato ripristibato con successo');
+        return redirect()->route('admin.dishes.index')->with('restore', $dish->name . ' ' . 'è stato ripristinato con successo');
+    }
+
+    public function hardDeleted($id){
+        $dish = Dish::onlyTrashed()->findOrFail($id);
+        $dish->forceDelete();
+        return redirect()->route('admin.dishes.deleted', compact('dish'))->with('delete', $dish->name . ' ' . 'è stato eliminato con successo');
     }
 }
