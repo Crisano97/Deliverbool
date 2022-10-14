@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -25,7 +25,7 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', 'HomeController@index')->name('home');
+        // Route::get('/login', 'HomeController@index')->name('home');
         Route::get('/dishes/deleted', 'DishController@softDeleted')->name('dishes.deleted');
         Route::patch('/dishes/deleted/{id}', 'DishController@restore')->name('dishes.restore');
         Route::delete('/dishes/deleted/{id}', 'DishController@hardDeleted')->name('dishes.hardDeleted');
