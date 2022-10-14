@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container my-5">
+        @if (session('delete'))
+            <div class="alert alert-danger">
+                <span class="alert alert-danger">
+                    {{ session('delete') }}
+                </span>
+            </div>
+        @endif
         <div class="row col-sm-12 d-flex justify-content-around">
             <div>
                 <h1>Cestino</h1>
@@ -48,6 +55,12 @@
                                                         alt="">
                                                 </div>
                                             </button>
+                                        </form>
+                                        <form action="{{ route('admin.dishes.hardDeleted', $dish->id) }}" method="POST"
+                                            class="d-inline delete-dishes ml-3">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button>elimina</button>
                                         </form>
                                     </div>
 

@@ -19,9 +19,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.restaurants.index') }}">RISTORANTI</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.dishes.index') }}">MENU</a>
-                                </li>
                             </ul>
                         </div>
                 @endguest

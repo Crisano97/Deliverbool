@@ -1,10 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container my-5">
-        <div class="row col-sm-12 d-flex justify-content-around">
+<div class="form_page">
+    <div class="container">
+        @if (session('restore'))
+            <div class="alert alert-success">
+                <span class="alert alert-success">
+                    {{ session('restore') }}
+                </span>
+            </div>
+        @endif
+        @if (session('delete'))
+            <div class="alert alert-danger">
+                <span class="alert alert-danger">
+                    {{ session('delete') }}
+                </span>
+            </div>
+        @endif
+        @if (session('edit'))
+            <div class="alert alert-warning">
+                <span class="alert alert-warning">
+                    {{ session('edit') }}
+                </span>
+            </div>
+        @endif
+        @if (session('create'))
+            <div class="alert alert-success">
+                <span class="alert alert-success">
+                    {{ session('create') }}
+                </span>
+            </div>
+        @endif
+        <div class="row col-sm-12 d-flex justify-content-around py-4">
             <div>
-                <h1>Elenco dei piatti</h1>
+                <h1 class="text-white">Elenco dei piatti</h1>
             </div>
             <div class="text-right pt-1">
                 <a class="btn btn-primary" href="{{ route('admin.dishes.create') }}">
@@ -71,4 +100,5 @@
             @endforelse
         </div>
     </div>
+</div>
 @endsection
