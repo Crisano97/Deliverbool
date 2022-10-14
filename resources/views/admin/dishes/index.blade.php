@@ -49,7 +49,7 @@
                                             </a>
                                         </div>
                                         <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST"
-                                            class="d-inline delete-dishes ml-3">
+                                            class="d-inline ml-3">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="my_btn">

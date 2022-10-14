@@ -13,11 +13,11 @@ use Illuminate\Support\Str;
 class RestaurantController extends Controller
 {
     protected $validationRules = [
-        'name'=> 'required|min:3|unique:restaurants',
-        'address'=> 'required|min:5',
-        'image'=> 'required|active_url|max:500',
-        'categories'=> 'required|min:1|exists:categories,id',
-        'p_iva'=> 'required|digits:11',
+        'name' => 'required|min:3|unique:restaurants',
+        'address' => 'required|min:5',
+        'image' => 'required|active_url|max:500',
+        'categories' => 'required|min:1|exists:categories,id',
+        'p_iva' => 'required|digits:11',
 
     ];
     /**
@@ -98,16 +98,16 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
         $request->validate([
-            'image'=>'activeurl|required',
+            'image' => 'activeurl|required',
         ]);
 
         $data['user_id'] = Auth::id();
-        
-        if(isset($data['name'])){
+
+        if (isset($data['name'])) {
             $data['slug'] = Str::slug($data['name'], '-');
         }
 
-        $restaurant->update($data);  
+        $restaurant->update($data);
 
         return redirect()->route('admin.restaurants.index')->with('edited', "L'immagine è stata modificata con successo");
     }
@@ -123,16 +123,5 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::findOrFail($id);
         $restaurant->delete();
         return redirect()->route('admin.restaurants.index')->with('deleted', $restaurant->name . ' ' . 'é stato eliminato con successo');;
-    }
-
-    public function softDeleted(){
-        $restaurants = Restaurant::onlyTrashed()->get();
-        return view('admin.restaurants.deleted', compact('restaurants'));
-    }
-
-    public function restore($id){
-        $restaurant = Restaurant::onlyTrashed()->findOrFail($id);
-        $restaurant->restore();
-        return redirect()->route('admin.restaurants.index')->with('restore', $restaurant->name . ' ' . 'é stato ripristinato con successo');
     }
 }
