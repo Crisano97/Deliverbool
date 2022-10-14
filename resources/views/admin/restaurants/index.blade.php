@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="form_page">
-        <div class="container py-5">
+        <div class="container py-4">
             @if (session('create'))
-                <div class="alert alert-success">
+                <div class="alert alert-success ">
                     <span class="alert alert-success">
                         {{ session('create') }}
                     </span>
                 </div>
             @endif
             @if (session('edit'))
-                <div class="alert alert-warning">
+                <div class="alert alert-warning ">
                     <span class="alert alert-warning">
                         {{ session('edit') }}
                     </span>
@@ -20,20 +20,20 @@
             <div class="row">
                 <div class="col-12">
 
-                    @if (session('result-message'))
-                        <div class="alert alert-{{ session('result-class-message') }}">
-                            {{ session('result-message') }}
-                        </div>
-                    @endif
                     <div class="container">
                         <div class="row">
 
                             @forelse ($restaurants as $restaurant)
                                 <div class="col-12 col-md-6 rounded-lg mb-3">
                                     <h3 class="text-white">La Tua Immagine</h3>
-                                    <div class="card_style p-3">
-                                        <img class="img-fluid" src="{{ $restaurant->image }}" alt="">
+                                    <div class="card_style p-3 text-center">
+                                        <img class="img-fluid" src="{{ $restaurant->image }}" alt="image-restaurant">
                                         <h4 class="mt-2">Modifica immagine:</h4>
+                                        @error('image')
+                                            <p class="text-danger fs-6">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                         <div class=" row m-3 flex-column text-center">
                                             <form action="{{ route('admin.restaurants.update', $restaurant->id) }}"
                                                 method="POST" class="">
@@ -83,7 +83,7 @@
                                     </a>
                                 </div>
                                 <div class="col-12 col-md-6 mt-2">
-                                    <a href="{{ route('admin.dishes.index') }}">
+                                    <a href="{{ route('admin.order.index') }}">
                                         <div class="position-relative img-container mt-5">
                                             <img class="img-link"
                                                 src="https://www.cartaincarta.it/public/Files/rif000002/997/food-delivery.jpg"

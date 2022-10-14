@@ -17,7 +17,7 @@ class RestaurantController extends Controller
         'address' => 'required|min:5|regex:/[a-zA-Z0-9]/',
         'image' => 'required|active_url|max:500',
         'categories' => 'required|min:1|exists:categories,id',
-        'p_iva' => 'required|digits:11|regex:/[0-9]/',
+        'p_iva' => 'required|digits:11|unique:restaurants|regex:/[0-9]/',
 
     ];
 
@@ -34,6 +34,7 @@ class RestaurantController extends Controller
         'image.max' => 'Il link dell\'immagine deve essere lunga massimo 500 caratteri',
         'p_iva.required' => 'La PIVA é obbligatoria',
         'p_iva.digits' => 'La PIVA deve essere obbligatoriamente di 11 numeri',
+        'p_iva.unique' => 'La PIVA é giá presente, inserici una nuova PIVA',
         'p_iva.regex' => 'La PIVA puó contenere solo numeri',
         'categories.required' => 'La categoria é obbligatoria',
         'categories.min' => 'Seleziona almeno una categoria',
