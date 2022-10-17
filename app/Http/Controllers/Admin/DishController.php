@@ -46,7 +46,7 @@ class DishController extends Controller
         'image.required' => 'L\'immagine é obbligatoria',
         'image.file' => 'File non valido',
         'image.uploaded' => 'Impossibile caricare il file',
-        // 'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
+        'image.max' => 'L\'immagine deve avere una dimensione massima di 512kb',
     ];
 
     protected $validationEditRules = [

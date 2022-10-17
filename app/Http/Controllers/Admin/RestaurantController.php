@@ -44,7 +44,7 @@ class RestaurantController extends Controller
     ];
 
     protected $imageValidation = [
-        'image' => 'image|mimes:jpeg,bmp,png,jpg|required',
+        'image' => 'image|mimes:jpeg,bmp,png,jpg|required|max:512',
     ];
 
     protected $imageValidationMessages = [
@@ -53,7 +53,7 @@ class RestaurantController extends Controller
         'image.required' => 'L\'immagine é obbligatoria',
         'image.file' => 'File non valido',
         'image.uploaded' => 'Impossibile caricare il file',
-        // 'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
+        'image.max' => 'L\'immagine deve avere una dimensione massima di 512kb',
     ];
 
     /**
@@ -112,7 +112,7 @@ class RestaurantController extends Controller
     public function edit($id)
     {
         $restaurant = Restaurant::findOrFail($id);
-        
+
         return view('admin.restaurants.index', compact('restaurant'));
     }
 
