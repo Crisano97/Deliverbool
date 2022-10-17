@@ -1,9 +1,10 @@
 .form_page{
-    // height: 100vh;
     background: linear-gradient(rgba(0,0,0,.5), rgba(141, 140, 140, 0.5)), url("../../../public/assets/images/food-images-pictures-1600x1016.jpg");
-
     background-repeat: no-repeat;
     background-size: cover; 
+    display: flex;
+    align-items: center;
+    height: 100%;
 } 
 
 .form_content{
