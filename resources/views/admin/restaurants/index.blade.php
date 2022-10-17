@@ -38,7 +38,7 @@
                                             <form action="{{ route('admin.restaurants.update', $restaurant->id) }}"
                                                 method="POST" class="" enctype="multipart/form-data">
                                                 @csrf
-                                                @method('PATCH')
+                                                @method('PUT')
                                                 <input type="file" name="image" required
                                                    value="{{  $restaurant->image }}"
                                                    placeholder="Inserisci immagine" class="col-10" 
@@ -106,6 +106,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

@@ -4,7 +4,7 @@
     <div class="form_page">
         <div class="container py-5">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-8  align-self-center">
                     <div class="card">
                         <div class="card-header">{{ __('Register') }}</div>
 

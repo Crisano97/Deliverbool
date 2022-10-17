@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     protected $validationRules = [
         'name' => 'required|min:3|unique:restaurants|regex:/[a-zA-Z]/',
         'address' => 'required|min:5|regex:/[a-zA-Z0-9]/',
-        'image' => 'mimes:jpeg,bmp,png,jpg|required|max:512',
+        'image' => 'image|mimes:jpeg,bmp,png,jpg|required|max:512',
         'categories' => 'required|min:1|exists:categories,id',
         'p_iva' => 'required|digits:11|unique:restaurants|regex:/[0-9]/',
 
@@ -30,8 +30,10 @@ class RestaurantController extends Controller
         'address.required' => 'L\'Indirizzo é obbligatorio',
         'address.min' => 'L\'Indirizzo deve essere di almeno 5 caratteri',
         'address.regex' => 'L\'Indirizzo puó contenere solo a-z, A,Z e 0-9',
+        'image.image' => 'Il formato inserito non é un\'immagine',
+        'image.mimes' => 'Il formato dell\'immagine puó essere solo jpeg,bmp,png,jpg',
         'image.required' => 'L\'immagine é obbligatoria',
-        'image.max' => "L'immagine non deve essere superiore ai 512 KB",
+        'image.max' => 'L\'immagine deve avere una dimensione massima di 512kb',
         'p_iva.required' => 'La PIVA é obbligatoria',
         'p_iva.digits' => 'La PIVA deve essere obbligatoriamente di 11 numeri',
         'p_iva.unique' => 'La PIVA é giá presente, inserici una nuova PIVA',
@@ -39,6 +41,19 @@ class RestaurantController extends Controller
         'categories.required' => 'La categoria é obbligatoria',
         'categories.min' => 'Seleziona almeno una categoria',
         'categories.exists' => 'Seleziona solo una delle categorie giá esistenti',
+    ];
+
+    protected $imageValidation = [
+        'image' => 'image|file|size:512|mimes:jpeg,bmp,png,jpg|required',
+    ];
+
+    protected $imageValidationMessages = [
+        'image.image' => 'Il formato inserito non é un\'immagine',
+        'image.mimes' => 'Il formato dell\'immagine puó essere solo jpeg,bmp,png,jpg',
+        'image.required' => 'L\'immagine é obbligatoria',
+        'image.file' => 'File non valido',
+        'image.uploaded' => 'Impossibile caricare il file',
+        'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
     ];
 
     /**
@@ -94,9 +109,11 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Restaurant $restaurant)
+    public function edit($id)
     {
-        return view('admin.restaurants.edit', compact('restaurant'));
+        $restaurant = Restaurant::findOrFail($id);
+        
+        return view('admin.restaurants.index', compact('restaurant'));
     }
 
     /**
@@ -108,10 +125,10 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
+        // $validatedDate = $request->validate($this->validationRules, $this->validationCustomMessages);
         $data = $request->all();
 
-       $validatedData = $request->validate($this->validationRules, $this->validationCustomMessages);
-
+        $validatedImage = $request->validate($this->imageValidation, $this->imageValidationMessages);
         $data['user_id'] = Auth::id();
         $data['image'] = Storage::put('uploads', $data['image']);
         if (isset($data['name'])) {
