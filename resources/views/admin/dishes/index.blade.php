@@ -51,7 +51,8 @@
                         <div class="card mb-3 dish-container ">
                             <div class="row">
                                 <div class=" col-10 col-md-12 col-lg-4 mx-auto mt-3">
-                                    <img class="img-fluid" src="{{ asset('storage/' . $dish->image )}}" alt="{{ $dish->name }}">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $dish->image) }}"
+                                        alt="{{ $dish->name }}">
                                 </div>
                                 <div class="col-10 col-md-12 col-lg-8">
                                     <div class="card-body">
@@ -97,7 +98,9 @@
                         </div>
                     </div>
                 @empty
-                    <h3 class="text-white text-center">Non ci sono piatti presenti nel tuo menu</h3>
+                    <div class="vh-100 d-flex align-items-center">
+                        <h3 class="text-white card_style p-4">Non ci sono piatti presenti nel tuo menu</h3>
+                    </div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center">

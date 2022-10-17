@@ -62,8 +62,8 @@
                             </h5>
                         </div>
                     @empty
-                        <div>
-                            <h3>NON SONO STATI RILEVATI NUOVE ORDINI</h3>
+                        <div class="vh-100 d-flex align-items-center">
+                            <h3 class="text-white card_style p-4">NON SONO STATI RILEVATI NUOVE ORDINI</h3>
                         </div>
                     @endforelse
 
