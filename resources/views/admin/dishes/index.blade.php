@@ -52,11 +52,10 @@
                             <div class="row">
                                 <div class=" col-10 col-md-12 col-lg-4 mx-auto mt-3">
                                     @if (substr($dish->image, 0, 4) === 'http')
-                                        <img class="img-fluid" src="{{$dish->image}}"
-                                            alt="{{ $dish->name }}">     
+                                        <img class="img-fluid" src="{{ $dish->image }}" alt="{{ $dish->name }}">
                                     @else
                                         <img class="img-fluid" src="{{ asset('storage/uploads/' . $dish->image) }}"
-                                        alt="{{ $dish->name }}">
+                                            alt="{{ $dish->name }}">
                                     @endif
                                 </div>
                                 <div class="col-10 col-md-12 col-lg-8">
@@ -96,25 +95,6 @@
                                                 </button>
                                             </form>
                                         </div>
-                                        {{-- <h4 class="mt-2">Modifica immagine:</h4>
-                                        @error('image')
-                                            <p class="text-danger fs-6">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
-                                        <div class=" row m-3">
-                                            <form action="{{ route('admin.dishes.editImg', $dish->id) }}"
-                                                method="POST" class="" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="file" name="image" required
-                                                   value="{{  $dish->image }}"
-                                                   placeholder="Inserisci immagine" class="col-10" 
-                                                >
-                                                <button class="btn btn-primary">Carica</button>
-                                            </form>
-
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

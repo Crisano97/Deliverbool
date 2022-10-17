@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class DishController extends Controller
 {
     protected $validationRules = [
-        'name'=> 'required|min:3|regex:/[a-zA-Z0-9]/',
-        'image'=> 'mimes:jpeg,bmp,png,jpg|max:512',
-        'ingredients'=> 'required|min:5|regex:/[a-zA-Z]/',
-        'price'=> 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
-        'visible'=> 'required|boolean',
+        'name' => 'required|min:3|regex:/[a-zA-Z0-9]/',
+        'image' => 'mimes:jpeg,bmp,png,jpg|required|max:512',
+        'ingredients' => 'required|min:5|regex:/[a-zA-Z]/',
+        'price' => 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
+        'visible' => 'required|boolean',
 
     ];
 
@@ -39,9 +39,6 @@ class DishController extends Controller
         'visible.boolean' => 'Il valore selezionato non é valido',
     ];
 
-    protected $imageValidation = [
-        'image' => 'image|mimes:jpeg,bmp,png,jpg|required',
-    ];
 
     protected $imageValidationMessages = [
         'image.image' => 'Il formato inserito non é un\'immagine',
@@ -53,10 +50,11 @@ class DishController extends Controller
     ];
 
     protected $validationEditRules = [
-        'name'=> 'required|min:3|regex:/[a-zA-Z0-9]/',
-        'ingredients'=> 'required|min:5|regex:/[a-zA-Z]/',
-        'price'=> 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
-        'visible'=> 'required|boolean',
+        'name' => 'required|min:3|regex:/[a-zA-Z0-9]/',
+        'ingredients' => 'required|min:5|regex:/[a-zA-Z]/',
+        'image' => 'mimes:jpeg,bmp,png,jpg|max:512',
+        'price' => 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
+        'visible' => 'required|boolean',
 
     ];
     /**
@@ -80,7 +78,7 @@ class DishController extends Controller
         $dish = new Dish();
         $route = route('admin.dishes.store');
         $method = 'POST';
-        return view('admin.dishes.create&edit', compact(['dish', 'route', 'method']));
+        return view('admin.dishes.create', compact(['dish', 'route', 'method']));
     }
 
     /**
@@ -91,6 +89,7 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
         $restaurant_id = Auth::id();
 
         if ($request->has('image')) {
@@ -135,16 +134,6 @@ class DishController extends Controller
         }
 
         return redirect()->route('admin.dishes.index');
-        // $data = $request->all();
-
-        // $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
-
-        // $newDish = new Dish();
-        // $data['restaurant_id'] = Auth::id(); 
-        // $data['image'] = Storage::put('', $data['image']);
-        // $newDish->fill($data);
-        // $newDish->save();
-        // return redirect()->route('admin.dishes.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
     }
 
     /**
@@ -155,12 +144,11 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        
+
         $dish = Dish::findOrFail($id);
         $route = route('admin.dishes.update', $dish->id);
         $method = 'PUT';
-        return view('admin.dishes.create&edit', compact(['dish', 'route', 'method']));
-
+        return view('admin.dishes.edit', compact(['dish', 'route', 'method']));
     }
 
     /**
@@ -237,18 +225,21 @@ class DishController extends Controller
         return redirect()->route('admin.dishes.index')->with('delete', $dish->name . ' ' . 'è stato spostato nel cestino');
     }
 
-    public function softDeleted(){
+    public function softDeleted()
+    {
         $dishes = Dish::onlyTrashed()->paginate(6);
         return view('admin.dishes.deleted', compact('dishes'));
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
         $dish = Dish::onlyTrashed()->findOrFail($id);
         $dish->restore();
         return redirect()->route('admin.dishes.index')->with('restore', $dish->name . ' ' . 'è stato ripristinato con successo');
     }
 
-    public function hardDeleted($id){
+    public function hardDeleted($id)
+    {
         $dish = Dish::onlyTrashed()->findOrFail($id);
         $dish->forceDelete();
         return redirect()->route('admin.dishes.deleted', compact('dish'))->with('delete', $dish->name . ' ' . 'è stato eliminato con successo');
