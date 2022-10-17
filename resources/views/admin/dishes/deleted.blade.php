@@ -71,6 +71,9 @@
                     <h1 class="text-white">Non ci sono piatti presenti nel cestino</h1>
                 @endforelse
             </div>
+            <div class="d-flex justify-content-center">
+                {{ $dishes->links() }}
+            </div>
         </div>
     </div>
 @endsection
