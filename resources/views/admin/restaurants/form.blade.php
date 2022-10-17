@@ -7,14 +7,14 @@
 
             <div class="container form_content p-5 rounded-5 my-2 ">
                 <form action="{{ route('admin.restaurants.store') }}" method="post"
-                    class="text row row-cols-1 justify-content-center">
+                    class="text row row-cols-1 justify-content-center" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="mb-3 ">
                         <label for="exampleFormControlInput1" class="form-label">Nome Attivitá *</label>
                         <input type="text" value="{{ old('name', $restaurantForm->name) }}"
                             class="form-control text_form" id="exampleFormControlInput1" placeholder="Nome Attiviá"
-                            name="name">
+                            name="name" required>
                         <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z,
                             A-Z)</small>
                         @error('name')
@@ -26,7 +26,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Indirizzo *</label>
                         <input type="text" value="{{ old('address', $restaurantForm->address) }}"
-                            class="form-control text_form" id="exampleFormControlInput1" placeholder="Via Casa Micco"
+                            class="form-control text_form" id="exampleFormControlInput1" placeholder="Via Casa Micco" required
                             name="address">
                         @error('address')
                             <p class="text-danger fs-6">
@@ -38,7 +38,7 @@
                         <label for="exampleFormControlInput1" class="form-label">Partita Iva *</label>
                         <input type="text" value="{{ old('p_iva', $restaurantForm->p_iva) }}"
                             class="form-control text_form" id="exampleFormControlInput1" placeholder="12345678901"
-                            name="p_iva">
+                            name="p_iva" required>
                         <small id="emailHelp" class="form-text text-muted">La Partita Iva può contenere solo numeri
                             (e.g. 12345678901)</small>
                         @error('p_iva')
@@ -49,8 +49,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Scegli la tu immagine</label>
-                        <input type="text" value="{{ old('image', $restaurantForm->image) }}"
-                            class="form-control text_form" id="exampleFormControlInput1" name="image">
+                        <input type="file" value="{{ old('image', $restaurant->image) }}"
+                           class="form-control text_form" id="exampleFormControlInput1" name="image" required
+                        >    
                         @error('image')
                             <p class="text-danger fs-6">
                                 {{ $message }}
@@ -65,16 +66,17 @@
                                 @if ($errors->any())
                                     <input type="checkbox" name="categories[]" id="input-categories"
                                         class="form-check-input" value="{{ $category->id }}"
-                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }} required
+                                    >
                                 @else
                                     <input type="checkbox" name="categories[]" id="input-categories"
                                         class="form-check-input" value="{{ $category->id }}"
-                                        {{ $restaurantForm->categories->contains($category) ? 'checked' : '' }}>
+                                        {{ $restaurantForm->categories->contains($category) ? 'checked' : '' }} required
+                                    >
                                 @endif
                                 <label for="input-categories" class="form-check-label">{{ $category->name }}</label>
                             </div>
                         @endforeach
-                        {{-- @include('admin.posts.includes.errors', ['value' => 'categories']) --}}
                         @error('categories')
                             <p class="text-danger fs-6">
                                 {{ $message }}
