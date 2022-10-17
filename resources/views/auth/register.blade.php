@@ -3,10 +3,10 @@
 @section('content')
     <div class="form_page">
         <div class="container py-5">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center vh-100">
                 <div class="col-md-8  align-self-center">
-                    <div class="card">
-                        <div class="card-header">{{ __('Register') }}</div>
+                    <div class="form_content p-5">
+                        <h2 class="card_header text-center ">Benvenuto/a in DELIVERBOOL</h2>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">

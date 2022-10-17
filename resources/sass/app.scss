@@ -13,10 +13,9 @@
 @import './partials/header';
 @import './partials/form';
 @import './partials/footer.scss';
+@import './partials/order';
 
-.icon{
+// LOGIN&REGISTERED
+.card_header{
     color: $colorBrand2;
-}
-.border_order{
-    border-top: 1px solid $colorBrand;
 }
