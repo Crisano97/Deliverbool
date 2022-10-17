@@ -10,9 +10,14 @@
                     </span>
                 </div>
             @endif
-            <div class="row col-sm-12 d-flex justify-content-around">
+            <div class="row col-sm-12 d-flex justify-content-around py-4">
                 <div>
                     <h1 class="text-white">Cestino</h1>
+                </div>
+                <div class="text-right pt-1">
+                    <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">
+                        I tuoi piatti
+                    </a>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
@@ -49,8 +54,8 @@
                                                     </div>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('admin.dishes.hardDeleted', $dish->id) }}" method="POST"
-                                                class="d-inline delete-dishes ml-3">
+                                            <form action="{{ route('admin.dishes.hardDeleted', $dish->id) }}"
+                                                method="POST" class="d-inline delete-dishes ml-3">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="my_btn">
@@ -68,7 +73,9 @@
                         </div>
                     </div>
                 @empty
-                    <h1 class="text-white">Non ci sono piatti presenti nel cestino</h1>
+                    <div class="vh-100 d-flex align-items-center ">
+                        <h3 class="text-white card_style p-4">Non ci sono piatti presenti nel cestino</h3>
+                    </div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center">

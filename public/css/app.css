@@ -10934,18 +10934,20 @@ a.text-dark:focus {
 
 .banner-link {
   background-color: rgba(0, 0, 0, 0.48);
+  margin-top: 6rem;
 }
 
 .img-container {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   height: 250px;
-  overflow: hidden;
 }
 
 .img-link {
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
   width: 100%;
+  -o-object-position: top;
+     object-position: top;
 }
 
 .info {
@@ -10972,5 +10974,123 @@ a.text-dark:focus {
 
 .dish-info {
   max-height: 150px;
+}
+
+header {
+  background-color: #ffbd59;
+}
+
+.logo-brand {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: x-large;
+}
+
+.img-brand {
+  width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.form_page {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(141, 140, 140, 0.5)), url(/images/food-images-pictures-1600x1016.jpg?155d1a4ff056d74f777420c6dcf9248c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.form_content {
+  background-color: rgba(7, 7, 7, 0.7);
+  color: white;
+}
+
+.form-control {
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  outline: none;
+}
+
+.text_form {
+  color: white;
+}
+
+.card_style {
+  border: 1px solid white;
+  color: white;
+  border-radius: 8px;
+}
+
+footer .container-fluid,
+footer .container-sm,
+footer .container-md,
+footer .container-lg,
+footer .container-xl {
+  background-color: #2E3333;
+  color: #FFF;
+}
+
+footer .container-fluid h4,
+footer .container-sm h4,
+footer .container-md h4,
+footer .container-lg h4,
+footer .container-xl h4 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+footer .container-fluid a,
+footer .container-sm a,
+footer .container-md a,
+footer .container-lg a,
+footer .container-xl a {
+  text-decoration: none;
+}
+
+footer .footer-block {
+  background-color: #434848;
+  text-align: center;
+  margin: 10px 20px;
+}
+
+footer .footer-block h5 {
+  font-size: 1rem;
+}
+
+footer .footer-block a {
+  color: #FFF;
+}
+
+footer .footer-block img {
+  padding: 5px 0;
+  width: 100px;
+}
+
+footer .footer-block .contact a > img {
+  width: 30px;
+  padding-right: 10px;
+}
+
+footer .social {
+  color: #FFF;
+  padding-left: 10px;
+}
+
+footer .social a {
+  color: #FFF;
+  padding: 10px;
+  text-decoration: none;
+}
+
+footer .social img {
+  width: 25px;
+}
+
+.icon {
+  color: #ffbd59;
+}
+
+.border_order {
+  border-top: 1px solid #758d75;
 }
 

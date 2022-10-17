@@ -13,8 +13,9 @@
 @import './partials/header';
 @import './partials/form';
 @import './partials/footer.scss';
+@import './partials/order';
 
-
-main{
-    height: 100vh;
+// LOGIN&REGISTERED
+.card_header{
+    color: $colorBrand2;
 }

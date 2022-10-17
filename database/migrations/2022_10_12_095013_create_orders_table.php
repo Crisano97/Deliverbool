@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->double('total_price', 5, 2);
             $table->string('customer_name');
             $table->string('customer_address');
+            $table->string('customer_email');
             $table->string('customer_phone_number', 30);
             $table->dateTime('order_date');
             $table->boolean('is_payed')->default(false);
