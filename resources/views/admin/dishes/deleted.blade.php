@@ -5,7 +5,7 @@
         <div class="container py-4">
             @if (session('delete'))
                 <div class="alert alert-danger">
-                    <span class="alert alert-danger">
+                    <span>
                         {{ session('delete') }}
                     </span>
                 </div>
@@ -14,14 +14,6 @@
                 <div>
                     <h1 class="text-white">Cestino</h1>
                 </div>
-                {{-- <div class="text-right pt-1">
-                <a class="btn btn-primary" href="{{ route('admin.dishes.restore') }}">
-                    Ripristina
-                </a>
-                <a class="btn btn-primary" href="{{ route('admin.dishes.destroy') }}">
-                    Elimina
-                </a>
-            </div> --}}
             </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
                 @forelse ($dishes as $dish)

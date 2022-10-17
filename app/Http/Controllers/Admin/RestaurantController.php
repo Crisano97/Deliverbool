@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -15,7 +16,7 @@ class RestaurantController extends Controller
     protected $validationRules = [
         'name' => 'required|min:3|unique:restaurants|regex:/[a-zA-Z]/',
         'address' => 'required|min:5|regex:/[a-zA-Z0-9]/',
-        'image' => 'required|active_url|max:500',
+        'image' => 'mimes:jpeg,bmp,png,jpg|required|max:512',
         'categories' => 'required|min:1|exists:categories,id',
         'p_iva' => 'required|digits:11|unique:restaurants|regex:/[0-9]/',
 
@@ -30,8 +31,7 @@ class RestaurantController extends Controller
         'address.min' => 'L\'Indirizzo deve essere di almeno 5 caratteri',
         'address.regex' => 'L\'Indirizzo puó contenere solo a-z, A,Z e 0-9',
         'image.required' => 'L\'immagine é obbligatoria',
-        'image.active_url' => 'L\'immagine deve essere un link attivo',
-        'image.max' => 'Il link dell\'immagine deve essere lunga massimo 500 caratteri',
+        'image.max' => "L'immagine non deve essere superiore ai 512 KB",
         'p_iva.required' => 'La PIVA é obbligatoria',
         'p_iva.digits' => 'La PIVA deve essere obbligatoriamente di 11 numeri',
         'p_iva.unique' => 'La PIVA é giá presente, inserici una nuova PIVA',
@@ -75,28 +75,17 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        $validatedData = $request->validate($this->validationRules, $this->validationCustomMessages);
+        $validatedDate = $request->validate($this->validationRules, $this->validationCustomMessages);
 
         $newRestaurant = new Restaurant;
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($data['name'], '-');
+        $data['image'] = Storage::put('uploads', $data['image']);
         $newRestaurant->fill($data);
         $newRestaurant->save();
         $newRestaurant->categories()->sync($data['categories']);
 
         return redirect()->route('admin.restaurants.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -120,12 +109,11 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         $data = $request->all();
-        $request->validate([
-            'image' => 'activeurl|required',
-        ]);
+
+       $validatedData = $request->validate($this->validationRules, $this->validationCustomMessages);
 
         $data['user_id'] = Auth::id();
-
+        $data['image'] = Storage::put('uploads', $data['image']);
         if (isset($data['name'])) {
             $data['slug'] = Str::slug($data['name'], '-');
         }
@@ -133,18 +121,5 @@ class RestaurantController extends Controller
         $restaurant->update($data);
 
         return redirect()->route('admin.restaurants.index')->with('edit', "L'immagine è stata modificata con successo");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $restaurant = Restaurant::findOrFail($id);
-        $restaurant->delete();
-        return redirect()->route('admin.restaurants.index')->with('deleted', $restaurant->name . ' ' . 'é stato eliminato con successo');;
     }
 }

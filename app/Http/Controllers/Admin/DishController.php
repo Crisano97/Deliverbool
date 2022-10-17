@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
     protected $validationRules = [
         'name'=> 'required|min:3|regex:/[a-zA-Z0-9]/',
-        'image'=> 'required|active_url|max:500',
+        'image'=> 'mimes:jpeg,bmp,png,jpg|required|max:512',
         'ingredients'=> 'required|min:5|regex:/[a-zA-Z]/',
-        'price'=> 'required|numeric|regex:/[0-9]/',
+        'price'=> 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
         'visible'=> 'required|boolean',
 
     ];
@@ -23,14 +24,15 @@ class DishController extends Controller
         'name.min' => 'Il nome del piatto deve essere di almeno 3 caratteri',
         'name.regex' => 'Il nome del piatto puó contenere solo a-z, A-Z, 0-9',
         'image.required' => 'L\'immagine del piatto é obbligatoria',
-        'image.active_url' => 'L\'immagine del piatto deve essere un link attivo',
-        'image.max' => 'Il link dell\'immagine deve essere lunga massimo 500 caratteri',
+        'image.max' => "L'immagine deve avere una dimensione massima di 512 KB",
         'ingredients.required' => 'Gli ingredienti sono obbligatori',
         'ingredients.min' => 'Gli ingredienti devono essere di almeno 5 caratteri ',
         'ingredients.regex' => 'Gli ingredienti possono contenere solo a-z, A-Z',
         'price.required' => 'Il prezzo é obbligatorio',
         'price.numeric' => 'Il prezzo deve essere obbligatoriamente un numero',
         'price.regex' => 'Il prezzo puó contenere solo numeri',
+        'price.min' => 'Il prezzo deve essere di almeno 0.10',
+        'price.max' => 'Il prezzo deve essere inferiore a 99.99',
         'visible.required' => 'Scegliere obbligatoriamente una delle due opzioni',
         'visible.boolean' => 'Il valore selezionato non é valido',
     ];
@@ -41,7 +43,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::where('restaurant_id', Auth::id())->get();
+        $dishes = Dish::where('restaurant_id', Auth::id())->paginate(6);
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -72,20 +74,10 @@ class DishController extends Controller
 
         $newDish = new Dish();
         $data['restaurant_id'] = Auth::id(); 
+        $data['image'] = Storage::put('uploads', $data['image']);
         $newDish->fill($data);
         $newDish->save();
         return redirect()->route('admin.dishes.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -119,6 +111,7 @@ class DishController extends Controller
 
         $dish = Dish::findOrFail($id);
         $data['restaurant_id'] = Auth::id(); 
+        $data['image'] = Storage::put('uploads', $data['image']);
         // dd($data);
         $dish->fill($data);
         $dish->save();
@@ -139,7 +132,7 @@ class DishController extends Controller
     }
 
     public function softDeleted(){
-        $dishes = Dish::onlyTrashed()->get();
+        $dishes = Dish::onlyTrashed()->paginate(6);
         return view('admin.dishes.deleted', compact('dishes'));
     }
 
