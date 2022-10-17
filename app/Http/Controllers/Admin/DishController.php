@@ -25,6 +25,7 @@ class DishController extends Controller
         'name.regex' => 'Il nome del piatto puó contenere solo a-z, A-Z, 0-9',
         'image.required' => 'L\'immagine del piatto é obbligatoria',
         'image.max' => "L'immagine deve avere una dimensione massima di 512 KB",
+        'image.uploaded' => 'Impossibile caricare il file',
         'ingredients.required' => 'Gli ingredienti sono obbligatori',
         'ingredients.min' => 'Gli ingredienti devono essere di almeno 5 caratteri ',
         'ingredients.regex' => 'Gli ingredienti possono contenere solo a-z, A-Z',
@@ -35,6 +36,19 @@ class DishController extends Controller
         'price.max' => 'Il prezzo deve essere inferiore a 99.99',
         'visible.required' => 'Scegliere obbligatoriamente una delle due opzioni',
         'visible.boolean' => 'Il valore selezionato non é valido',
+    ];
+
+    protected $imageValidation = [
+        'image' => 'image|file|size:512|mimes:jpeg,bmp,png,jpg|required',
+    ];
+
+    protected $imageValidationMessages = [
+        'image.image' => 'Il formato inserito non é un\'immagine',
+        'image.mimes' => 'Il formato dell\'immagine puó essere solo jpeg,bmp,png,jpg',
+        'image.required' => 'L\'immagine é obbligatoria',
+        'image.file' => 'File non valido',
+        'image.uploaded' => 'Impossibile caricare il file',
+        'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
     ];
     /**
      * Display a listing of the resource.
