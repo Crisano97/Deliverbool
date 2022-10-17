@@ -100,6 +100,9 @@
                     <h3 class="text-white ">Non ci sono piatti presenti nel tuo menu</h3>
                 @endforelse
             </div>
+            <div class="d-flex justify-content-center">
+                {{ $dishes->links() }}
+            </div>
         </div>
     </div>
 @endsection

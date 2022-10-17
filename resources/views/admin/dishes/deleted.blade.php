@@ -14,6 +14,11 @@
                 <div>
                     <h1 class="text-white">Cestino</h1>
                 </div>
+                <div class="text-right pt-1">
+                    <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">
+                        I tuoi piatti
+                    </a>
+                </div>
                 {{-- <div class="text-right pt-1">
                 <a class="btn btn-primary" href="{{ route('admin.dishes.restore') }}">
                     Ripristina
@@ -78,6 +83,9 @@
                 @empty
                     <h1 class="text-white">Non ci sono piatti presenti nel cestino</h1>
                 @endforelse
+            </div>
+            <div class="d-flex justify-content-center">
+                {{ $dishes->links() }}
             </div>
         </div>
     </div>
