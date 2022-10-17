@@ -27,6 +27,7 @@ Route::middleware('auth')
     ->group(function () {
         // Route::get('/login', 'HomeController@index')->name('home');
         Route::get('/dishes/deleted', 'DishController@softDeleted')->name('dishes.deleted');
+        Route::put('/dishes/edit/{id}', 'DishController@editImg')->name('dishes.editImg');
         Route::patch('/dishes/deleted/{id}', 'DishController@restore')->name('dishes.restore');
         Route::delete('/dishes/deleted/{id}', 'DishController@hardDeleted')->name('dishes.hardDeleted');
         Route::resource('/restaurants', 'RestaurantController');

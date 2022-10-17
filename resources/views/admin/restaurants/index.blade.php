@@ -27,7 +27,11 @@
                                 <div class="col-12 col-md-6 rounded-lg mb-3">
                                     <h3 class="text-white">La Tua Immagine</h3>
                                     <div class="card_style p-3 text-center">
-                                        <img class="img-fluid" src="{{ asset('storage/' . $restaurant->image)}}" alt="image-restaurant">
+                                        @if (substr($restaurant->image, 0 ,4) === 'http')
+                                        <img class ="img-fluid" src="{{$restaurant->image}}" alt="image-restaurant">
+                                        @else
+                                            <img class ="img-fluid" src="{{ asset('storage/' . $restaurant->image)}}" alt="image-restaurant">
+                                        @endif
                                         <h4 class="mt-2">Modifica immagine:</h4>
                                         @error('image')
                                             <p class="text-danger fs-6">
