@@ -68,7 +68,9 @@
                     @endforelse
 
                 </div>
-
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

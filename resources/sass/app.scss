@@ -19,3 +19,13 @@
 .card_header{
     color: $colorBrand2;
 }
+
+div.height{
+    height: 100vh;
+}
+
+@media screen and (max-width:991px) {
+    div.height{
+        height: 100%;
+    }
+}

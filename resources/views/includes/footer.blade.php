@@ -4,6 +4,9 @@
         <div class="row justify-content-sm-center justify-content-center py-4">
 
             <div class="footer-block col-8 col-sm-4 col-md-4 col-lg-2 p-4">
+                <div class="icon">
+                    <i class="fas fa-code"></i>
+                </div>
                 <h5>
                     <strong>
                         Bianca Cerulo

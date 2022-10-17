@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand logo-brand" href="{{ url('/') }}">
+            <a class="navbar-brand logo-brand" href="{{ route('admin.restaurants.index') }}">
                 <img class="img-brand border border-warning border-3 rounded-circle" src="{{ asset('assets/images/DElivebool.png') }}" alt="">
                 Deliverbool
             </a>
