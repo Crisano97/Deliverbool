@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,7 @@ class DishController extends Controller
 {
     protected $validationRules = [
         'name'=> 'required|min:3|regex:/[a-zA-Z0-9]/',
-        'image'=> 'mimes:jpeg,bmp,png,jpg|required|max:512',
+        'image'=> 'mimes:jpeg,bmp,png,jpg|max:512',
         'ingredients'=> 'required|min:5|regex:/[a-zA-Z]/',
         'price'=> 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
         'visible'=> 'required|boolean',
@@ -39,7 +40,7 @@ class DishController extends Controller
     ];
 
     protected $imageValidation = [
-        'image' => 'image|file|size:512|mimes:jpeg,bmp,png,jpg|required',
+        'image' => 'image|mimes:jpeg,bmp,png,jpg|required',
     ];
 
     protected $imageValidationMessages = [
@@ -48,7 +49,15 @@ class DishController extends Controller
         'image.required' => 'L\'immagine é obbligatoria',
         'image.file' => 'File non valido',
         'image.uploaded' => 'Impossibile caricare il file',
-        'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
+        // 'image.size' => 'L\'immagine deve avere una dimensione massima di 512kb',
+    ];
+
+    protected $validationEditRules = [
+        'name'=> 'required|min:3|regex:/[a-zA-Z0-9]/',
+        'ingredients'=> 'required|min:5|regex:/[a-zA-Z]/',
+        'price'=> 'required|numeric|regex:/[0-9]/|min:0.10|max:99.99',
+        'visible'=> 'required|boolean',
+
     ];
     /**
      * Display a listing of the resource.
@@ -82,16 +91,60 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $restaurant_id = Auth::id();
 
-        $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
+        if ($request->has('image')) {
 
-        $newDish = new Dish();
-        $data['restaurant_id'] = Auth::id(); 
-        $data['image'] = Storage::put('uploads', $data['image']);
-        $newDish->fill($data);
-        $newDish->save();
-        return redirect()->route('admin.dishes.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
+            $image = $request->file('image');
+
+            //salvo ext file
+            $ext = $image->getClientOriginalExtension();
+
+            //creo nome img sempre diverso
+            $name = rand(100000, 999999) . '_' . time();
+            //creo destination file
+            $destFile = $name . '.' . $ext;
+
+            //copio file all upload
+            $file = $image->storeAs('uploads', $destFile, 'public');
+
+            $dish = Dish::make([
+                'name' => $request->name,
+                'price' => $request->price,
+                'ingredients' => $request->ingredients,
+                'visible' => $request->visible,
+                'image' => $destFile,
+            ]);
+
+            $dish->restaurant()->associate($restaurant_id);
+
+            $dish->save();
+        } else {
+
+            $dish = Dish::make([
+                'name' => $request->name,
+                'price' => $request->price,
+                'ingredients' => $request->ingredients,
+                'visible' => $request->visible,
+            ]);
+
+
+            $dish->restaurant()->associate($restaurant_id);
+
+            $dish->save();
+        }
+
+        return redirect()->route('admin.dishes.index');
+        // $data = $request->all();
+
+        // $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
+
+        // $newDish = new Dish();
+        // $data['restaurant_id'] = Auth::id(); 
+        // $data['image'] = Storage::put('', $data['image']);
+        // $newDish->fill($data);
+        // $newDish->save();
+        // return redirect()->route('admin.dishes.index')->with('create', $data['name'] . ' ' . 'è stato creato con successo');
     }
 
     /**
@@ -119,17 +172,56 @@ class DishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        // $data = $request->all();
 
-        $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
+        $validatedDate = $request->validate($this->validationEditRules, $this->validationCustomRules);
 
         $dish = Dish::findOrFail($id);
-        $data['restaurant_id'] = Auth::id(); 
-        $data['image'] = Storage::put('uploads', $data['image']);
-        // dd($data);
-        $dish->fill($data);
+
+        if ($request->has('image')) {
+
+            //delete del file precedente creato
+            $fileName = $dish->image;
+
+            $file = storage_path('storage/app/public/uploads/' . $fileName);
+            File::delete($file);
+
+            $image = $request->file('image');
+            //salvo ext file
+            $ext = $image->getClientOriginalExtension();
+
+            //creo nome img sempre diverso
+            $name = rand(100000, 999999) . '_' . time();
+
+            //creo destination file
+            $destFile = $name . '.' . $ext;
+
+            //copio file all upload
+            $file = $image->storeAs('uploads', $destFile, 'public');
+            $dish->fill(
+                [
+                    'name' => $request->name,
+                    'price' => $request->price,
+                    'ingredients' => $request->ingredients,
+                    'visible' => $request->visible,
+                    'image' => $destFile,
+                ]
+            );
+        } else {
+
+            $dish->fill(
+                [
+                    'name' => $request->name,
+                    'price' => $request->price,
+                    'ingredients' => $request->ingredients,
+                    'visible' => $request->visible,
+
+                ]
+            );
+        }
+
         $dish->save();
-        return redirect()->route('admin.dishes.index', $dish->id)->with('edit', $data['name']. ' ' . 'è stato modificato con successo');
+        return redirect()->route('admin.dishes.index', $dish->id);
     }
 
     /**

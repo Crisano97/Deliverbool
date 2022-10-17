@@ -9,6 +9,8 @@ class Dish extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'restaurant_id',
