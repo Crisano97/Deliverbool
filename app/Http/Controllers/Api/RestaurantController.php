@@ -17,8 +17,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $cat = [5, 10];
-        $filterCategories = $cat;
+        $filterCategories = request()->input('categories[]');
         $restaurants = Restaurant::with('dish', 'categories.restaurants');
         //SE IL FILTRO ESISTE, LO PASSO
         if ($filterCategories) {
@@ -31,7 +30,7 @@ class RestaurantController extends Controller
         // dump($restaurants);
         $filtertedRestaurants = $restaurants->get();
         // dd($filtertedRestaurants);
-        // $filterCategories = request()->input('categories[]');
+        
         foreach ($restaurants as $restaurant) {
             if (substr($restaurant->image, 0 , 4) != 'http') {
                 $restaurant->image = 'storage/uploads/' . $restaurant->image;
