@@ -66,12 +66,12 @@
                                 @if ($errors->any())
                                     <input type="checkbox" name="categories[]" id="input-categories"
                                         class="form-check-input" value="{{ $category->id }}"
-                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }} required
+                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }} 
                                     >
                                 @else
                                     <input type="checkbox" name="categories[]" id="input-categories"
                                         class="form-check-input" value="{{ $category->id }}"
-                                        {{ $restaurantForm->categories->contains($category) ? 'checked' : '' }} required
+                                        {{ $restaurantForm->categories->contains($category) ? 'checked' : '' }} 
                                     >
                                 @endif
                                 <label for="input-categories" class="form-check-label">{{ $category->name }}</label>
