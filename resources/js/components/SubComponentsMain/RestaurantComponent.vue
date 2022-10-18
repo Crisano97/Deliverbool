@@ -4,12 +4,12 @@
       <h1 class="text-center">I partner più amati....</h1>
       <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
         <!-- CARD -->
-        <div class="px-4 my-5">
+        <div class="px-4 my-5" v-for="restaurant in restaurants" :key="restaurant.id">
           <div class="rest-card position-relative">
             <img
-              src="../../../../public/assets/images/pizza.png"
+              :src="restaurant.image"
               class="card-img-top border rounded-pill"
-              alt="..."
+              :alt="restaurant.name"
             />
             <div
               class="
@@ -23,7 +23,7 @@
                 card-title
               "
             >
-              <h5 class="">NOME RISTORANTE</h5>
+              <h5 class="">{{ restaurant.name }}</h5>
             </div>
           </div>
         </div>
@@ -32,8 +32,30 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-
+  data: function(){
+    return {
+      restaurants : []
+    }
+  },
+  methods: {
+    getRestaurants(){
+      axios
+        .get('/api/restaurants/sponsor')
+        .then((response) => {
+          //console.log(response.data.result);
+          this.restaurants = response.data.results;
+          console.log(response)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  },
+  created(){
+    this.getRestaurants();
+  }
 }
 </script>
 
@@ -41,6 +63,7 @@ export default {
 /* CARD RISTORANTE */
 .rest-card img {
   width: 100%;
+  height: 14rem;
   object-fit: cover;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;

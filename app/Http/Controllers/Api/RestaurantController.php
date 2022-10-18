@@ -48,7 +48,11 @@ class RestaurantController extends Controller
         $array = [];
         $array = $restaurants->toArray();
         // dd($array);
-        $random = Arr::random($array, 3);
-        dd($random);
+        $randomRestaurants = Arr::random($array, 3);
+
+        return response()->json([
+            'response' => true,
+            'results' => $randomRestaurants,
+        ]);
     }
 }

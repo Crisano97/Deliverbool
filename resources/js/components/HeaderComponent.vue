@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand logo-brand" href="#">
+        <a class="navbar-brand logo-brand" href="/">
           <img
             class="img-brand border border-warning border-3 rounded-circle"
             src="../../../public/assets/images/DElivebool.png"
@@ -13,17 +13,15 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <div class="d-flex justify-content-end w-100">
             <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
               <div>
-                <i class="fa-solid fa-user p-2 icon"></i>
+                <a href="/login">
+                  <i class="fa-solid fa-user p-2 icon"></i>
+                </a>
               </div>
               <div>
-                <i class="fa-solid fa-store p-2 icon"></i>
+                <a href="/Cart">
+                  <i class="fa-solid fa-store p-2 icon"></i>
+                </a>
               </div>
             </form>
           </div>

@@ -19,7 +19,7 @@
       <div class="row row-cols-3 row-cols-lg-4">
         <div class="p-2" v-for="category in categories" :key="category.id">
           <div class="card p-2">
-            <img :src="category.image" class="card-img-top" alt="..."/>
+            <img :src="category.image" class="card-img-top" :alt="category.name">
             <div class="card-body text-center">
               <h5>{{category.name}}</h5>
             </div>
@@ -85,6 +85,11 @@ export default {
 }
 .img-categoria {
   width: 90px;
+  object-fit: cover;
+}
+
+.card img{
+  height: 11rem;
   object-fit: cover;
 }
 </style>
