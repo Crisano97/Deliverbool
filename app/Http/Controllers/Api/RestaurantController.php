@@ -18,11 +18,11 @@ class RestaurantController extends Controller
     public function index()
     {
         $filterCategories = request()->input('categories[]');
-        $restaurants = Restaurant::with('dishes', 'categories.restaurants');
+        $restaurants = Restaurant::with('dishes', 'categories');
         //SE IL FILTRO ESISTE, LO PASSO
         if ($filterCategories) {
             foreach ($filterCategories as $categoryFake) {
-                $restaurants->whereHas('categories', function ($query) use($categoryFake){
+                $restaurants->whereHas('categories', function ($query) use ($categoryFake) {
                     $query->where('id', $categoryFake);
                 });
             }
@@ -30,12 +30,11 @@ class RestaurantController extends Controller
         // dump($restaurants);
         $filtertedRestaurants = $restaurants->get();
         // dd($filtertedRestaurants);
-        
+
         foreach ($restaurants as $restaurant) {
-            if (substr($restaurant->image, 0 , 4) != 'http') {
+            if (substr($restaurant->image, 0, 4) != 'http') {
                 $restaurant->image = 'storage/uploads/' . $restaurant->image;
             }
-           
         }
         return response()->json([
             'response' => true,
@@ -43,7 +42,8 @@ class RestaurantController extends Controller
         ]);
     }
 
-    public function sponsoredRestaurants (){
+    public function sponsoredRestaurants()
+    {
         $restaurants = Restaurant::all();
         $array = [];
         $array = $restaurants->toArray();
