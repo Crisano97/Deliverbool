@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+// Route::get('/', function () {
+//     return view('auth/login');
+// });
 
 Auth::routes();
 
@@ -34,5 +34,9 @@ Route::middleware('auth')
         Route::resource('/dishes', 'DishController');
         Route::resource('/order', 'OrderController');
     });
+
+    Route::get('{any?}', function(){
+        return view('guest.home');
+      })->where('any', '.*');
 
 // Route::get('/home', 'HomeController@index')->name('home');

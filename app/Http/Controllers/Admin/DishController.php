@@ -133,7 +133,7 @@ class DishController extends Controller
             $dish->save();
         }
 
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('create', 'Il piatto è stato creato con successo');;
     }
 
     /**
@@ -209,7 +209,7 @@ class DishController extends Controller
         }
 
         $dish->save();
-        return redirect()->route('admin.dishes.index', $dish->id);
+        return redirect()->route('admin.dishes.index', $dish->id)->with('edit', 'Il piatto è stato modificato con successo');
     }
 
     /**
