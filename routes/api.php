@@ -24,4 +24,6 @@ Auth::routes();
 Route::namespace('Api')->group(function(){
     Route::get('/restaurants', 'RestaurantController@index');
     Route::get('/restaurants/sponsor', 'RestaurantController@sponsoredRestaurants');
+    Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
+
 });

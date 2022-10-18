@@ -19,7 +19,7 @@ class RestaurantController extends Controller
     {
         $cat = [5, 10];
         $filterCategories = $cat;
-        $restaurants = Restaurant::with('categories.restaurants');
+        $restaurants = Restaurant::with('dish', 'categories.restaurants');
         //SE IL FILTRO ESISTE, LO PASSO
         if ($filterCategories) {
             foreach ($filterCategories as $categoryFake) {
