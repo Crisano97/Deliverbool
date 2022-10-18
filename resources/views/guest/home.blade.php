@@ -9,6 +9,7 @@
         <title>Deliverbool</title>
         <!-- Scripts -->
         
+  <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
