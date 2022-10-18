@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Scegli la tu immagine</label>
-                        <input type="file" value="{{ old('image', $restaurant->image) }}"
+                        <input type="file" value="{{ old('image', $restaurantForm->image) }}"
                            class="form-control text_form" id="exampleFormControlInput1" name="image" required
                         >    
                         @error('image')
