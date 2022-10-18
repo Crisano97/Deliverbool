@@ -52,9 +52,4 @@ class RestaurantController extends Controller
         $random = Arr::random($array, 3);
         dd($random);
     }
-
-    public function filterForCategories(){
-        $restaurants = Restaurant::with('dishes', 'user', 'categories')->get();
-        
-    }
 }
