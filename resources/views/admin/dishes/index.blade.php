@@ -64,7 +64,7 @@
                                             <div class="dish-info">
                                                 <h5>{{ $dish->name }}</h5>
                                                 <p>Ingredienti: {{ $dish->ingredients }}</p>
-                                                <p>Prezzo: {{ $dish->price }}</p>
+                                                <p>Prezzo: € {{ $dish->price }}</p>
                                                 <div class="d-flex">
                                                     <p>
                                                         Disponibile: {{ $dish->visible ? 'Si' : 'No' }}
