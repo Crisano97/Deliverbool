@@ -18,7 +18,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $filterCategories = request()->input('categories[]');
-        $restaurants = Restaurant::with('dish', 'categories.restaurants');
+        $restaurants = Restaurant::with('dishes', 'categories.restaurants');
         //SE IL FILTRO ESISTE, LO PASSO
         if ($filterCategories) {
             foreach ($filterCategories as $categoryFake) {
