@@ -17,9 +17,9 @@
     <!-- CARD CATEGORIE -->
     <div class="container my-5 d-none d-md-block">
       <div class="row row-cols-3 row-cols-lg-4">
-        <div class="p-2">
-          <div class="card p-2" v-for="category in categories" :key="category.id">
-            <img src="../../../../public/assets/images/torta.png" class="card-img-top" alt="..."/>
+        <div class="p-2" v-for="category in categories" :key="category.id">
+          <div class="card p-2">
+            <img :src="category.image" class="card-img-top" alt="..."/>
             <div class="card-body text-center">
               <h5>{{category.name}}</h5>
             </div>
@@ -35,33 +35,19 @@ import axios from 'axios';
 export default {
     data: function(){
       return {
-          restaurants: [],
           categories: [],
-          // category: ''
       }
     },
     
     methods: {
-    getRestaurants() {
+    getCategories() {
+    
       axios
-        .get(`/api/restaurants`)
+        .get(`/api/categories`)
         .then((response) => {
           //console.log(response.data.result);
-          this.restaurants = response.data.results;
-          this.restaurants.forEach(restaurant => {
-            
-            let restaurantCategories = restaurant.categories;
-            restaurantCategories.forEach(category => {
-                if(!this.categories.includes(category.name)){
-                  this.categories.push(category.name);
-                }
-            });
-          
-          });
-          
-          console.log(this.categories);
-          // this.isLoading = false;
-          
+          this.categories = response.data.results;
+          console.log(response)
         })
         .catch((error) => {
           console.error(error);
@@ -70,7 +56,7 @@ export default {
   },
 
   created() {
-    this.getRestaurants();
+    this.getCategories();
   },
 
 }
