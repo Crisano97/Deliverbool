@@ -18,7 +18,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name')->unique();
             $table->string('address');
             $table->text('image');
-            $table->string('p_iva')->unique();
+            $table->bigInteger('p_iva')->unique();
             $table->string('slug');
             $table->timestamps();
         });

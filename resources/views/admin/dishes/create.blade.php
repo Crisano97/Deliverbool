@@ -18,7 +18,9 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nome Piatto *</label>
                                 <input type="text" value="{{ old('name', $dish->name) }}" class="form-control text_form"
-                                    required id="exampleFormControlInput1" placeholder="Nome Piatto" name="name">
+                                    required id="exampleFormControlInput1" placeholder="Nome Piatto" name="name"
+                                    v-model="dish_name" v-on:keyup="countCharDishName"
+                                    :class="{ 'input_correct': dish_name_check == 1, 'input_error': dish_name_check == 2 }">
                                 <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
                                     0-9)</small>
                                 @error('name')
@@ -31,7 +33,14 @@
                                 <label for="exampleFormControlInput1" class="form-label">Ingredienti *</label>
                                 <input type="text" value="{{ old('ingredients', $dish->ingredients) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1"
-                                    placeholder="Carne, pomodoro, mozzarella..." name="ingredients">
+                                    placeholder="Carne, pomodoro, mozzarella..." name="ingredients"
+                                    v-model="dish_ingredient" v-on:keyup="checkDishIngredient"
+                                    :class="{
+                                        'input_correct': dish_ingredient_check ==
+                                            1,
+                                        'input_error': dish_ingredient_check == 2
+                                    }"
+                                    maxlength="5">
                                 <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
                                     0-9)</small>
                                 @error('ingredients')
@@ -44,7 +53,8 @@
                                 <label for="exampleFormControlInput1" class="form-label">Prezzo *</label>
                                 <input type="number" step="0.01" value="{{ old('price', $dish->price) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1" placeholder="0.00"
-                                    name="price">
+                                    name="price" v-model="dish_price" v-on:keyup="checkDishPrice"
+                                    :class="{ 'input_correct': dish_price_check == 1, 'input_error': dish_price_check == 2 }">
                                 <small id="emailHelp" class="form-text text-muted">Il prezzo può contenere solo numeri (0-9,
                                     e.g. 5.00)</small>
                                 @error('price')
