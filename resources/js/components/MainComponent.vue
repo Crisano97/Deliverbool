@@ -1,7 +1,7 @@
 <template>
   <main>
     <HeroComponent />
-    <CategoryComponent @change="getFilterRestaurant" />
+    <CategoryComponent @click="getFilterRestaurant" />
     <section class="container py-5">
       <h1 class="text-center">I partner più amati....</h1>
       <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
@@ -41,7 +41,7 @@ export default {
   methods: {
     getFilterRestaurant(needle){
       this.restaurantsFilter = needle;
-      //console.log(needle);
+      console.log(this.restaurantsFilter);
     },
     // getRestaurantsFilter(category) {
     //   category = this.$route.params.category;

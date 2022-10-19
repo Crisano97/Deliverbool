@@ -17,7 +17,7 @@
                   <h5>{{category.name}}</h5>
                 </div> 
             </label>
-            <input class="mb-2" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change="$emit('change', restaurantsFilter)" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) "/>
+            <input class="mb-2" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
             </div>
           </div>
       </div>
@@ -70,7 +70,7 @@ export default {
                     this.pages.prev_page_url =
                         result.data.results.prev_page_url;
                     this.loading = false;
-                    console.log(this.restaurantsFilter)
+                    this.$emit('click', this.restaurantsFilter)
                 })
                 .catch((error) => {
                     console.log(error);
