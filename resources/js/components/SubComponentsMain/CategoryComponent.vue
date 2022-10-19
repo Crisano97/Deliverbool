@@ -2,26 +2,11 @@
   <!-- CATEGORIE -->
   <section class="mt-5">
     <h1 class="text-center">La selezione di delivebool...</h1>
-    <!-- SLIDER CATEGORIE -->
-    <div class="scroll d-flex d-md-none">
-      <div class="mx-3 my-3">
-        <a class="" href="#">
-          <img
-            class="img-categoria border border-warning border-3 rounded-circle"
-            src="../../../../public/assets/images/pizza.png"
-            alt=""
-          />
-        </a>
-      </div>
-    </div>
     <!-- CARD CATEGORIE -->
     <div class="container my-5 d-none d-md-block">
       <div class="row row-cols-3 row-cols-lg-4">
-        <div class="p-2" v-for="category in categories" :key="category.id">
-          <input type="checkbox" name="categories[]" id="input-categories" 
-           class="form-check-input" :value="category.id" v-model="cat"
-           @click="getRestaurants()"
-          >
+        <div class="p-2" v-for="(category, index) in categories" :key="`category-${index}`">
+          <input type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) "/>
           <label for="">
             <div class="card p-2">
               <img :src="category.image" class="card-img-top" :alt="category.name">
@@ -41,12 +26,20 @@
 <script>
 import axios from 'axios';
 export default {
-    data: function(){
-      return {
-          categories: [],
-          cat: '',
-      restaurants: []
-      }
+    data() {
+        return {
+            loading: false,
+            url: "http://127.0.0.1:8000/api/v1/",
+            restaurants: null,
+            categories: [],
+            pages: {
+                prev_page_url: null,
+                next_page_url: null,
+            },
+            form: {
+                categories: [],
+            },
+        };
     },
     
     methods: {
@@ -62,22 +55,25 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-
-        
     },
 
-    getRestaurants(){
-            axios.get(`/api/restaurants/` + this.cat).then((response)=>{
-                this.restaurants = response.data.results;
-                console.log(this.restaurants)
-            });
+        getRestaurants(url, param) {
+            this.loading = true;
+            axios.get(url, { mode: "cors", params: param })
+                .then((result) => {
+                    this.restaurants = result.data.results.data;
+                    this.pages.next_page_url =
+                        result.data.results.next_page_url;
+                    this.pages.prev_page_url =
+                        result.data.results.prev_page_url;
+                    this.loading = false;
+                    console.log(this.restaurants)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
 
-        searchRestaurants(){
-            
-                this.getRestaurants();
-            
-        },
   },
 
   created() {
