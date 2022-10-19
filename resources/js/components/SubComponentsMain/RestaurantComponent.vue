@@ -1,10 +1,8 @@
 <template>
   <!-- CARD RISTORANTI IN VOGA -->
-    <section class="container py-5">
-      <h1 class="text-center">I partner più amati....</h1>
-      <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+    
         <!-- CARD -->
-        <div class="px-4 my-5" v-for="restaurant in restaurants" :key="restaurant.id">
+        <div class="px-4 my-5">
           <div class="rest-card position-relative">
             <img
               :src="restaurant.image"
@@ -27,35 +25,13 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+     
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-  data: function(){
-    return {
-      restaurants : []
-    }
-  },
-  methods: {
-    getRestaurants(){
-      axios
-        .get('/api/restaurants/sponsor')
-        .then((response) => {
-          //console.log(response.data.result);
-          this.restaurants = response.data.results;
-          console.log(response)
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  },
-  created(){
-    this.getRestaurants();
-  }
+   props : ['restaurant'],
 }
 </script>
 

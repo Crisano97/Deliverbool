@@ -17,7 +17,7 @@ class RestaurantController extends Controller
      */
     public function filter(Request $request)
     {
-        
+
         $filterCategories = $request->input('categories[]');
         $restaurants = Restaurant::with('dishes', 'categories');
         dd($filterCategories);
@@ -55,6 +55,26 @@ class RestaurantController extends Controller
         return response()->json([
             'response' => true,
             'results' => $randomRestaurants,
+        ]);
+    }
+
+    public function searchCheckbox(Request $request)
+    {
+        $data = $request->all();
+
+        $users = Restaurant::where('id', '>=', 1);
+
+        if (array_key_exists('categories', $data)) {
+            $users->whereHas('categories', function (Builder $query) use ($data) {
+                $query->whereIn('name', $data['categories']);
+            });
+        }
+
+        return response()->json([
+            'response' => true,
+            'results' => [
+                'data' => $users->with(['categories'])->get(),
+            ],
         ]);
     }
 }
