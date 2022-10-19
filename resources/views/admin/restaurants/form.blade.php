@@ -36,9 +36,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Partita Iva *</label>
-                        <input type="text" value="{{ old('p_iva', $restaurantForm->p_iva) }}"
+                        <input type="tel" inputmode="numeric" pattern="[0-9]{11}" value="{{ old('p_iva', $restaurantForm->p_iva) }}"
                             class="form-control text_form" id="exampleFormControlInput1" placeholder="12345678901"
-                            name="p_iva" required>
+                            name="p_iva" maxlength="11" required>
                         <small id="emailHelp" class="form-text text-muted">La Partita Iva può contenere solo numeri
                             (e.g. 12345678901)</small>
                         @error('p_iva')
@@ -66,7 +66,7 @@
                                 @if ($errors->any())
                                     <input type="checkbox" name="categories[]" id="input-categories"
                                         class="form-check-input" value="{{ $category->id }}"
-                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }} 
+                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }} id="validation_check"
                                     >
                                 @else
                                     <input type="checkbox" name="categories[]" id="input-categories"
@@ -84,7 +84,7 @@
                         @enderror
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-xl">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-xl">Invia</button>
                     </div>
                 </form>
             </div>
