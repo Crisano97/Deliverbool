@@ -18,13 +18,21 @@
     <div class="container my-5 d-none d-md-block">
       <div class="row row-cols-3 row-cols-lg-4">
         <div class="p-2" v-for="category in categories" :key="category.id">
-          <div class="card p-2">
-            <img :src="category.image" class="card-img-top" :alt="category.name">
-            <div class="card-body text-center">
-              <h5>{{category.name}}</h5>
-            </div>
-          </div>
+          <input type="checkbox" name="categories[]" id="input-categories" 
+           class="form-check-input" :value="category.id" v-model="cat"
+           @click="getRestaurants()"
+          >
+          <label for="">
+            <div class="card p-2">
+              <img :src="category.image" class="card-img-top" :alt="category.name">
+              <div class="card-body text-center">
+                <h5>{{category.name}}</h5>
+              </div>
+            </div>  
+          </label>
         </div>
+
+        
       </div>
     </div>
   </section>
@@ -36,6 +44,8 @@ export default {
     data: function(){
       return {
           categories: [],
+          cat: '',
+      restaurants: []
       }
     },
     
@@ -47,12 +57,27 @@ export default {
         .then((response) => {
           //console.log(response.data.result);
           this.categories = response.data.results;
-          console.log(response)
+          
         })
         .catch((error) => {
           console.error(error);
         });
+
+        
     },
+
+    getRestaurants(){
+            axios.get(`/api/restaurants/` + this.cat).then((response)=>{
+                this.restaurants = response.data.results;
+                console.log(this.restaurants)
+            });
+        },
+
+        searchRestaurants(){
+            
+                this.getRestaurants();
+            
+        },
   },
 
   created() {

@@ -15,10 +15,12 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function filter(Request $request)
     {
-        $filterCategories = request()->input('categories[]');
+        
+        $filterCategories = $request->input('categories[]');
         $restaurants = Restaurant::with('dishes', 'categories');
+        dd($filterCategories);
         //SE IL FILTRO ESISTE, LO PASSO
         if ($filterCategories) {
             foreach ($filterCategories as $categoryFake) {
