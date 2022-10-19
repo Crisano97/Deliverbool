@@ -1,13 +1,9 @@
 <template>
   <!-- CARD RISTORANTI IN VOGA -->
-    
-        <!-- CARD -->
+    <div>
         <div class="px-4 my-5">
           <div class="rest-card position-relative">
-            <img
-              :src="restaurant.image"
-              class="card-img-top border rounded-pill"
-              :alt="restaurant.name"
+            <img :src="restaurant.image" class="card-img-top border rounded-pill" :alt="restaurant.name"
             />
             <div
               class="
@@ -25,13 +21,15 @@
             </div>
           </div>
         </div>
-     
+    </div>
+        <!-- CARD -->
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-   props : ['restaurant'],
+  props:{
+    restaurant : Object,
+  }
 }
 </script>
 
