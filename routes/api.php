@@ -27,3 +27,4 @@ Route::namespace('Api')->group(function () {
     Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
     Route::get('/categories', 'CategoryController@index');
 });
+Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
