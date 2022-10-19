@@ -34,6 +34,7 @@ class RestaurantController extends Controller
         'image.mimes' => 'Il formato dell\'immagine puó essere solo jpeg,bmp,png,jpg',
         'image.required' => 'L\'immagine é obbligatoria',
         'image.max' => 'L\'immagine deve avere una dimensione massima di 512kb',
+        'image.uploaded' => 'Impossibile caricare il file',
         'p_iva.required' => 'La PIVA é obbligatoria',
         'p_iva.digits' => 'La PIVA deve essere obbligatoriamente di 11 numeri',
         'p_iva.unique' => 'La PIVA é giá presente, inserici una nuova PIVA',

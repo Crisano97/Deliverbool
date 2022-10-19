@@ -20,14 +20,14 @@
           <h5 class="text-center">Download our app</h5>
           <div class="d-flex justify-content-evenly pt-3">
             <div>
-              <a href="">
+              <!-- <a href=""> -->
                 <i class="fa-brands fa-apple banner-icon"></i>
-              </a>
+              <!-- </a> -->
             </div>
             <div>
-              <a href="">
+              <!-- <a href=""> -->
                 <i class="fa-brands fa-google-play banner-icon"></i>
-              </a>
+              <!-- </a> -->
             </div>
           </div>
         </div>

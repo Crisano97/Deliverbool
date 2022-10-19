@@ -12,14 +12,14 @@
               </h4>
               <div class="d-flex justify-content-center">
                 <div class="px-5">
-                  <a href="">
+                  <!-- <a href="#"> -->
                     <i class="fa-brands fa-apple banner-icon"></i>
-                  </a>
+                  <!-- </a> -->
                 </div>
                 <div class="px-5">
-                  <a href="">
+                  <!-- <a href="#"> -->
                     <i class="fa-brands fa-google-play banner-icon"></i>
-                  </a>
+                  <!-- </a> -->
                 </div>
               </div>
             </div>

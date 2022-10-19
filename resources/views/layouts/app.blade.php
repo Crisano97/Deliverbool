@@ -40,5 +40,4 @@
     </div>
     @include('includes.footer')
 </body>
-
 </html>

@@ -63,7 +63,7 @@ class RegisterController extends Controller
             'password.required' => 'La password é obbligatoria',
             'password.string' => 'La password non ha un formato valido',
             'password.min' => 'La password deve avere una lunghezza minima di 8 caratteri',
-            'password.confirm' => 'La password deve essere confermata',
+            'password.confirmed' => 'Le password inserite non sono uguali',
         );
 
         return Validator::make($data, [

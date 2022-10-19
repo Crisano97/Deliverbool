@@ -17,7 +17,7 @@
                         <div>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">RISTORANTI</a>
+                                    <a class="nav-link" href="{{ route('admin.restaurants.index') }}">IL TUO RISTORANTE</a>
                                 </li>
                             </ul>
                         </div>
@@ -33,7 +33,7 @@
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                             </li>
                         @endif
                     @else

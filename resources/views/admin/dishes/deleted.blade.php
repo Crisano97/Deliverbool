@@ -28,7 +28,12 @@
                             <div class="card mb-3 dish-container ">
                                 <div class="row">
                                     <div class=" col-10 col-md-12 col-lg-4 mx-auto mt-3">
-                                        <img class="img-fluid" src="{{ $dish->image }}" alt="{{ $dish->name }}">
+                                        @if (substr($dish->image, 0, 4) === 'http')
+                                            <img class="img-fluid" src="{{ $dish->image }}" alt="{{ $dish->name }}">
+                                        @else
+                                            <img class="img-fluid" src="{{ asset('storage/uploads/' . $dish->image) }}"
+                                                alt="{{ $dish->name }}">
+                                        @endif
                                     </div>
                                     <div class="col-10 col-md-12 col-lg-8">
                                         <div class="card-body">

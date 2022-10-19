@@ -54,7 +54,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Scegli la tu immagine *</label>
+                                <label for="exampleFormControlInput1" class="form-label">Scegli la tua immagine *</label>
                                 <input type="file" value="{{ old('image', $dish->image) }}"
                                     class="form-control text_form" id="exampleFormControlInput1" name="image" required>
                                 @error('image')
