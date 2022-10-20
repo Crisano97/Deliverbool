@@ -1,25 +1,20 @@
 <template>
   <!-- CARD RISTORANTI IN VOGA -->
-    <div>
+    <div class="m_fit">
         <div class="px-4 my-5">
-          <router-link :to="'/dishes/' + restaurant.id">
-          <div class="rest-card position-relative">
-            <img :src="restaurant.image" class="card-img-top border rounded-pill" :alt="restaurant.name"
-            />
-            <div
-              class="
-                text-center
-                card
-                position-absolute
-                top-100
-                start-50
-                translate-middle
-                card-title
-              "
-            >
-              <h5 class="">{{ restaurant.name }}</h5>
+          <router-link class="text-black" :to="'/dishes/' + restaurant.id">
+            <div class="rest-card position-relative">
+              <img  :src="isValidUrl(restaurant.image) ? restaurant.image : '/storage/' + restaurant.image " class="card-img-top border rounded-pill" alt="image-restaurant">
+              <div
+                class="card position-absolute top-100 start-50 translate-middle card-title text-center">
+                <h5>{{ restaurant.name }}</h5>
+                <div>
+                  <span v-for="category in restaurant.categories" :key="category.id">
+                    {{category.name}}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
           </router-link>
         </div>
     </div>
@@ -30,7 +25,19 @@
 export default {
   props:{
     restaurant : Object,
+  },
+  methods:{
+    isValidUrl(str) {
+            const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+            if(!regex .test(str)) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
   }
+  
 }
 </script>
 
@@ -48,10 +55,15 @@ export default {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .card-title {
-  width: 12rem;
+  width: 14rem;
   padding: 0.5rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+.m_fit{
+  width: fit-content;
+}
+
 </style>

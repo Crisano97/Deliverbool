@@ -1,23 +1,49 @@
 <template>
   <!-- CATEGORIE -->
-  <section class="mt-5">
-    <div class="text_category">
-      <h1 class="text-center">La selezione di delivebool...</h1>
-    </div>
+  <section >
+    
     <!-- CARD CATEGORIE -->
+
+
+
+        <!-- SLIDER CATEGORIE -->
+        <div class="custom_container py-3 text-white d-md-none">
+           <div class="text_category">
+            <h1 class="text-center">La selezione di delivebool...</h1>
+          </div>
+          <div class="scroll d-flex ">
+              <div class="p-2 py-3" v-for="(category, index) in categories" :key="`category-${index}`">
+               
+                <label :for="category.id">
+                  <div class="custom_category">
+                    <img :src="category.image" class="img-fluid img-categoria-slider border border-3 rounded-circle"  :class="form.categories.includes(category.name) ? 'border-warning active_color' : '' " :alt="category.name">
+                  </div>
+                  <div class="m-1 text-center" :class="form.categories.includes(category.name) ? 'active_color' : '' ">
+                    <h5>{{category.name}}</h5>
+                  </div> 
+                </label>
+                <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
+              </div>
+            
+    
+          </div>
+
+        </div>
+
+
     <div class="container my-5 d-none d-md-block">
-      <div class="row row-cols-3 row-cols-lg-4">
-          <div class="p-2" v-for="(category, index) in categories" :key="`category-${index}`">
-            <div class="card">
-            <label for="">
-                <div>
-                  <img :src="category.image" class="card-img-top" :alt="category.name">
-                </div>
-                <div class="m-1 text-center">
-                  <h5>{{category.name}}</h5>
-                </div> 
-            </label>
-            <input class="mb-2" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
+      <div class="row row-cols-4 row-cols-lg-6">
+          <div class="p-2 "  v-for="(category, index) in categories" :key="`category-${index}`">
+            <div class="card" :class="form.categories.includes(category.name) ? 'active_color border_golden' : 'border_custom' ">
+              <label :for="category.id">
+                  <div>
+                    <img :src="category.image" class="card-img-top" :alt="category.name">
+                  </div>
+                  <div class="m-1 text-center">
+                    <h5>{{category.name}}</h5>
+                  </div> 
+              </label>
+            <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
             </div>
           </div>
       </div>
@@ -42,6 +68,7 @@ export default {
             form: {
                 categories: [],
             },
+            clicked: false,
         };
     },
     
@@ -97,9 +124,11 @@ export default {
 
 <style>
 /* MAIN CATEGORIE */
+div.custom_container{
+  background-color: #758d75;
+}
 .scroll {
   overflow-x: scroll;
-  background-color: #758d75;
 }
 /* width */
 .scroll::-webkit-scrollbar {
@@ -116,6 +145,20 @@ export default {
   border: 1px;
   border-radius: 25px;
 }
+
+.active_color{
+  color: #ffbd59;
+}
+
+.border_golden{
+  border: 3px solid #ffbd59;
+}
+.img-categoria-slider {
+  height: 10rem; 
+  width: 10rem;
+  object-fit: cover;
+}
+
 .img-categoria {
   width: 90px;
   object-fit: cover;
@@ -125,4 +168,15 @@ export default {
   height: 11rem;
   object-fit: cover;
 }
+
+
+.custom_category{
+  width: 10rem;
+  /* object-fit: cover; */
+}
+
+.border_custom{
+  border: 3px solid white ;
+}
+
 </style>
