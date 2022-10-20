@@ -104,14 +104,6 @@ export default {
                 });
         },
 
-    //   getRestaurantsFilter(category) {
-    //   category = this.$route.params.category;
-    //   console.log(category);
-    //   axios.get(`/api/restaurants/${category}`).then((response) => {
-    //     this.restaurantsFilter = response.data.results;
-    //     console.log(this.restaurantsFilter);
-    //   });
-    // },
 
   },
 

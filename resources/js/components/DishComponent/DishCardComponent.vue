@@ -10,7 +10,7 @@
       </div>
         <div class="d-flex justify-content-between">
           <p class="m-0 align-self-center ">€ {{ dish.price.toFixed(2) }}</p>
-          <button class="btn btn-primary button-plus">
+          <button class="btn btn-primary button-plus" @click="addItemToCart(dish)">
             <i class="fas fa-plus"></i>
           </button>
         </div>
@@ -26,13 +26,32 @@ export default {
 
   data: function () {
     return {
-
+      cart: [],
+      totalPrice: 0,
+      loaded: true,
+      totalDish:0
     };
   },
 
   methods: {
-   
+     addItemToCart(dish){
+      if(!this.cart.includes(dish)){
+        this.cart.push(dish);
+        dish.quantity = 1;
+        this.totalDish+=dish.price;
+        this.totalPrice+=dish.price;
+      }      
+      else{
+        dish.quantity++;
+        this.totalDish+=dish.price;
+        this.totalPrice+=dish.price;
+      }     
+       this.$emit('click', this.cart)
+    },
   },
+  created(){
+ 
+    }
 };
 </script>
 

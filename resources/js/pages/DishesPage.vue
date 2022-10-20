@@ -28,7 +28,7 @@
         <div class="row p-4">
             <h1>Questa è la pagina lista piatti</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" />
+                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="getDishCard" />
             </div>
         </div>
       </div>
@@ -55,6 +55,10 @@ export default {
        dishes:[],
        restaurant:[],
        categories:[],
+       cart: [],
+       totalPrice: 0,
+        loaded: true,
+        totalDish:0
     };
   },
 
@@ -74,10 +78,34 @@ export default {
           console.error(error);
         });
     },
+
+    getDishCard(dish){
+      if(!this.cart.includes(dish)){
+        this.cart.push(dish);
+        dish.amount = 1;
+        this.totalDish+=dish.price;
+        this.totalPrice+=dish.price;
+      }      
+      else{
+        dish.amount++;
+        this.totalDish+=dish.price;
+        this.totalPrice+=dish.price;
+      }     
+      console.log(this.cart)
+    },
+
+      goToCart(){
+            
+            this.$router.push( { name :'cart',
+                                params : { cart : this.cart } 
+                                }) 
+                        .catch(err => {});
+        }
   },
 
   created() {
     this.getDishes();
+    
   },
 };
 </script>
