@@ -4,7 +4,8 @@ Vue.use(VueRouter)
 //Importare le singole pagine
  import HomePage from './pages/HomePage';
  import CartPage from './pages/CartPage';
- import CheckoutPage from './pages/CheckoutPage'
+ import CheckoutPage from './pages/CheckoutPage';
+ import DishesPage from './pages/DishesPage';
 
 //Creare una nuova istanza di vueRouter
 const router = new VueRouter({
@@ -24,7 +25,12 @@ const router = new VueRouter({
             path: '/Checkout',
             name: 'checkout',
             component: CheckoutPage
-        }
+        },
+        {
+            path: '/dishes/:id',
+            name: 'dishes',
+            component: DishesPage
+        },
         
     ],
 });

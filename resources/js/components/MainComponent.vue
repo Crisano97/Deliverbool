@@ -2,18 +2,19 @@
   <main>
     <HeroComponent />
     <CategoryComponent @click="getFilterRestaurant" />
-    <section class="container py-5">
-      <h1 class="text-center">I partner più amati....</h1>
+    <section class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
+      <h1 class="text-center">I nostri partner....</h1>
       <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
-        <div>
-          <RestaurantComponent v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant"/>
-        </div>
-        <div>
-          <RestaurantComponent v-for="restaurant in restaurantsFilter" :key="restaurant.id" :restaurant="restaurant"/>
-        </div>
+        <RestaurantComponent v-for="restaurant in restaurantsFilter" :key="restaurant.id" :restaurant="restaurant"/>
       </div>
     </section>
     <DownloadAppComponent />
+    <section class="container py-5">
+      <h1 class="text-center">I partner più amati....</h1>
+        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+          <RestaurantComponent v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant"/>
+        </div>
+      </section>
   </main>
 </template>
 
