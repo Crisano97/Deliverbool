@@ -2,7 +2,7 @@
   <div class="p-2">
     <div class="card p-3 h-100">
       <div class="box_iamge">
-       <img :src="dish.image" class="card-img-top" alt="..."  />
+        <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="card-img-top" alt="image-post">
       </div>
       <div class="card-body p-0 mt-2">
         <h5 class="fw-bold text-center">{{ dish.name }}</h5>
@@ -47,6 +47,14 @@ export default {
         this.totalPrice+=dish.price;
       }     
        this.$emit('click', this.cart)
+    },
+    isValidUrl(str) {
+            const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+            if(!regex .test(str)) {
+                return false;
+            } else {
+                return true;
+            }
     },
   },
   created(){

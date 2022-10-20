@@ -91,16 +91,11 @@ export default {
         this.totalDish+=dish.price;
         this.totalPrice+=dish.price;
       }     
-      console.log(this.cart)
+      this.cart.forEach(element => {
+        localStorage.setItem("cart", JSON.stringify(this.cart));
+      });
     },
 
-      goToCart(){
-            
-            this.$router.push( { name :'cart',
-                                params : { cart : this.cart } 
-                                }) 
-                        .catch(err => {});
-        }
   },
 
   created() {

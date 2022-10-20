@@ -15,23 +15,7 @@
         </nav>
 
         <!-- COMPONENT LISTA ORDINE -->
-        <div class="row">
-            <div class="col-12 col-md-8 col-lg-8">
-                <singleCartDish class="form_content rounded m-3"/>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="m-4 bg-check text-center p-3 rounded">
-                    <div class="border-bottom">
-                        <h6>Totale</h6>
-                        <h4>30.00$</h4>
-                    </div>
-                    <div class="p-3">
-                        <a href="/checkout" class="btn btn-outline-success">Vai al Checkout</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <singleCartDish class="form_content rounded m-3"/>
 
     </div>
   </div>
