@@ -16,8 +16,8 @@
 
          <!-- COMPONENT CHECKOUT -->
         <div class="row">
-            <form @submit.prevent="sendOrderEmail()">
-                <div class="col-12 col-md-6">
+            <form @submit.prevent="sendOrderEmail()" class="row">
+                <div class="col-12 col-md-7">
                     <div class="form_content p-3 rounded my-5">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Il tuo nome *</label>
@@ -37,7 +37,7 @@
                         </div>  
                     </div>
                 </div>
-                <div class="col-12 col-md-6 mt-5">
+                <div class="col-12 col-md-5 mt-5">
                     <div>
 
                     </div>
