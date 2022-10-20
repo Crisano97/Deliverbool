@@ -8,7 +8,7 @@
                 </a>
             </h1>
             <h1 class="border-bottom">
-                <a href="/Checkout">
+                <a href="/checkout">
                      Vai al Checkout
                 </a>
             </h1>
@@ -26,7 +26,7 @@
                         <h4>30.00$</h4>
                     </div>
                     <div class="p-3">
-                        <a href="/Checkout" class="btn btn-outline-success">Vai al Checkout</a>
+                        <a href="/checkout" class="btn btn-outline-success">Vai al Checkout</a>
                     </div>
                 </div>
             </div>

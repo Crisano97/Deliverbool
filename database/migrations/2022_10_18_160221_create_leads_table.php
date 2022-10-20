@@ -17,7 +17,8 @@ class CreateLeadsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->text('message');
+            $table->string('telefono');
+            $table->text('indirizzo');
             $table->timestamps();
         });
     }

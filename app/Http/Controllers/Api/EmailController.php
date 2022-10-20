@@ -15,11 +15,11 @@ class EmailController extends Controller
         $newLead = new Lead();
         $newLead->fill($data);
         $newLead->save();
-
-        Mail::to('97keb6@gmail.com')->send(new SendNewEmail($newLead));
+        // Mail::to('97keb6@gmail.com')->send(new SendNewEmail($newLead));
 
         return response()->json([
             'success' => true,
+            'payload' => $data,
         ]);
     }
 }

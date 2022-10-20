@@ -17,10 +17,10 @@
         </h6>
     </div>
     <div class="content">
-        <h4>Messaggio dell'email:</h4>
+        {{-- <h4>Messaggio dell'email:</h4>
         <p>
             {{ $lead->message }}
-        </p>
+        </p> --}}
     </div>
 </body>
 </html>
