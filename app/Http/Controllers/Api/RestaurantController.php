@@ -46,12 +46,16 @@ class RestaurantController extends Controller
 
     public function sponsoredRestaurants()
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with('categories')->get();
         $array = [];
         $array = $restaurants->toArray();
         // dd($array);
         $randomRestaurants = Arr::random($array, 3);
-
+        foreach ($restaurants as $restaurant) {
+            if (substr($restaurant->image, 0, 4) != 'http') {
+                $restaurant->image = 'storage/uploads/' . $restaurant->image;
+            }
+        }
         return response()->json([
             'response' => true,
             'results' => $randomRestaurants,
@@ -69,7 +73,11 @@ class RestaurantController extends Controller
                 $query->whereIn('name', $data['categories']);
             });
         }
-
+        // foreach ($users as $restaurant) {
+        //     if (substr($restaurant->image, 0, 4) != 'http') {
+        //         $restaurant->image = 'storage/uploads/' . $restaurant->image;
+        //     }
+        // }
         return response()->json([
             'response' => true,
             'results' => [
