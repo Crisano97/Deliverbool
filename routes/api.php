@@ -26,4 +26,5 @@ Route::namespace('Api')->group(function(){
     Route::get('/restaurants/sponsor', 'RestaurantController@sponsoredRestaurants');
     Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
     Route::post('emails', 'EmailController@store');
+    
 });
