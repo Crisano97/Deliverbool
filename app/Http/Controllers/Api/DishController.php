@@ -19,7 +19,7 @@ class DishController extends Controller
         $restaurant_id = $id;
         $restaurant = Restaurant::where('id', $restaurant_id)->first();
         $dishes = $restaurant->dishes;
-        dd($dishes);
+        //dd($dishes);
         return response()->json([
             'response' => true,
             'results' => $dishes,
