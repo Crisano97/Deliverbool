@@ -18,7 +18,10 @@ class OrderController extends Controller
     public function index()
     {
         $restaurants = Restaurant::where('user_id', Auth::id())->get();
-        $orders = Order::where('restaurant_id', Auth::id())->paginate(4);
+        $array = $restaurants->toArray();
+        $restaurantsId = array_column($array, 'id');
+        $arrayStringa = implode($restaurantsId);
+        $orders = Order::where('restaurant_id', $arrayStringa)->paginate(4);
         return view('admin.restaurants.orderIndex', compact(['orders', 'restaurants']));
     }
 }
