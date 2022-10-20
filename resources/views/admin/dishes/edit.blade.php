@@ -87,7 +87,7 @@
                                 @enderror
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-xl">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-xl">Invio</button>
                             </div>
                         </form>
                     </div>
