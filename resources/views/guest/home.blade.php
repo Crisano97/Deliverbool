@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Deliverbool</title>
-    <!-- Scripts -->
-
+    <!-- Scripts Brain Tree-->
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js" defer></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
