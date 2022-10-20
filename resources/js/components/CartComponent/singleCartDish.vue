@@ -3,7 +3,7 @@
     <div class="col-12 col-md-8 col-lg-8">
       <div class="row pt-5 p-3 text-white form_content rounded m-3">
         <div class="d-flex pt-3" v-for="dish in dishes" :key="dish.id">
-          <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="img-fluid" alt="image">
+          <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="img-fluid col-3" alt="image">
           <div class="col-6">
               <h3>{{ dish.name }}</h3>
               <p>{{ dish.ingredients }}</p>

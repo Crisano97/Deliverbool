@@ -10,14 +10,14 @@
         </div>
 
         <div class="p-5 col-6 col-lg-4 fw-light">
-          <h5>Follow us</h5>
+          <h5>Seguici</h5>
           <p class="my-0">Facebook</p>
           <p class="my-0">Twitter</p>
           <p class="my-0">Instagram</p>
         </div>
 
         <div class="p-5 col-12 col-lg-4">
-          <h5 class="text-center">Download our app</h5>
+          <h5 class="text-center">Scarica la nostra app</h5>
           <div class="d-flex justify-content-evenly pt-3">
             <div>
               <!-- <a href=""> -->
