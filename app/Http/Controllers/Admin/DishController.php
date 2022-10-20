@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,11 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::where('restaurant_id', Auth::id())->paginate(6);
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        $array = $restaurants->toArray();
+        $restaurantsId = array_column($array, 'id');
+        $arrayStringa = implode($restaurantsId);
+        $dishes = Dish::where('restaurant_id', $arrayStringa)->paginate(6);
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -89,6 +94,10 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        $array = $restaurants->toArray();
+        $restaurantsId = array_column($array, 'id');
+        $arrayStringa = implode($restaurantsId);
         $validatedDate = $request->validate($this->validationRules, $this->validationCustomRules);
         $restaurant_id = Auth::id();
 
@@ -115,7 +124,7 @@ class DishController extends Controller
                 'image' => $destFile,
             ]);
 
-            $dish->restaurant()->associate($restaurant_id);
+            $dish->restaurant()->associate($arrayStringa);
 
             $dish->save();
         } else {
@@ -128,7 +137,7 @@ class DishController extends Controller
             ]);
 
 
-            $dish->restaurant()->associate($restaurant_id);
+            $dish->restaurant()->associate($arrayStringa);
 
             $dish->save();
         }

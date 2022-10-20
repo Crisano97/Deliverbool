@@ -16,6 +16,8 @@ const app = new Vue({
             password: "",
             password_confirm: "",
             password_check: 0,
+            user_name: "",
+            user_name_check: 0,
 
             // RESTAURANT FORM
             rest_name: "",
@@ -36,6 +38,13 @@ const app = new Vue({
     },
     methods: {
         // REGISTERED
+        countCharUserName() {
+            if (this.user_name.length >= 5) {
+                this.user_name_check = 1;
+            } else if (this.user_name.length >= 0 && this.user_name.length < 5) {
+                this.user_name_check = 2;
+            }
+        },
         checkPassword() {
             if (this.password == this.password_confirm && this.password.length >= 8) {
                 this.password_check = 1;
@@ -69,8 +78,8 @@ const app = new Vue({
         countPIVA() {
             
             if (this.piva.length == 11 ) {
-                this.piva_check = 1;
-            } else if (this.piva.length <= 10 || this.piva.length >= 12) {
+                this.piva_check = 2;
+            } else {
                 this.piva_check = 1;
             }
         },
