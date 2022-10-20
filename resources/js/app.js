@@ -32,8 +32,6 @@ const app = new Vue({
             dish_name_check: 0,
             dish_price: "",
             dish_price_check: 0,
-            dish_ingredient: "",
-            dish_ingredient_check: 0,
         };
     },
     methods: {
@@ -85,13 +83,7 @@ const app = new Vue({
         },
 
         // DISH
-        checkDishIngrediente() {
-            if (this.dish_ingredient >= 5) {
-                this.dish_ingredient_check = 1;
-            } else if (dish_ingredient.length >= 0 && dish_ingredient.length < 5) {
-                this.dish_ingredient_checkk = 2;
-            }
-        },
+       
         countCharDishName() {
             if (this.dish_name.length >= 5) {
                 this.dish_name_check = 1;

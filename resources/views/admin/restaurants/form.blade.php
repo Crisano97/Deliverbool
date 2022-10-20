@@ -32,6 +32,8 @@
                             placeholder="ES. Via Casa Micco" required v-model="address" v-on:keyup="countCharAddress"
                             :class="{ 'input_correct': address_check == 1, 'input_error': address_check == 2 }"
                             minlength="5">
+                        <small id="emailHelp" class="form-text text-muted">Inserisci più di 5 caratteri (a-z,
+                            A-Z,0-9)</small>
                         @error('address')
                             <p class="text-danger fs-6">
                                 {{ $message }}
