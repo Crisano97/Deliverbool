@@ -5,7 +5,7 @@
         <div class="container ">
            <div class="row">
             <div class="col-12 col-md-4">
-                <RestaurantComponent :restaurant="restaurant"/>
+                <SingleRestaurantComponent :restaurant="restaurant"/>
             </div>
             <div class="col-12 col-md-8 d-flex align-items-center">
 
@@ -39,6 +39,7 @@
 <script>
 import DishCard from '../components/DishComponent/DishCardComponent.vue';
 import RestaurantComponent from '../components/SubComponentsMain/RestaurantComponent.vue';
+import SingleRestaurantComponent from '../components/DishComponent/SingleRestaurantComponent.vue';
 import axios from "axios";
 
 export default {
@@ -46,6 +47,7 @@ export default {
   components: {
     DishCard,
     RestaurantComponent,
+    SingleRestaurantComponent,
   },
 
   data: function () {
