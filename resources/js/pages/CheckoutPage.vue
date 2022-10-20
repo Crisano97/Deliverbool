@@ -16,57 +16,59 @@
 
          <!-- COMPONENT CHECKOUT -->
         <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="form_content p-3 rounded my-5">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Il tuo nome *</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo nome" required>
-                    </div>  
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email *</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci la tua email" required>
-                    </div>  
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Telefono *</label>
-                        <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo numero di telefono">
-                    </div>  
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Indirizzo di consegna *</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo indirizzo">
-                    </div>  
+            <form @submit.prevent="sendOrderEmail()">
+                <div class="col-12 col-md-6">
+                    <div class="form_content p-3 rounded my-5">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Il tuo nome *</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo nome" required>
+                        </div>  
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci la tua email" required>
+                        </div>  
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Telefono *</label>
+                            <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo numero di telefono" required>
+                        </div>  
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Indirizzo di consegna *</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Inserisci il tuo indirizzo" required>
+                        </div>  
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 mt-5">
-                <div>
+                <div class="col-12 col-md-6 mt-5">
+                    <div>
 
+                    </div>
+                    <div class="m-4 bg-check text-center p-3 rounded">
+                        <div class="border-bottom">
+                            <h6>Totale</h6>
+                            <h4>30.00$</h4>
+                        </div>
+                        <div class="pt-2">
+                            <div>
+                                <span>3°</span>
+                                Nome piatto
+                            </div>
+                            <div>
+                                <span>3°</span>
+                                Nome piatto
+                            </div>
+                            <div>
+                                <span>3°</span>
+                                Nome piatto
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <button class="btn btn-outline-success" :disabled="isSent">
+                                invia l'ordine
+                            </button>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="m-4 bg-check text-center p-3 rounded">
-                    <div class="border-bottom">
-                        <h6>Totale</h6>
-                        <h4>30.00$</h4>
-                    </div>
-                    <div class="pt-2">
-                        <div>
-                            <span>3°</span>
-                            Nome piatto
-                        </div>
-                        <div>
-                            <span>3°</span>
-                            Nome piatto
-                        </div>
-                        <div>
-                            <span>3°</span>
-                            Nome piatto
-                        </div>
-                    </div>
-                    <div class="pt-2">
-                        <button class="btn btn-outline-success">
-                            invia l'ordine
-                        </button>
-                    </div>
-                    
-                </div>
-            </div>
+            </form>
 
         </div>
     </div>
@@ -74,8 +76,38 @@
 </template>
 
 <script>
-export default {
+import axios from "axios";
 
+export default {
+    data:function(){
+        return{
+            name : '',
+            email : '',
+            telefono : '',
+            indirizzo : '',
+            // totale ,
+            // piatti : [],
+            // numeroPiatti,
+            isSent : false
+        }
+    },
+    methods:{
+        sendOrderEmail(){
+            console.warn('invio form');
+            this.isSent = true;
+
+            axios.post('api/checkout', {
+                // 'name' : this.name,
+                // 'email' : this.email,
+                // 'telefono' : this.telefono,
+                // 'indirizzo' : this.indirizzo,
+            }).then((response)=>{
+                console.log(response);
+            }).catch((error)=>{
+                console.warn(error);
+            })
+        }
+    }
 }
 </script>
 
