@@ -33,6 +33,8 @@ Route::middleware('auth')
         Route::resource('/restaurants', 'RestaurantController');
         Route::resource('/dishes', 'DishController');
         Route::resource('/order', 'OrderController');
+        //BRAINTREE ROUTE
+        Route::get('/payment/process', 'PaymentsController@process')->name('payment.process');
     });
 
     Route::get('{any?}', function(){
