@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\SendNewEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,6 @@ Route::namespace('Api')->group(function () {
     Route::get('/restaurants/{request}', 'RestaurantController@filter');
     Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
     Route::get('/categories', 'CategoryController@index');
+    Route::get('/emails', 'EmailController@store');
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
