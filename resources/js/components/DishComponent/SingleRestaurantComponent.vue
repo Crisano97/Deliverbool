@@ -17,7 +17,7 @@
 <script>
 export default {
     props:{
-        restaurant : Object,
+        restaurant : [],
     }, methods:{
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;

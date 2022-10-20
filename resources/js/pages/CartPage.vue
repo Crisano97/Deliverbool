@@ -42,6 +42,11 @@ import singleCartDish from '../components/CartComponent/singleCartDish.vue';
 export default {
   components: {
     singleCartDish
+  },
+  data : function(){
+      return{
+          carrello: [],
+      }
   }
 }
 </script>

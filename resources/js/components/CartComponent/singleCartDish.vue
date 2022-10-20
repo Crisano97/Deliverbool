@@ -16,8 +16,34 @@
 
 <script>
 export default {
+    data: function () {
+    return {
+       dishes:[],
+    };
+  },
 
-}
+  methods: {
+    getDishes() {
+      const id = this.$route.params.id;
+      axios
+        .get(`/api/dishes/${id}`)
+        .then((response) => {
+          this.dishes = response.data.results.dishes;
+          this.restaurant = response.data.results.restaurant,
+          this.categories = response.data.results.categories
+          console.log(this.categories);
+        //   this.isLoading = false;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getDishes();
+  },
+};
+
 </script>
 
 <style>
