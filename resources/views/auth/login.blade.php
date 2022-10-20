@@ -4,7 +4,7 @@
     <div class="form_page">
         <div class="container py-5">
             <div class="row justify-content-center align-items-center vh-100">
-                <div class="col-md-8  align-self-center">
+                <div class="col-md-12  align-self-center">
                     <div class="form_content p-5">
                         <h2 class="card_header text-center">Bentornato/a in DELIVERBOOL</h2>
 
@@ -14,9 +14,9 @@
 
                                 <div class="form-group row">
                                     <label for="email"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                                        class="col-md-2 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <input id="email" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
                                             value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -31,9 +31,9 @@
 
                                 <div class="form-group row">
                                     <label for="password"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                        class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
                                             required autocomplete="current-password">
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
+                                    <div class="col-md-2 offset-md-2">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                                 {{ old('remember') ? 'checked' : '' }}>
