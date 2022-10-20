@@ -25,8 +25,8 @@ Auth::routes();
 Route::namespace('Api')->group(function () {
     Route::get('/restaurants/sponsor', 'RestaurantController@sponsoredRestaurants');
     Route::get('/restaurants/{request}', 'RestaurantController@filter');
-    Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
     Route::get('/categories', 'CategoryController@index');
-    Route::post('/checkout', 'EmailController@store');
+    Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
+    Route::get('/emails', 'EmailController@store');
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
