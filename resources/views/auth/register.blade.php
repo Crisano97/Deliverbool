@@ -19,14 +19,21 @@
                                     <div class="col-md-6">
                                         <input id="name" type="text"
                                             class="form-control @error('name') is-invalid @enderror" name="name"
-                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            value="{{ old('name') }}" required autocomplete="name" autofocus
+                                            oninput="this.value = this.value.replace(/[0-9./s]/g, '');"
+                                            v-model.trim="user_name" v-on:keyup="countCharUserName"
+                                            :class="{
+                                                'input_correct': user_name_check == 1,
+                                                'input_error': user_name_check == 2
+                                            }"
+                                            minlength="5">
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri
+                                        <small id="emailHelp" class="form-text text-muted">Inserisci più di 5 caratteri
                                             (a-z, A-Z)</small>
                                     </div>
                                 </div>
