@@ -4,10 +4,10 @@
       <div class="bg-rest-container">
         <div class="container ">
            <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-5">
                 <SingleRestaurantComponent :restaurant="restaurant"/>
             </div>
-            <div class="col-12 col-md-8 d-flex align-items-center">
+            <div class="col-12 col-md-7 d-flex align-items-center">
 
               <div>
                 <h4 class="text-white fst-italic">Grazie per aver scelto il nostro ristorante; spero che i nostri piatti ti piacciano.

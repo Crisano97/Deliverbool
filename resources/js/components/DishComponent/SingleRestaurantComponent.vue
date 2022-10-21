@@ -56,6 +56,7 @@ export default {
 
 .m_fit{
   width: fit-content;
+  margin: 0 auto;
 }
 
 </style>

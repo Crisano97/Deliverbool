@@ -20,7 +20,7 @@
                                         <input id="name" type="text"
                                             class="form-control @error('name') is-invalid @enderror" name="name"
                                             value="{{ old('name') }}" required autocomplete="name" autofocus
-                                            oninput="this.value = this.value.replace(/[0-9./s]/g, '');"
+                                            oninput="this.value = this.value.replace(/[0-9.]/g, '');"
                                             v-model.trim="user_name" v-on:keyup="countCharUserName"
                                             :class="{
                                                 'input_correct': user_name_check == 1,

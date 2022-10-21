@@ -24,7 +24,7 @@ class CategoriesTableSeeder extends Seeder
             ],
             [
                 'name' => 'PIZZA',
-                'image' => 'https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg',
+                'image' => 'https://latteriasorrentina.com/wp-content/uploads/2019/06/come-fare-la-vera-pizza-1764x882.jpg',
             ],
             [
                 'name' => 'SUSHI',
