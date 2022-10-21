@@ -18,9 +18,8 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nome Piatto *</label>
                                 <input type="text" value="{{ old('name', $dish->name) }}" class="form-control text_form"
-                                    required id="exampleFormControlInput1" placeholder="ES. Nome Piatto" name="name"
-                                    v-model="dish_name" v-on:keyup="countCharDishName"
-                                    :class="{ 'input_correct': dish_name_check == 1, 'input_error': dish_name_check == 2 }" />
+                                    required id="exampleFormControlInput1" placeholder="ES. Nome Piatto" name="name" minlength="3"
+                                >
 
                                 <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
                                     0-9)</small>
@@ -34,13 +33,8 @@
                                 <label for="exampleFormControlInput1" class="form-label">Ingredienti *</label>
                                 <input type="text" value="{{ old('ingredients', $dish->ingredients) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1"
-                                    placeholder="ES. Carne, pomodoro, mozzarella..." name="ingredients" v-model="user_name"
-                                    v-on:keyup="countCharUserName"
-                                    :class="{
-                                        'input_correct': user_name_check ==
-                                            1,
-                                        'input_error': user_name_check == 2
-                                    }" />
+                                    placeholder="ES. Carne, pomodoro, mozzarella..." name="ingredients" minlength="3"
+                                >
 
                                 <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
                                     0-9)</small>
@@ -54,8 +48,8 @@
                                 <label for="exampleFormControlInput1" class="form-label">Prezzo *</label>
                                 <input type="number" step="0.01" value="{{ old('price', $dish->price) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1" placeholder="0.00"
-                                    name="price" v-model="dish_price" v-on:keyup="checkDishPrice"
-                                    :class="{ 'input_correct': dish_price_check == 1, 'input_error': dish_price_check == 2 }" />
+                                    name="price" step="0.01" min="0.10" max="99.99" 
+                                >
                                 <small id="emailHelp" class="form-text text-muted">Il prezzo può contenere solo numeri (0-9,
                                     e.g. 5.00)</small>
                                 @error('price')
@@ -66,7 +60,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Scegli la tua immagine *</label>
-                                <input type="file" value="{{ old('image', $dish->image) }}"
+                                <input type="file" value="{{ old('image', $dish->image) }}" accept="image/*"
                                     class="form-control text_form" id="exampleFormControlInput1" name="image" required>
                                 @error('image')
                                     <p class="text-danger fs-6">
