@@ -26,6 +26,13 @@ export default {
   props:{
     restaurant : Object,
   },
+  data: function(){
+    return {
+      products_in_cart : [],
+      cart : [],
+    }
+  },
+ 
   methods:{
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;

@@ -28,7 +28,7 @@
         <div class="row p-4">
             <h1>Questa è la pagina lista piatti</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="getDishCard" />
+                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="addToCart()" />
             </div>
         </div>
       </div>
@@ -56,10 +56,12 @@ export default {
        restaurant:[],
        categories:[],
        cart: [],
-       totalPrice: 0,
-        loaded: true,
-        totalDish:0
+        length: 0,
+        total: 0,
     };
+  },
+   mounted(){
+
   },
 
   methods: {
@@ -79,22 +81,40 @@ export default {
         });
     },
 
-    getDishCard(dish){
-      if(!this.cart.includes(dish)){
-        this.cart.push(dish);
-        dish.amount = 1;
-        this.totalDish+=dish.price;
-        this.totalPrice+=dish.price;
-      }      
-      else{
-        dish.amount++;
-        this.totalDish+=dish.price;
-        this.totalPrice+=dish.price;
-      }     
-      this.cart.forEach(element => {
-        localStorage.setItem("cart", JSON.stringify(this.cart));
-      });
-    },
+    addToCart(dish) {
+                //? fixa il local storage al primo avvio o al clear in quanto risulta null
+                if (this.cart == null) {
+                    this.cart = [];
+                }
+                //? se il carrello e' vuoto pusha il piatto
+                if (this.cart.length == 0) {
+                    this.cart.push(dish);
+                    this.length++;
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                }
+                //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
+                else if (this.cart[0].restaurant_id != this.restaurant.id) {
+                    const result = window.confirm(
+                        'If you click add here we\'ll clear your cart, because our policy says "you can order from only one restaurant", Are you sure?'
+                    );
+                    if (result) {
+                        this.cart = [];
+                        localStorage.clear();
+                        this.cart.push(dish);
+                        this.length++;
+                        localStorage.setItem("cart", JSON.stringify(this.cart));
+                    }
+                }
+                //! pushamo il piatto aggiuntivo
+                else {
+                    this.cart.push(dish);
+                    this.length++;
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                }
+                // this.total = this.total + dish.price;
+                // localStorage.setItem("total", this.total);
+            },
+
 
   },
 

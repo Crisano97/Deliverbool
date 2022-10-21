@@ -24,8 +24,13 @@
                         <h6>Totale</h6>
                         <h4>30.00$</h4>
                     </div>
-                    <div class="p-3">
-                        <a href="/checkout" class="btn btn-outline-success">Vai al Checkout</a>
+                    <div class="d-flex">
+                      <div class="p-3">
+                          <a href="/checkout" class="btn btn-outline-success">Vai al Checkout</a>
+                      </div>
+                      <div class="p-3">
+                          <a href="/" class="btn btn-outline-danger" @click="clearCart()">Svuota il carello</a>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -38,16 +43,15 @@ export default {
     data: function () {
     return {
        dishes:[],
+       quantity: 0,
     };
   },
    mounted() {
-        if (localStorage.cart) {
+      if (localStorage.cart) {
             let dishesArray = JSON.parse(localStorage.getItem("cart"));
             dishesArray.forEach(element => {
-              element.forEach(dish=>{
-                this.dishes.push(dish)
+                this.dishes.push(element)
                 console.log(this.dishes)
-              })
             });
         }
     },
@@ -60,10 +64,14 @@ export default {
                 return true;
             }
     },
-  },
-  created() {
+     // Funzione che svuota il carrello
+        clearCart(){
+            localStorage.clear('cart');
+        },
     
   },
+  created() {
+  }
 };
 
 </script>
