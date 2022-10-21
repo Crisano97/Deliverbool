@@ -44,14 +44,14 @@ export default {
       this.restaurantsFilter = needle;
       console.log(this.restaurantsFilter);
     },
-    // getRestaurantsFilter(category) {
-    //   category = this.$route.params.category;
-    //   console.log(category);
-    //   axios.get(`/api/restaurants/${category}`).then((response) => {
-    //     this.restaurantsFilter = response.data.results;
-    //     console.log(this.restaurants);
-    //   });
-    // },
+     getRestaurantsFilter(category) {
+      category = this.$route.params.category;
+       console.log(category);
+       axios.get(`/api/restaurants/${category}`).then((response) => {
+         this.restaurantsFilter = response.data.results;
+        console.log(this.restaurants);
+      });
+     },
 
     getRestaurantsSponsor() {
       axios
@@ -59,7 +59,6 @@ export default {
         .then((response) => {
           //console.log(response.data.result);
           this.restaurants = response.data.results;
-          console.log(this.restaurants);
         })
         .catch((error) => {
           console.error(error);
