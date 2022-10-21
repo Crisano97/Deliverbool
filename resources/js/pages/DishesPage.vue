@@ -28,7 +28,7 @@
         <div class="row p-4">
             <h1>Questa è la pagina lista piatti</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="addToCart()" />
+                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="addToCart(dish)" />
             </div>
         </div>
       </div>
@@ -61,7 +61,9 @@ export default {
     };
   },
    mounted(){
-
+    if (localStorage.cart) {
+            this.cart = JSON.parse(localStorage.getItem("cart"));
+        };
   },
 
   methods: {
@@ -93,9 +95,9 @@ export default {
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
                 //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
-                else if (this.cart[0].restaurant_id != this.restaurant.id) {
+                else if (this.cart[0].restaurant_id != this.$route.params.id) {
                     const result = window.confirm(
-                        'If you click add here we\'ll clear your cart, because our policy says "you can order from only one restaurant", Are you sure?'
+                        'E\' già presente un carello per un diverso ristorante; Puoi ordinare da un solo ristorante , facendo click su OK il tuo carello verrà svuotato'
                     );
                     if (result) {
                         this.cart = [];

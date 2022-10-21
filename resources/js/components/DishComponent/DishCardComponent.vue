@@ -39,9 +39,7 @@ export default {
     };
   },
 mounted(){
-     if (localStorage.cart) {
-            this.cart = JSON.parse(localStorage.getItem("cart"));
-        };
+  
   },
   methods: {
       addToCart(dish) {
@@ -51,8 +49,10 @@ mounted(){
                 }
                 //? se il carrello e' vuoto pusha il piatto
                 if (this.cart.length == 0) {
+
                     this.cart.push(dish);
                     this.length++;
+                    console.log(this.cart)
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
                 //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
@@ -74,10 +74,11 @@ mounted(){
                     this.cart.push(dish);
                     this.length++;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
+                    console.log(this.cart)
                 }
                 // this.total = this.total + dish.price;
                 // localStorage.setItem("total", this.total);
-                this.$emit('clic', this.cart);
+                this.$emit('click', this.cart);
             },
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
