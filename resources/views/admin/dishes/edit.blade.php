@@ -45,7 +45,7 @@
                                 <label for="exampleFormControlInput1" class="form-label">Prezzo *</label>
                                 <input type="number" step="0.01" value="{{ old('price', $dish->price) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1" placeholder="0.00"
-                                    name="price">
+                                    name="price" min="0.10" max="99.99">
                                 <small id="emailHelp" class="form-text text-muted">Il prezzo può contenere solo numeri (0-9,
                                     e.g. 5.00)</small>
                                 @error('price')
@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Scegli la tua immagine</label>
-                                <input type="file" value="{{ old('image', $dish->image) }}"
+                                <input type="file" value="{{ old('image', $dish->image) }}" accept="image/*"
                                     class="form-control text_form" id="exampleFormControlInput1" name="image">
                                 @error('image')
                                     <p class="text-danger fs-6">
