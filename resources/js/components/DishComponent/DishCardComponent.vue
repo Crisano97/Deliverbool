@@ -5,15 +5,21 @@
         <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="card-img-top" alt="image-post">
       </div>
       <div class="card-body p-0 mt-2">
-        <h5 class="fw-bold text-center">{{ dish.name }}</h5>
+        <h5 class="fw-bold text-center">
+          {{ dish.name }}
+          <span class="box_popUp">
+            <span class="popUpText" :id="dish.id">Piatto aggiunto al carrello</span>
+          </span>
+        </h5>
         <p class="text-start"><span class="fw-normal fw-semibold">Ingredienti:</span> {{ dish.ingredients }} </p>
       </div>
         <div class="d-flex justify-content-between">
           <p class="m-0 align-self-center ">€ {{ dish.price.toFixed(2) }}</p>
-          <button class="btn btn-primary button-plus" @click="addItemToCart(dish)">
+          <button class="btn btn-primary button-plus" @click="addToCart(dish),popUp()">
             <i class="fas fa-plus"></i>
           </button>
         </div>
+        
     </div>
   </div>
 </template>
@@ -27,27 +33,52 @@ export default {
   data: function () {
     return {
       cart: [],
-      totalPrice: 0,
       loaded: true,
-      totalDish:0
+        length: 0,
+        total: 0,
     };
   },
-
+mounted(){
+     if (localStorage.cart) {
+            this.cart = JSON.parse(localStorage.getItem("cart"));
+        };
+  },
   methods: {
-     addItemToCart(dish){
-      if(!this.cart.includes(dish)){
-        this.cart.push(dish);
-        dish.quantity = 1;
-        this.totalDish+=dish.price;
-        this.totalPrice+=dish.price;
-      }      
-      else{
-        dish.quantity++;
-        this.totalDish+=dish.price;
-        this.totalPrice+=dish.price;
-      }     
-       this.$emit('click', this.cart)
-    },
+      addToCart(dish) {
+                //? fixa il local storage al primo avvio o al clear in quanto risulta null
+                if (this.cart == null) {
+                    this.cart = [];
+                }
+                //? se il carrello e' vuoto pusha il piatto
+                if (this.cart.length == 0) {
+                    this.cart.push(dish);
+                    this.length++;
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                }
+                //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
+                else if (this.cart[0].restaurant_id != this.$route.params.id) {
+                    const result = window.confirm(
+                        "E' già presente un carello per un diverso ristorante; Puoi ordinare da un solo ristorante , facendo click su OK il tuo carello verrà svuotato"
+                    );
+                    if (result) {
+                        this.cart = [];
+                        localStorage.clear();
+                        this.cart.push(dish);
+                        this.length++;
+                        localStorage.setItem("cart", JSON.stringify(this.cart));
+                     
+                    }
+                }
+                //! pushamo il piatto aggiuntivo
+                else {
+                    this.cart.push(dish);
+                    this.length++;
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                }
+                // this.total = this.total + dish.price;
+                // localStorage.setItem("total", this.total);
+                this.$emit('clic', this.cart);
+            },
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
             if(!regex .test(str)) {
@@ -56,6 +87,13 @@ export default {
                 return true;
             }
     },
+    popUp(){
+      let popup = document.getElementById(this.dish.id);
+      popup.classList.add("show");
+      if (popup.classList.contains("show")){
+        setTimeout(() => popup.classList.remove("show"), 1000);
+      }
+    }
   },
   created(){
  
@@ -82,5 +120,18 @@ img{
 }
 .card:hover img{
   transform: scale(1.08);
+}
+.box_popUp{
+  margin-top: 5px;
+  text-align: end;
+  font-size: 10px;
+  color: #38c172;
+}
+
+.popUpText {
+  display: none;
+}
+.popUpText.show {
+  display: block;
 }
 </style>

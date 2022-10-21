@@ -42,14 +42,12 @@ export default {
   methods: {
     getFilterRestaurant(needle){
       this.restaurantsFilter = needle;
-      console.log(this.restaurantsFilter);
     },
      getRestaurantsFilter(category) {
       category = this.$route.params.category;
        console.log(category);
        axios.get(`/api/restaurants/${category}`).then((response) => {
          this.restaurantsFilter = response.data.results;
-        console.log(this.restaurants);
       });
      },
 
