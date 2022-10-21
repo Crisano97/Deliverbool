@@ -20,12 +20,8 @@
                                         <input id="name" type="text"
                                             class="form-control @error('name') is-invalid @enderror" name="name"
                                             value="{{ old('name') }}" required autocomplete="name" autofocus
-                                            oninput="this.value = this.value.replace(/[0-9./s]/g, '');"
+                                            oninput="this.value = this.value.replace(/[0-9.,$!?£%:;@<>#+*]/g, '');"
                                             v-model.trim="user_name" v-on:keyup="countCharUserName"
-                                            :class="{
-                                                'input_correct': user_name_check == 1,
-                                                'input_error': user_name_check == 2
-                                            }"
                                             minlength="5">
 
                                         @error('name')
@@ -45,8 +41,10 @@
                                     <div class="col-md-8">
                                         <input id="email" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ old('email') }}" required autocomplete="email">
-
+                                            value="{{ old('email') }}" required autocomplete="email" 
+                                            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                                        >
+                                             
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -64,9 +62,8 @@
                                     <div class="col-md-8">
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="new-password" v-model="password"
-                                            v-on:keyup="checkPassword"
-                                            :class="{ 'input_correct': password_check == 1, 'input_error': password_check == 2 }">
+                                            required autocomplete="new-password" v-model="password" minlength="8" type="password"
+                                            v-on:keyup="checkPassword" >
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -86,14 +83,14 @@
                                     <div class="col-md-8">
                                         <input id="password-confirm" type="password" class="form-control"
                                             name="password_confirmation" required autocomplete="new-password"
-                                            v-model="password_confirm" v-on:keyup="checkPassword"
-                                            :class="{ 'input_correct': password_check == 1, 'input_error': password_check == 2 }">
+                                            v-model="password_confirm" v-on:keyup="checkPassword" minlength="8" type="password"
+                                        >
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-4 offset-md-7 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" onclick="controlPassword()">
                                             {{ __('Registrati') }}
                                         </button>
                                     </div>
@@ -105,4 +102,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function controlPassword(){
+        const password = document.getElementById('password');
+        const confirm = document.getElementById('password-confirm');
+        if (confirm.value != password.value) {
+            // aggiungere div in display none
+            alert('Le password non coincidono')
+            confirm.value = '';
+        }
+    }
+
+    </script>
 @endsection

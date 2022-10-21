@@ -36,6 +36,7 @@
     <div id="app">
         <main>
             @yield('content')
+            @yield('script')
         </main>
     </div>
     @include('includes.footer')
