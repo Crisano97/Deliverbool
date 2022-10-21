@@ -31,3 +31,4 @@ Route::namespace('Api')->group(function () {
     Route::get('/cart/{cart}', 'Api\OrderController@getDishes');
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
+Route::get('/restaurants', 'Api\RestaurantController@getRestaurantsByCategory');

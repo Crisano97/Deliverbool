@@ -16,13 +16,13 @@
                
                 <label :for="category.id">
                   <div class="custom_category">
-                    <img :src="category.image" class="img-fluid img-categoria-slider border border-3 rounded-circle"  :class="form.categories.includes(category.name) ? 'border-warning active_color' : '' " :alt="category.name">
+                    <img :src="category.image" class="img-fluid img-categoria-slider border border-3 rounded-circle"  :class="selectedCategories.includes(category.name) ? 'border-warnig active_color' : '' ">
                   </div>
-                  <div class="m-1 text-center" :class="form.categories.includes(category.name) ? 'active_color' : '' ">
+                  <div class="m-1 text-center" >
                     <h5>{{category.name}}</h5>
                   </div> 
                 </label>
-                <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
+                <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.id" v-model="selectedCategories" @change="getSelectedCategories()"  />
               </div>
             
     
@@ -34,7 +34,7 @@
     <div class="container my-5 d-none d-md-block">
       <div class="row row-cols-4 row-cols-lg-6">
           <div class="p-2 "  v-for="(category, index) in categories" :key="`category-${index}`">
-            <div class="card" :class="form.categories.includes(category.name) ? 'active_color border_golden' : 'border_custom' ">
+            <div class="card" :class="selectedCategories.includes(category.name) ? 'active_color' : 'border_custum' ">
               <label :for="category.id">
                   <div>
                     <img :src="category.image" class="card-img-top" :alt="category.name">
@@ -43,7 +43,7 @@
                     <h5>{{category.name}}</h5>
                   </div> 
               </label>
-            <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.name" v-model="form.categories" @change.prevent="getRestaurants(`${url}restaurants/searchCheck`,form) " />
+            <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.id" v-model="selectedCategories" @change="getSelectedCategories()" />
             </div>
           </div>
       </div>
@@ -61,14 +61,8 @@ export default {
             restaurants: null,
             categories: [],
             restaurantsFilter:[],
-            pages: {
-                prev_page_url: null,
-                next_page_url: null,
-            },
-            form: {
-                categories: [],
-            },
-            clicked: false,
+            selectedCategories: [],
+
         };
     },
     
@@ -87,22 +81,17 @@ export default {
         });
     },
 
-        getRestaurants(url, param) {
-            this.loading = true;
-            axios.get(url, { mode: "cors", params: param })
-                .then((result) => {
-                    this.restaurantsFilter = result.data.results.data;
-                    this.pages.next_page_url =
-                        result.data.results.next_page_url;
-                    this.pages.prev_page_url =
-                        result.data.results.prev_page_url;
-                    this.loading = false;
-                    this.$emit('click', this.restaurantsFilter)
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
+          getSelectedCategories() {
+            axios.get(`/api/restaurants?categories=${this.selectedCategories}`)
+            
+            .then((response) => {
+                if(response.data.success) {
+                    this.restaurantsFilter = response.data.results;
+                }
+                this.$emit('click', this.restaurantsFilter)
+            });
+             
+        }
 
 
   },
