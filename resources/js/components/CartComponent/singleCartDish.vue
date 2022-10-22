@@ -18,10 +18,12 @@
           <div class="col-3">
             <label for="form-label">Quantità</label>
             <input
+            :id="dish.id"
               class="form-control"
               type="number"
               :value="dish.quantity"
               min="1"
+            @change="changeQuantity(dish , dish.id)"
             />
           </div>
            <div class="col-1 trash" @click="removeDish(dish)">
@@ -60,17 +62,24 @@ import axios from "axios";
 export default {
   data: function () {
     return {
+        arr: [],
       dishes: [],
-      quantity: 0,
     };
   },
   mounted() {
     if (localStorage.cart) {
       let dishesArray = JSON.parse(localStorage.getItem("cart"));
+      console.log(dishesArray)
       dishesArray.forEach((element) => {
-        this.dishes.push(element);
-        console.log(this.dishes);
+       this.arr.push(element); // Some array I got from async call
+
+        this.dishes = Array.from(new Set(this.arr.map(a => a.id)))
+        .map(id => {
+        return this.arr.findLast(a => a.id === id)
+        }) 
       });
+      console.log(this.dishes)
+      
     }
   },
   methods: {
@@ -89,13 +98,22 @@ export default {
       this.dishes.splice(prodIndex, 1);
       localStorage.setItem("cart", JSON.stringify(this.dishes));
     },
+    changeQuantity(dish , dishId){
+        let value = document.getElementById(dishId).value
+          const prodIndex = this.dishes.indexOf(dish);
+          this.dishes[prodIndex]['quantity'] = value;
+          console.log(this.dishes[prodIndex])
+          localStorage.setItem("cart", JSON.stringify(this.dishes));
+    },
 
     // Funzione che svuota il carrello
     clearCart() {
       localStorage.clear("cart");
     },
   },
-  created() {},
+  created() {
+
+  },
 };
 </script>
 
@@ -106,5 +124,8 @@ export default {
 a {
   text-decoration: none;
   color: rgb(255, 255, 255);
+}
+.trash{
+    cursor: pointer;
 }
 </style>
