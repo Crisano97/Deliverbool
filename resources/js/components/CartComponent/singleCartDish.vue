@@ -1,87 +1,110 @@
 <template>
-<div class="row">
+  <div class="row">
     <div class="col-12 col-md-8 col-lg-8">
       <div class="row pt-5 p-3 text-white form_content rounded m-3">
         <div class="d-flex pt-3" v-for="dish in dishes" :key="dish.id">
-          <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="img-fluid col-3" alt="image">
+          <img
+            :src="
+              isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image
+            "
+            class="img-fluid col-3"
+            alt="image"
+          />
           <div class="col-6">
-              <h3>{{ dish.name }}</h3>
-              <p>{{ dish.ingredients }}</p>
-              <p>€ {{ dish.price.toFixed(2)}}</p>
+            <h3>{{ dish.name }}</h3>
+            <p>{{ dish.ingredients }}</p>
+            <p>€ {{ dish.price.toFixed(2) }}</p>
           </div>
           <div class="col-3">
-              <label for="form-label">Quantità</label>
-              <input class="form-control" type="number" :value="dish.quantity" min="1">
+            <label for="form-label">Quantità</label>
+            <input
+              class="form-control"
+              type="number"
+              :value="dish.quantity"
+              min="1"
+            />
+          </div>
+           <div class="col-1 trash" @click="removeDish(dish)">
+      <i class="fa-solid fa-trash-can"></i>
+    </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="m-4 bg-check text-center p-3 rounded">
+        <div class="border-bottom">
+          <h6>Totale</h6>
+          <h4>30.00$</h4>
+        </div>
+        <div class="d-flex">
+          <div class="p-3">
+            <a href="/checkout" class="btn btn-outline-success"
+              >Vai al Checkout</a
+            >
+          </div>
+          <div class="p-3">
+            <a href="/" class="btn btn-outline-danger" @click="clearCart()"
+              >Svuota il carello</a
+            >
           </div>
         </div>
       </div>
     </div>
-   
-
-         <div class="col-12 col-md-4">
-                <div class="m-4 bg-check text-center p-3 rounded">
-                    <div class="border-bottom">
-                        <h6>Totale</h6>
-                        <h4>30.00$</h4>
-                    </div>
-                    <div class="d-flex">
-                      <div class="p-3">
-                          <a href="/checkout" class="btn btn-outline-success">Vai al Checkout</a>
-                      </div>
-                      <div class="p-3">
-                          <a href="/" class="btn btn-outline-danger" @click="clearCart()">Svuota il carello</a>
-                      </div>
-                    </div>
-                </div>
-            </div>
-</div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-    data: function () {
+  data: function () {
     return {
-       dishes:[],
-       quantity: 0,
+      dishes: [],
+      quantity: 0,
     };
   },
-   mounted() {
-      if (localStorage.cart) {
-            let dishesArray = JSON.parse(localStorage.getItem("cart"));
-            dishesArray.forEach(element => {
-                this.dishes.push(element)
-                console.log(this.dishes)
-            });
-        }
-    },
+  mounted() {
+    if (localStorage.cart) {
+      let dishesArray = JSON.parse(localStorage.getItem("cart"));
+      dishesArray.forEach((element) => {
+        this.dishes.push(element);
+        console.log(this.dishes);
+      });
+    }
+  },
   methods: {
     isValidUrl(str) {
-            const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
-            if(!regex .test(str)) {
-                return false;
-            } else {
-                return true;
-            }
+      const regex =
+        /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+      if (!regex.test(str)) {
+        return false;
+      } else {
+        return true;
+      }
     },
-     // Funzione che svuota il carrello
-        clearCart(){
-            localStorage.clear('cart');
-        },
-    
-  },
-  created() {
-  }
-};
 
+    removeDish(dish) {
+      const prodIndex = this.dishes.indexOf(dish);
+      this.dishes.splice(prodIndex, 1);
+      localStorage.setItem("cart", JSON.stringify(this.dishes));
+    },
+
+    // Funzione che svuota il carrello
+    clearCart() {
+      localStorage.clear("cart");
+    },
+  },
+  created() {},
+};
 </script>
 
 <style scoped>
-.bg-check{
-    background-color: #ffbd59;
+.bg-check {
+  background-color: #ffbd59;
 }
-a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 </style>
