@@ -26,7 +26,7 @@ class AddForeignRestaurantIdOnOrder extends Migration
      */
     public function down()
     {
-        Schema::table('dishes', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign('orders_restaurant_id_foreign');
             $table->dropColumn('restaurant_id');
         });
