@@ -91,7 +91,7 @@ export default {
                 //? se il carrello e' vuoto pusha il piatto
                 if (this.cart.length == 0) {
                     this.cart.push(dish);
-                    this.length++;
+                    dish.quantity = 1;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
                 //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
@@ -103,14 +103,14 @@ export default {
                         this.cart = [];
                         localStorage.clear();
                         this.cart.push(dish);
-                        this.length++;
+                         dish.quantity = 1;
                         localStorage.setItem("cart", JSON.stringify(this.cart));
                     }
                 }
                 //! pushamo il piatto aggiuntivo
                 else {
                     this.cart.push(dish);
-                    this.length++;
+                     dish.quantity = 1;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
                 this.$emit('click', this.cart);

@@ -51,7 +51,7 @@ mounted(){
                 if (this.cart.length == 0) {
 
                     this.cart.push(dish);
-                    this.length++;
+                    dish.amount = 1
                     console.log(this.cart)
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
@@ -64,7 +64,7 @@ mounted(){
                         this.cart = [];
                         localStorage.clear();
                         this.cart.push(dish);
-                        this.length++;
+                        dish.amount = 1
                         localStorage.setItem("cart", JSON.stringify(this.cart));
                      
                     }
@@ -72,7 +72,7 @@ mounted(){
                 //! pushamo il piatto aggiuntivo
                 else {
                     this.cart.push(dish);
-                    this.length++;
+                    dish.amount = 1
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                     console.log(this.cart)
                 }

@@ -44,20 +44,12 @@
                     <div class="m-4 bg-check text-center p-3 rounded">
                         <div class="border-bottom">
                             <h6>Totale</h6>
-                            <h4>30.00$</h4>
+                            <h4>{{ totlaPrice.toFixed(2)}}</h4>
                         </div>
                         <div class="pt-2">
-                            <div>
-                                <span>3°</span>
-                                Nome piatto
-                            </div>
-                            <div>
-                                <span>3°</span>
-                                Nome piatto
-                            </div>
-                            <div>
-                                <span>3°</span>
-                                Nome piatto
+                            <div v-for="dish in dishes" :key="dish.id">
+                                <span>{{dish.quantity}}°</span>
+                                {{ dish.name }}
                             </div>
                         </div>
                         <div class="pt-2">
@@ -85,12 +77,28 @@ export default {
             email : '',
             telefono : '',
             indirizzo : '',
-            // totale ,
-            // piatti : [],
-            // numeroPiatti,
+            arr: [],
+            dishes: [],
+            totlaPrice : 0,
             isSent : false
         }
     },
+    mounted() {
+    if (localStorage.cart) {
+      let dishesArray = JSON.parse(localStorage.getItem("cart"));
+      console.log(dishesArray)
+      dishesArray.forEach((element) => {
+       this.arr.push(element); // Some array I got from async call
+
+        this.dishes = Array.from(new Set(this.arr.map(a => a.id)))
+        .map(id => {
+        return this.arr.findLast(a => a.id === id)
+        }) 
+      });
+      this.getTotal();
+      
+    }
+  },
     methods:{
         sendOrderEmail(){
             console.warn('invio form');
@@ -106,7 +114,17 @@ export default {
             }).catch((error)=>{
                 console.warn(error);
             })
-        }
+        },
+          getTotal(){
+        this.totlaPrice = 0,
+        this.dishes.forEach(element => {
+            let price = element.price 
+            let quantity = element.quantity
+            this.totlaPrice += price * quantity;
+            
+        })
+        
+    }
     }
 }
 </script>

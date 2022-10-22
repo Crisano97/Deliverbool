@@ -38,7 +38,7 @@
       <div class="m-4 bg-check text-center p-3 rounded">
         <div class="border-bottom">
           <h6>Totale</h6>
-          <h4>30.00$</h4>
+          <h4>{{ totlaPrice.toFixed(2) }}</h4>
         </div>
         <div class="d-flex">
           <div class="p-3">
@@ -64,6 +64,7 @@ export default {
     return {
         arr: [],
       dishes: [],
+      totlaPrice : 0,
     };
   },
   mounted() {
@@ -78,7 +79,7 @@ export default {
         return this.arr.findLast(a => a.id === id)
         }) 
       });
-      console.log(this.dishes)
+      this.getTotal();
       
     }
   },
@@ -102,7 +103,7 @@ export default {
         let value = document.getElementById(dishId).value
           const prodIndex = this.dishes.indexOf(dish);
           this.dishes[prodIndex]['quantity'] = value;
-          console.log(this.dishes[prodIndex])
+          this.getTotal();
           localStorage.setItem("cart", JSON.stringify(this.dishes));
     },
 
@@ -110,6 +111,16 @@ export default {
     clearCart() {
       localStorage.clear("cart");
     },
+    getTotal(){
+        this.totlaPrice = 0,
+        this.dishes.forEach(element => {
+            let price = element.price 
+            let quantity = element.quantity
+            this.totlaPrice += price * quantity;
+            
+        })
+        
+    }
   },
   created() {
 
