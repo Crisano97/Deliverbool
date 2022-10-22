@@ -28,7 +28,7 @@
         <div class="row p-4">
             <h1>Questa è la pagina lista piatti</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'" @click="addToCart(dish)" />
+                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'"  @addToCart="addToCart($event)" />
             </div>
         </div>
       </div>
@@ -113,11 +113,10 @@ export default {
                     this.length++;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                 }
+                this.$emit('click', this.cart);
                 // this.total = this.total + dish.price;
                 // localStorage.setItem("total", this.total);
             },
-
-
   },
 
   created() {

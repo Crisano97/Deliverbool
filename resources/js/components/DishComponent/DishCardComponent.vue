@@ -7,15 +7,15 @@
       <div class="card-body p-0 mt-2">
         <h5 class="fw-bold text-center">
           {{ dish.name }}
+        </h5>
           <span class="box_popUp">
             <span class="popUpText" :id="dish.id">Piatto aggiunto al carrello</span>
           </span>
-        </h5>
         <p class="text-start"><span class="fw-normal fw-semibold">Ingredienti:</span> {{ dish.ingredients }} </p>
       </div>
         <div class="d-flex justify-content-between">
           <p class="m-0 align-self-center ">€ {{ dish.price.toFixed(2) }}</p>
-          <button class="btn btn-primary button-plus" @click="addToCart(dish),popUp()">
+          <button class="btn btn-primary button-plus" @click="$emit('addToCart', dish), popUp()">
             <i class="fas fa-plus"></i>
           </button>
         </div>
@@ -78,7 +78,7 @@ mounted(){
                 }
                 // this.total = this.total + dish.price;
                 // localStorage.setItem("total", this.total);
-                this.$emit('click', this.cart);
+                //this.$emit('click', this.cart);
             },
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
