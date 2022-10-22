@@ -2,10 +2,16 @@
   <main>
     <HeroComponent />
     <CategoryComponent @click="getFilterRestaurant" />
-    <section class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
+    <section v-if="restaurantsFilter.length != 0 " class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
       <h1 class="text-center">I nostri partner....</h1>
       <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
         <RestaurantComponent v-for="restaurant in restaurantsFilter" :key="restaurant.id" :restaurant="restaurant"/>
+        
+      </div>
+    </section>
+    <section v-else>
+      <div class="container my-5">
+        <h1>Nessun Risultato</h1>
       </div>
     </section>
     <DownloadAppComponent />
@@ -42,6 +48,7 @@ export default {
   methods: {
     getFilterRestaurant(needle){
       this.restaurantsFilter = needle;
+      console.log(needle)
     },
      getRestaurantsFilter(category) {
       category = this.$route.params.category;
@@ -49,6 +56,7 @@ export default {
        axios.get(`/api/restaurants/${category}`).then((response) => {
          this.restaurantsFilter = response.data.results;
       });
+      console.log(this.restaurantsFilter)
      },
 
     getRestaurantsSponsor() {

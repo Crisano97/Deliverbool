@@ -16,7 +16,7 @@
                
                 <label :for="category.id">
                   <div class="custom_category">
-                    <img :src="category.image" class="img-fluid img-categoria-slider border border-3 rounded-circle"  :class="selectedCategories.includes(category.name) ? 'border-warnig active_color' : '' ">
+                    <img :src="category.image" class="img-fluid img-categoria-slider rounded-circle"  :class="selectedCategories.includes(category.id) ? 'border_golden active_color' : 'border_custom'">
                   </div>
                   <div class="m-1 text-center" >
                     <h5>{{category.name}}</h5>
@@ -34,7 +34,7 @@
     <div class="container my-5 d-none d-md-block">
       <div class="row row-cols-4 row-cols-lg-6">
           <div class="p-2 "  v-for="(category, index) in categories" :key="`category-${index}`">
-            <div class="card" :class="selectedCategories.includes(category.name) ? 'active_color' : 'border_custum' ">
+            <div class="card" :class="selectedCategories.includes(category.id) ? 'border_golden' : 'border_custom' ">
               <label :for="category.id">
                   <div>
                     <img :src="category.image" class="card-img-top" :alt="category.name">
@@ -62,6 +62,8 @@ export default {
             categories: [],
             restaurantsFilter:[],
             selectedCategories: [],
+            click: false,
+            categoryClicked: '',
 
         };
     },
@@ -89,9 +91,10 @@ export default {
                     this.restaurantsFilter = response.data.results;
                 }
                 this.$emit('click', this.restaurantsFilter)
+                console.log(this.selectedCategories)
             });
              
-        }
+        },
 
 
   },
