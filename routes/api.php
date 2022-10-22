@@ -32,3 +32,4 @@ Route::namespace('Api')->group(function () {
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
 Route::get('/restaurants', 'Api\RestaurantController@getRestaurantsByCategory');
+Route::post('/order/save', 'Api\OrderController@order');
