@@ -19,10 +19,8 @@
                                     <div class="col-md-8">
                                         <input id="name" type="text"
                                             class="form-control @error('name') is-invalid @enderror" name="name"
-                                            value="{{ old('name') }}" required autocomplete="name" autofocus
-                                            oninput="this.value = this.value.replace(/[0-9.,$!?£%:;@<>#+*]/g, '');"
-                                            v-model.trim="user_name" v-on:keyup="countCharUserName"
-                                            minlength="5">
+                                            value="{{ old('name') }}" minlength="5" required autocomplete="name" autofocus
+                                            >
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
