@@ -7,12 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendNewEmail extends Mailable
+class SendRestaurantMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $lead;
-
     /**
      * Create a new message instance.
      *
@@ -30,6 +29,6 @@ class SendNewEmail extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->lead->mail)->view('emails.custumer_mail');
+        return $this->replyTo($this->lead->mail)->view('emails.restaurant_mail');
     }
 }
