@@ -39,7 +39,7 @@ class OrderController extends Controller
         // $cart = json_decode(request('cart'));
         $newOrder = new Order();
         $newOrder->restaurant_id = $data['restaurant_id'];
-        $newOrder->order_code = rand(1,1000);
+        $newOrder->order_code = rand(1, 1000);
         $newOrder->total_price = $data['total_price'];
         $newOrder->order_date = $today;
         $newOrder->is_payed = true;
@@ -47,14 +47,12 @@ class OrderController extends Controller
         $newOrder->customer_email = $data['customer_email'];
         $newOrder->customer_address = $data['customer_address'];
         $newOrder->customer_phone_number = $data['customer_phone_number'];
-        
+
         // $newOrder->total_price = $data['amount'];
         $newOrder->save();
         foreach ($order as $dish) {
 
-            $newOrder->dishes()->attach(json_decode($dish)->id, ['quantity' => json_decode($dish)->quantity]);
+            $newOrder->dishes()->attach(json_decode($dish)->id, ['amount' => json_decode($dish)->quantity]);
         }
-
-        
     }
 }

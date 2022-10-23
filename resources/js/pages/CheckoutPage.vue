@@ -130,14 +130,13 @@ export default {
                 customer_email: this.email,
                 customer_phone_number: this.telefono,
                 customer_address: this.indirizzo,
-                order: this.dishes,
+                order: order,
                 total_price: this.totlaPrice, 
                 restaurant_id: this.restaurant_id,
             }).then((results)=>console.log(results)).catch(error => {
-console.log("ERRRR:: ",error.response.data);
-
-});
-            // console.log(order)
+                console.log("ERRRR:: ",error.response.data);
+            });
+            console.log(order)
         },
 
           getTotal(){
