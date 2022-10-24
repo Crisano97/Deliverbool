@@ -30,8 +30,10 @@
 
         </div>
 
-
-    <div class="container my-5 d-none d-md-block">
+    <div v-if="loading">
+      <LoaderComponent />
+    </div>
+    <div v-else class="container my-5 d-none d-md-block">
       <div class="row row-cols-4 row-cols-lg-6">
           <div class="p-2 "  v-for="(category, index) in categories" :key="`category-${index}`">
             <div class="card" :class="selectedCategories.includes(category.id) ? 'border_golden' : 'border_custom' ">
@@ -52,11 +54,15 @@
 </template>
 
 <script>
+import LoaderComponent from '../loader/LoaderComponent.vue';
 import axios from 'axios';
 export default {
+  components:{
+     LoaderComponent
+  },
     data() {
         return {
-            loading: false,
+            loading: true,
             url: "http://127.0.0.1:8000/api/v1/",
             restaurants: null,
             categories: [],
@@ -76,7 +82,7 @@ export default {
         .then((response) => {
           //console.log(response.data.result);
           this.categories = response.data.results;
-          
+          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
