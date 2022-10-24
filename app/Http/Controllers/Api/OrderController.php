@@ -59,7 +59,6 @@ class OrderController extends Controller
         foreach ($order as $dish) {
 
             $newOrder->dishes()->attach(json_decode($dish)->id, ['amount' => json_decode($dish)->quantity]);
-            $dishId = $dish;
         }
 
         // CREO NUOVO MODEL PER INVIARE MAIL ALL'UTENTE CHE COMPRA

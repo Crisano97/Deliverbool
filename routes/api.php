@@ -28,7 +28,6 @@ Route::namespace('Api')->group(function () {
     Route::get('/categories', 'CategoryController@index');
     Route::get('/dishes/{id}', 'DishController@getRestaurantDishes');
     Route::get('/emails', 'EmailController@store');
-    Route::get('/cart/{cart}', 'Api\OrderController@getDishes');
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
 Route::get('/restaurants', 'Api\RestaurantController@getRestaurantsByCategory');
