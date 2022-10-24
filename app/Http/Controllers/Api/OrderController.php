@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Order\OrderRequest;
+use App\Http\Requests\PaymentRequest;
 use App\Mail\SendNewEmail;
 use App\Mail\SendRestaurantMail;
 use App\Models\Dish;
@@ -10,6 +12,7 @@ use App\Models\Lead;
 use App\Models\Order;
 use App\Models\Restaurant;
 use App\User;
+use Braintree\Gateway;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
@@ -17,6 +20,48 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    //
+    public function generate(Request $request, Gateway $gateway)
+    {
+        $token = $gateway->clientToken()->generate();
+        $data = [
+            'success' => true,
+            'token' => $token
+        ];
+        
+        return response()->json($data,200);
+    }
+
+    public function makePayment(OrderRequest $request, Gateway $gateway)
+    {
+
+        // dd($request->amount);
+        $result = $gateway->transaction()->sale([
+            'amount' => $request->amount,
+            'paymentMethodNonce' => $request->token,
+            // 'options' => [
+            //     'submitForSettlment' => true
+            // ]
+        ]);
+
+
+
+        if ($result->success) {
+            $data = [
+                'success' => true,
+                'message' => 'Transazione eseguita con successo!',
+            ];
+
+            return response()->json($data, 200);
+        } else {
+            $data = [
+                'success' => false,
+                'message' => 'Transazione Fallita'
+            ];
+            return response()->json($data, 401);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
