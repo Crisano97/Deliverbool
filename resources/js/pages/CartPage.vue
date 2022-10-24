@@ -1,6 +1,6 @@
 <template>
   <div class="form_page">
-       <div class="order-controller container mt-5">
+    <div class="order-controller container mt-5"  :class="arr.length < 1 ? 'vh-100' : 'h-100'">
         <nav class="row row-cols-2">
             <h1 class="border-bottom border-warning">
                 <a href="/Cart">
@@ -19,6 +19,7 @@
 
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -29,9 +30,29 @@ export default {
   },
   data : function(){
       return{
-          carrello: [],
+            arr: [],
+            restaurant_id : 0,
+            
       }
-  }
+  },
+   mounted() {
+    if (localStorage.cart) {
+      let dishesArray = JSON.parse(localStorage.getItem("cart"));
+      console.log(dishesArray)
+      dishesArray.forEach((element) => {
+        this.restaurant_id = element.restaurant_id;
+        console.log(this.restaurant_id);
+       this.arr.push(element); // Some array I got from async call
+
+        this.dishes = Array.from(new Set(this.arr.map(a => a.id)))
+        .map(id => {
+        return this.arr.findLast(a => a.id === id)
+        }) 
+      });
+      this.getTotal();
+      
+    }
+   }
 }
 </script>
 

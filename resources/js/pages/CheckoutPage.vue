@@ -15,25 +15,32 @@
         </nav>
 
          <!-- COMPONENT CHECKOUT -->
-        <div class="row">
-            <div class="row">
+        <form class="row" @submit.prevent="payement()">
+            <div class="row vh-100">
                 <div class="col-12 col-md-7">
                     <div class="form_content p-3 rounded my-5">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Il tuo nome *</label>
-                            <input type="text" class="form-control"  v-model="name" id="exampleFormControlInput1" placeholder="Inserisci il tuo nome" required>
+                            <input minlength="3" type="text" class="form-control"  v-model="name" id="exampleFormControlInput1" placeholder="Inserisci il tuo nome" required>
+                            <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z,
+                            A-Z)</small>
                         </div>  
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Email *</label>
                             <input type="email" class="form-control" v-model="email" id="exampleFormControlInput1" placeholder="Inserisci la tua email" required>
+                            <small id="emailHelp" class="form-text text-muted">(e.g.
+                                            nomeutente@gmail.com)</small>
                         </div>  
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Telefono *</label>
-                            <input type="tel" class="form-control" v-model="telefono" id="exampleFormControlInput1" placeholder="Inserisci il tuo numero di telefono" required>
+                            <input pattern="[0-9]{10}" type="tel" class="form-control" v-model="telefono" id="exampleFormControlInput1" placeholder="Inserisci il tuo numero di telefono" required>
+                            <small id="emailHelp" class="form-text text-muted">ES. 333 333 33 33</small>
                         </div>  
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Indirizzo di consegna *</label>
-                            <input type="text" class="form-control" v-model="indirizzo" id="exampleFormControlInput1" placeholder="Inserisci il tuo indirizzo" required>
+                            <input minlength="5" type="text" class="form-control" v-model="indirizzo" id="exampleFormControlInput1" placeholder="Inserisci il tuo indirizzo" required>
+                            <small id="emailHelp" class="form-text text-muted">Inserisci più di 5 caratteri (a-z,
+                            A-Z,0-9)</small>
                         </div>  
                     </div>
                 </div>
@@ -57,13 +64,13 @@
                                 invia l'ordine
                             </button>
                         </div>
-
+ 
                     </div> -->
                     <div class="card mt-3 card-braintree">
                             
                             
                             <div id="dropin-container"></div>
-                            <button id="submit-button" class="button button--small button--green" @click="payement">Purchase</button>
+                            <button id="submit-button" type="submit" class="button button--small button--green">Acquista</button>
                             <!-- <input
                                 class="input-pay"
                                 type="submit"
@@ -74,7 +81,7 @@
                 </div>
             </div>
 
-        </div>
+        </form>
     </div>
   </div>
 </template>
@@ -242,7 +249,7 @@ export default {
 
 <style scoped>
 .card-braintree {
-    border: 1px solid #38c172;
+    border: 1px solid #ffbd59;
     background-color: rgb(56, 193, 114, 0.2);
     border-radius: 20px 20px 50px 50px !important;
     padding: 0 2rem;
@@ -250,7 +257,7 @@ export default {
 .input-pay {
     margin: 1rem 20rem;
     color: white;
-    background-color: #38c172;
+    background-color: #ffbd59;
     box-shadow: 2px 2px #88888865;
     border-radius: 25px;
     padding: 0.5rem 3rem;
