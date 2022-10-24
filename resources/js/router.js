@@ -33,7 +33,7 @@ const router = new VueRouter({
             component: DishesPage
         },
         {
-            path: '/error',
+            path: '*',
             name: 'error',
             component: ErrorPage
         },
