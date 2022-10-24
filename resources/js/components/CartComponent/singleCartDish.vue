@@ -101,6 +101,7 @@ export default {
       const prodIndex = this.dishes.indexOf(dish);
       this.dishes.splice(prodIndex, 1);
       localStorage.setItem("cart", JSON.stringify(this.dishes));
+      this.getTotal();
     },
     changeQuantity(dish , dishId){
         let value = document.getElementById(dishId).value
@@ -113,6 +114,7 @@ export default {
     // Funzione che svuota il carrello
     clearCart() {
       localStorage.clear("cart");
+      
     },
     getTotal(){
         this.totlaPrice = 0,
