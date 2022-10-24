@@ -32,8 +32,11 @@
       <div class="container">
         <div class="row p-4">
             <h1>Questa è la pagina lista piatti</h1>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div v-if="dishes.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 h-100">
                 <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'"  @addToCart="addToCart($event)" />
+            </div>
+            <div v-else class="text-center pt-5 my_h">
+              <h1>Al momento non sono disponibili piatti per questo ristorante</h1>
             </div>
         </div>
       </div>
@@ -137,6 +140,9 @@ export default {
 </script>
 
 <style scoped>
+.my_h{
+  height: 30vh;
+}
 .bg-rest-container{
   background-color: #758d75;
 }
