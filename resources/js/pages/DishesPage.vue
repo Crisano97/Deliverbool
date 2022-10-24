@@ -1,7 +1,12 @@
 <template>
   <div>
+    
+    <div >
+      <div v-if="isLoading">
+       <LoaderComponent/>
+      </div>
          <!-- RISTORANTE FORMA -->
-      <div class="bg-rest-container">
+      <div v-else class="bg-rest-container">
         <div class="container ">
            <div class="row">
             <div class="col-12 col-md-5">
@@ -34,12 +39,14 @@
       </div>
 
     </div>
+  </div>
 </template>
 
 <script>
 import DishCard from '../components/DishComponent/DishCardComponent.vue';
 import RestaurantComponent from '../components/SubComponentsMain/RestaurantComponent.vue';
 import SingleRestaurantComponent from '../components/DishComponent/SingleRestaurantComponent.vue';
+import LoaderComponent from '../components/loader/LoaderComponent.vue';
 import axios from "axios";
 
 export default {
@@ -48,10 +55,12 @@ export default {
     DishCard,
     RestaurantComponent,
     SingleRestaurantComponent,
+    LoaderComponent
   },
 
   data: function () {
     return {
+      isLoading: true,
        dishes:[],
        restaurant:[],
        categories:[],
@@ -74,7 +83,8 @@ export default {
         .then((response) => {
           this.dishes = response.data.results.dishes;
           this.restaurant = response.data.results.restaurant,
-          this.categories = response.data.results.categories
+          this.categories = response.data.results.categories,
+          this.isLoading = false;
           console.log(this.categories);
         //   this.isLoading = false;
         })

@@ -4,9 +4,11 @@
     <CategoryComponent @click="getFilterRestaurant" />
     <section v-if="restaurantsFilter.length != 0 " class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
       <h1 class="text-center">I nostri partner....</h1>
-      <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+      <div v-if="isLoading">
+        <LoaderComponent /> 
+      </div>
+      <div v-else class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
         <RestaurantComponent v-for="restaurant in restaurantsFilter" :key="restaurant.id" :restaurant="restaurant"/>
-        
       </div>
     </section>
     <section v-else>
@@ -17,9 +19,12 @@
     <DownloadAppComponent />
     <section class="container py-5">
       <h1 class="text-center">I partner più amati....</h1>
-        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3  justify-content-center">
-          <RestaurantComponent v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant"/>
-        </div>
+      <div v-if="isLoading">
+        <LoaderComponent /> 
+      </div>
+      <div v-else class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3  justify-content-center">
+        <RestaurantComponent v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant"/>
+      </div>
       </section>
   </main>
 </template>
@@ -29,6 +34,7 @@ import HeroComponent from "./SubComponentsMain/HeroComponent.vue";
 import CategoryComponent from "./SubComponentsMain/CategoryComponent.vue";
 import DownloadAppComponent from "./SubComponentsMain/DownloadAppComponent.vue";
 import RestaurantComponent from "./SubComponentsMain/RestaurantComponent.vue";
+import LoaderComponent from '../components/loader/LoaderComponent.vue';
 import axios from "axios";
 
 export default {
@@ -37,9 +43,11 @@ export default {
     CategoryComponent,
     DownloadAppComponent,
     RestaurantComponent,
+    LoaderComponent,
   },
   data: function () {
     return {
+      isLoading: true,
       restaurants: [],
       restaurantsFilter: [],
       categoryRestaurant: '',
@@ -65,6 +73,7 @@ export default {
         .then((response) => {
           //console.log(response.data.result);
           this.restaurants = response.data.results;
+          this.isLoading = false;
         })
         .catch((error) => {
           console.error(error);
