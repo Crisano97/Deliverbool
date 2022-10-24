@@ -9,7 +9,7 @@
           {{ dish.name }}
         </h5>
           <span class="box_popUp">
-            <span class="popUpText" :id="dish.id">Piatto aggiunto al carrello; per cabiare la quantità vai al carello</span>
+            <span class="popUpText" :id="dish.id">Per scegliere la quantità dei piatti vai al carello</span>
           </span>
         <p class="text-start"><span class="fw-normal fw-semibold">Ingredienti:</span> {{ dish.ingredients }} </p>
       </div>
@@ -125,8 +125,8 @@ img{
 .box_popUp{
   margin-top: 5px;
   text-align: end;
-  font-size: 10px;
-  color: #38c172;
+  font-size: 13px;
+  color: #ffbd59;
 }
 
 .popUpText {
