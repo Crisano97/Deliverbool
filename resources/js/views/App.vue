@@ -1,7 +1,7 @@
 <template>
   <section>
-       <HeaderComponent />
-       <router-view></router-view>
+       <HeaderComponent :dish="dish"/>
+       <router-view @click="getNDish()"></router-view>
        <FooterComponent />
   </section>
 </template>
@@ -12,6 +12,16 @@ export default {
     components : {
         HeaderComponent,
         FooterComponent,
+    },
+    data: function(){
+      return{
+        dish:[],
+      }
+    },
+    methods:{
+      getNDish(needle){
+        this.dish.push(needle);
+      }
     }
 }
 </script>
