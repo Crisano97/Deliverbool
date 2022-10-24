@@ -9,7 +9,7 @@
 
     <title>Deliverbool</title>
     <!-- Scripts Brain Tree-->
-    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js" defer></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -29,6 +29,12 @@
 
 <body>
     <div id="root"></div>
+    @auth
+        <script>
+            window.user = true;
+        </script>
+    @endauth
+
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
 

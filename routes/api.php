@@ -31,4 +31,6 @@ Route::namespace('Api')->group(function () {
 });
 Route::get('v1/restaurants/searchCheck', 'Api\RestaurantController@searchCheckbox');
 Route::get('/restaurants', 'Api\RestaurantController@getRestaurantsByCategory');
+Route::get('/order/generate', 'Api\OrderController@generate');
+Route::post('/order/make/payment', 'Api\OrderController@makePayment');
 Route::post('/order/save', 'Api\OrderController@order');
