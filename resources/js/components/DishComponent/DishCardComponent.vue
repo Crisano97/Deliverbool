@@ -9,7 +9,7 @@
           {{ dish.name }}
         </h5>
           <span class="box_popUp">
-            <span class="popUpText" :id="dish.id">Piatto aggiunto al carrello</span>
+            <span class="popUpText" :id="dish.id">Per scegliere la quantità dei piatti vai al carello</span>
           </span>
         <p class="text-start"><span class="fw-normal fw-semibold">Ingredienti:</span> {{ dish.ingredients }} </p>
       </div>
@@ -78,7 +78,7 @@ mounted(){
                 }
                 // this.total = this.total + dish.price;
                 // localStorage.setItem("total", this.total);
-                //this.$emit('click', this.cart);
+                this.$emit('click', this.cart);
             },
     isValidUrl(str) {
             const regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
@@ -92,7 +92,7 @@ mounted(){
       let popup = document.getElementById(this.dish.id);
       popup.classList.add("show");
       if (popup.classList.contains("show")){
-        setTimeout(() => popup.classList.remove("show"), 1000);
+        setTimeout(() => popup.classList.remove("show"), 5000);
       }
     }
   },
@@ -125,8 +125,8 @@ img{
 .box_popUp{
   margin-top: 5px;
   text-align: end;
-  font-size: 10px;
-  color: #38c172;
+  font-size: 13px;
+  color: #ffbd59;
 }
 
 .popUpText {
