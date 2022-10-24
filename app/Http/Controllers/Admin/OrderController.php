@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dish;
 use App\Models\Order;
 use App\Models\Restaurant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -24,4 +27,16 @@ class OrderController extends Controller
         $orders = Order::where('restaurant_id', $arrayStringa)->paginate(4);
         return view('admin.restaurants.orderIndex', compact(['orders', 'restaurants']));
     }
+
+    public function stats()
+    {
+            $orders = Order::select(
+                DB::raw('sum(total_price) as sums, count(id) as orders'),
+                DB::raw("DATE_FORMAT(order_date,'%Y %m') as months"))
+                ->groupBy('months')->where([['orders.restaurant_id', Auth::id()]])->where('order_date', '>', Carbon::now()->endOfMonth()->subtract(1, 'year'))
+                ->get();
+
+            return view('admin.restaurants.stats', compact(['orders',]));
+    }
+    
 }
