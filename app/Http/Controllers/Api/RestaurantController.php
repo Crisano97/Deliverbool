@@ -15,9 +15,9 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        {
-            $restaurants = Restaurant::all();
+    public function index()
+    { {
+            $restaurants = Restaurant::with('categories')->get();
             return response()->json([
                 'response' => true,
                 'results' => $restaurants
