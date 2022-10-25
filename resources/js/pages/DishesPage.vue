@@ -50,6 +50,7 @@ import DishCard from '../components/DishComponent/DishCardComponent.vue';
 import RestaurantComponent from '../components/SubComponentsMain/RestaurantComponent.vue';
 import SingleRestaurantComponent from '../components/DishComponent/SingleRestaurantComponent.vue';
 import LoaderComponent from '../components/loader/LoaderComponent.vue';
+import swal from 'sweetalert';
 import axios from "axios";
 
 export default {
@@ -110,17 +111,39 @@ export default {
                 }
                 //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
                 else if (this.cart[0].restaurant_id != this.$route.params.id) {
-                    const result = window.confirm(
-                        'E\' già presente un carello per un diverso ristorante; Puoi ordinare da un solo ristorante , facendo click su OK il tuo carello verrà svuotato'
-                    );
-                    if (result) {
-                        this.cart = [];
+                      const result = window.swal({
+                      title: "E\' già presente un carello per un diverso ristorante!",
+                      text: "Facendo click su OK il tuo carello verrà svuotato",
+                      icon: "warning",
+                      buttons: true,
+                      dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                      if (willDelete) {
+                        swal("Il carello è stato aggiornato ", {
+                          icon: "success",
+                        });
+                          this.cart = [];
                         localStorage.clear();
                         this.cart.push(dish);
                          dish.quantity = 1;
                         localStorage.setItem("cart", JSON.stringify(this.cart));
                         this.$emit('click', this.cart);
-                    }
+                      } else {
+                        swal("Il tuo carello è al sicuro! Concludi il tuo ordine");
+                      }
+                    });
+                    // const result = window.confirm(
+                    //     'E\' già presente un carello per un diverso ristorante; Puoi ordinare da un solo ristorante , facendo click su OK il tuo carello verrà svuotato'
+                    // );
+                    // if (result) {
+                    //     this.cart = [];
+                    //     localStorage.clear();
+                    //     this.cart.push(dish);
+                    //      dish.quantity = 1;
+                    //     localStorage.setItem("cart", JSON.stringify(this.cart));
+                    //     this.$emit('click', this.cart);
+                    // }
                 }
                 //! pushamo il piatto aggiuntivo
                 else {

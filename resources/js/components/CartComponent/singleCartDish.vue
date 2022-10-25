@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 col-lg-8">
-      <div class="row pt-5 p-3 text-white form_content rounded">
+      <div v-if="dishes.length > 0" class="row pt-5 p-3 text-white form_content rounded">
         <div class="row pt-3" v-for="dish in dishes" :key="dish.id">
           <img
             :src="
@@ -18,12 +18,12 @@
           <div class="col-6 col-md-2">
             <label for="form-label">Quantità</label>
             <input
-            :id="dish.id"
+              :id="dish.id"
               class="form-control"
               type="number"
               :value="dish.quantity"
               min="1"
-            @change="changeQuantity(dish , dish.id)"
+              @change="changeQuantity(dish, dish.id)"
             />
           </div>
           <div class="col-6 col-md-1 trash text-end" @click="removeDish(dish)">
@@ -31,6 +31,9 @@
           </div>
 
         </div>
+      </div>
+      <div v-else class="row p-3">
+          <h5>Il tuo carrello è vuoto!</h5>
       </div>
     </div>
 
@@ -42,14 +45,16 @@
         </div>
         <div class="row">
           <div class="container">
-
             <div class="p-3">
               <a href="/checkout" class="btn btn-success"
                 >Vai al Checkout</a
               >
             </div>
             <div class="p-3">
-              <a href="/" class="btn btn-danger" @click="clearCart()"
+              <a
+                href="/Cart"
+                class="btn btn-outline-danger"
+                @click="clearCart()"
                 >Svuota il carello</a
               >
             </div>
@@ -65,25 +70,25 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-        arr: [],
+      arr: [],
       dishes: [],
-      totlaPrice : 0,
+      totlaPrice: 0,
     };
   },
   mounted() {
     if (localStorage.cart) {
       let dishesArray = JSON.parse(localStorage.getItem("cart"));
-      console.log(dishesArray)
+      console.log(dishesArray);
       dishesArray.forEach((element) => {
-       this.arr.push(element); // Some array I got from async call
+        this.arr.push(element); // Some array I got from async call
 
-        this.dishes = Array.from(new Set(this.arr.map(a => a.id)))
-        .map(id => {
-        return this.arr.findLast(a => a.id === id)
-        }) 
+        this.dishes = Array.from(new Set(this.arr.map((a) => a.id))).map(
+          (id) => {
+            return this.arr.findLast((a) => a.id === id);
+          }
+        );
       });
       this.getTotal();
-      
     }
   },
   methods: {
@@ -103,33 +108,28 @@ export default {
       localStorage.setItem("cart", JSON.stringify(this.dishes));
       this.getTotal();
     },
-    changeQuantity(dish , dishId){
-        let value = document.getElementById(dishId).value
-          const prodIndex = this.dishes.indexOf(dish);
-          this.dishes[prodIndex]['quantity'] = value;
-          this.getTotal();
-          localStorage.setItem("cart", JSON.stringify(this.dishes));
+    changeQuantity(dish, dishId) {
+      let value = document.getElementById(dishId).value;
+      const prodIndex = this.dishes.indexOf(dish);
+      this.dishes[prodIndex]["quantity"] = value;
+      this.getTotal();
+      localStorage.setItem("cart", JSON.stringify(this.dishes));
     },
 
     // Funzione che svuota il carrello
     clearCart() {
       localStorage.clear("cart");
-      
     },
-    getTotal(){
-        this.totlaPrice = 0,
-        this.dishes.forEach(element => {
-            let price = element.price 
-            let quantity = element.quantity
-            this.totlaPrice += price * quantity;
-            
-        })
-        
-    }
+    getTotal() {
+      (this.totlaPrice = 0),
+        this.dishes.forEach((element) => {
+          let price = element.price;
+          let quantity = element.quantity;
+          this.totlaPrice += price * quantity;
+        });
+    },
   },
-  created() {
-
-  },
+  created() {},
 };
 </script>
 
@@ -144,7 +144,7 @@ a {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
-.trash{
-    cursor: pointer;
+.trash {
+  cursor: pointer;
 }
 </style>

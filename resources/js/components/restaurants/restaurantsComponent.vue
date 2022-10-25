@@ -4,8 +4,8 @@
            <LoaderComponent />
         </div>
         <div v-else class="container">
-            <div class="row">
-                <div class="col-3 m-3 p-4 " v-for="restaurant in restaurants" :key="restaurant.id">
+            <div class="row row-cols-3 justify-content-center">
+                <div class="m_fit mx-2" v-for="restaurant in restaurants" :key="restaurant.id">
                     <RestaurantComponent class="ms_img" :restaurant="restaurant"/>
                 </div>
            </div>
@@ -60,8 +60,6 @@ export default {
   .ms_img{
   object-fit: cover;
   transition: 1s;
-  height: 10rem;
-  width: 10rem;
   &:hover{
       transform: scale(1.08);
   }

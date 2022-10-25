@@ -43,7 +43,7 @@ export default {};
 
 <style scoped lang="scss">
 footer{
-    background-color: rgba(0, 0, 0, 70%);
+    background-color: #2E3333;
     color: white;
 }
 
