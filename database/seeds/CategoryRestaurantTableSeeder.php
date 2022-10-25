@@ -16,14 +16,14 @@ class CategoryRestaurantTableSeeder extends Seeder
         DB::table('category_restaurant')->insert(['restaurant_id' => 1, 'category_id' => 5]);
 
         DB::table('category_restaurant')->insert(['restaurant_id' => 2, 'category_id' => 4]);
-        DB::table('category_restaurant')->insert(['restaurant_id' => 2, 'category_id' => 7]);
-        DB::table('category_restaurant')->insert(['restaurant_id' => 2, 'category_id' => 9]);
+        DB::table('category_restaurant')->insert(['restaurant_id' => 2, 'category_id' => 6]);
+        DB::table('category_restaurant')->insert(['restaurant_id' => 2, 'category_id' => 8]);
 
         DB::table('category_restaurant')->insert(['restaurant_id' => 3, 'category_id' => 1]);
-        DB::table('category_restaurant')->insert(['restaurant_id' => 3, 'category_id' => 8]);
+        DB::table('category_restaurant')->insert(['restaurant_id' => 3, 'category_id' => 7]);
 
         DB::table('category_restaurant')->insert(['restaurant_id' => 4, 'category_id' => 1]);
-        DB::table('category_restaurant')->insert(['restaurant_id' => 4, 'category_id' => 8]);
+        DB::table('category_restaurant')->insert(['restaurant_id' => 4, 'category_id' => 7]);
 
         DB::table('category_restaurant')->insert(['restaurant_id' => 5, 'category_id' => 10]);
         DB::table('category_restaurant')->insert(['restaurant_id' => 5, 'category_id' => 12]);
