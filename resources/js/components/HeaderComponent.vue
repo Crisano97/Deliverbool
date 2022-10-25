@@ -45,6 +45,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav d-flex justify-content-end w-100">
+            <a class="nav-link" href="/allrestaurants">
+                  <i class="fa-solid fa-utensils p-2 icon"></i>Ristoranti
+            </a>
             <a class="nav-link" href="/login">
                   <i class="fa-solid fa-user p-2 icon"></i>Utente
             </a>
