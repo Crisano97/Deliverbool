@@ -10,7 +10,7 @@
                 <h5>{{ restaurant.name }}</h5>
                 <div>
                   <span v-for="category in restaurant.categories" :key="category.id">
-                    {{category.name}}
+                   &bull; {{category.name}}
                   </span>
                 </div>
               </div>
