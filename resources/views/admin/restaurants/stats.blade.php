@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts-chart.chart')
+<script src="{{ asset('js/app.js') }}" ></script>
 
-@section('content')
+@section('script-content')
 <div class="container py-5">
     <div class="row">
         <div class="col-6 offset-3">
