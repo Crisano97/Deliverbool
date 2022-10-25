@@ -1,7 +1,7 @@
 <template>
   <!-- CARD RISTORANTI IN VOGA -->
-    <div class="m_fit">
-        <div class="px-4 my-5">
+    <div class="my_fit">
+        <div class="my-5">
           <router-link class="text-black" :to="'/dishes/' + restaurant.id">
             <div class="rest-card position-relative">
               <img  :src="isValidUrl(restaurant.image) ? restaurant.image : '/storage/' + restaurant.image " class="card-img-top border rounded-pill" alt="image-restaurant">
@@ -69,7 +69,7 @@ export default {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.m_fit{
+.my_fit{
   width: fit-content;
 }
 

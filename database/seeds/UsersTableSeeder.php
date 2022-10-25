@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         $myUser->password = Hash::make('root');
         $myUser->save();
 
-        for ($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 11; $i++) {
 
             $newUser = new User();
             $newUser->name = $faker->userName();

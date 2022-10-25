@@ -2,15 +2,15 @@
   <!-- SECTION HERO -->
   <section class="hero position-relative">
       <img class="w-100" src="../../../../public/assets/images/hero.jpeg" alt="hero-food" />
-      <div class="position-absolute top-50 start-50 translate-middle">
-        <h1 class="text-white text-center fs-5">DELIVEBOOL</h1>
-        <h2 class="text-white text-center fs-6">
+      <div class="position-absolute top-50 start-50 translate-middle text-center">
+        <h1 class="text-white">DELIVEBOOL</h1>
+        <h4 class="text-white">
           Consegniamo il tuo cibo preferito fresco e veloce in tutta Firenze.
-        </h2>
-        <h1 class="text-white text-center pt-4 fs-6">
+        </h4>
+        <p class="text-white pt-4 fs-4">
           ” Nessun amore è più sincero dell’amore per il cibo. ”
-        </h1>
-        <p class="text-white fs-5">GEORGE BERNARD SHAW</p>
+        </p>
+        <span class="text-white fst-italic">GEORGE BERNARD SHAW</span>
       </div>
     </section>
 </template>

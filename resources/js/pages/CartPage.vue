@@ -1,6 +1,6 @@
 <template>
-  <div class="form_page">
-    <div class="order-controller container mt-5"  :class="arr.length < 1 ? 'vh-100' : 'h-100'">
+  <div class="form_page py-5">
+    <div class="order-controller container mt-5 custom_padding"  >
         <nav class="row row-cols-2">
             <h1 class="border-bottom border-warning">
                 <a href="/Cart">
@@ -15,7 +15,7 @@
         </nav>
 
         <!-- COMPONENT LISTA ORDINE -->
-        <singleCartDish class="form_content rounded m-3"/>
+        <singleCartDish class="form_content p-5 rounded "/>
 
     </div>
   </div>

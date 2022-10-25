@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div class="card p-3 h-100">
-      <div class="box_iamge">
+      <div class="box_image">
         <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="card-img-top" alt="image-post">
       </div>
       <div class="card-body p-0 mt-2">
@@ -122,6 +122,12 @@ img{
 .card:hover img{
   transform: scale(1.08);
 }
+
+.card{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
 .box_popUp{
   margin-top: 5px;
   text-align: end;

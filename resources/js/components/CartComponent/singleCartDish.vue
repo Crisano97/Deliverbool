@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 col-lg-8">
-      <div v-if="dishes.length > 0" class="row pt-5 p-3 text-white form_content rounded m-3">
+      <div v-if="dishes.length > 0" class="row pt-5 p-3 text-white form_content rounded">
         <div class="row pt-3" v-for="dish in dishes" :key="dish.id">
           <img
             :src="
@@ -26,9 +26,10 @@
               @change="changeQuantity(dish, dish.id)"
             />
           </div>
-          <div class="col-1 trash" @click="removeDish(dish)">
+          <div class="col-6 col-md-1 trash text-end" @click="removeDish(dish)">
             <i class="fa-solid fa-trash-can"></i>
           </div>
+
         </div>
       </div>
       <div v-else class="row p-3">
@@ -40,12 +41,12 @@
       <div class="m-4 bg-check text-center p-3 rounded">
         <div class="border-bottom">
           <h6>Totale</h6>
-          <h4>{{ totlaPrice.toFixed(2) }}</h4>
+          <h4>€ {{ totlaPrice.toFixed(2) }}</h4>
         </div>
         <div class="row">
           <div class="container">
             <div class="p-3">
-              <a href="/checkout" class="btn btn-outline-success"
+              <a href="/checkout" class="btn btn-success"
                 >Vai al Checkout</a
               >
             </div>
@@ -133,8 +134,8 @@ export default {
 </script>
 
 <style scoped>
-.m_o_fit {
-  object-fit: cover;
+.m_o_fit{
+  object-fit: contain;
 }
 .bg-check {
   background-color: #ffbd59;
