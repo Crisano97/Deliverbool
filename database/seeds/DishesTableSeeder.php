@@ -279,5 +279,271 @@ class DishesTableSeeder extends Seeder
         $newDish->price  = 27.00;
         $newDish->visible  = true;
         $newDish->save();
+
+        //CONVIVIO
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  6;
+        $newDish->name = "Rosa di Topinambur";
+        $newDish->ingredients = 'Topinambur';
+        $newDish->image = 'https://www.ilconviviotroiani.it/wp-content/uploads/2019/03/slider-024-1630x860.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  6;
+        $newDish->name = "Piccione accompagnato da un uovo 65°";
+        $newDish->ingredients = 'Piccione , uovo , salsa al parmiggiano';
+        $newDish->image = 'https://res.cloudinary.com/tf-lab/image/upload/w_600,h_337,c_fill,q_auto,f_auto/restaurant/39e137f9-d853-4456-b9f8-9ee39a5b96ad/1a7583cd-8c07-445a-a4c3-cb7616dcd6ef.jpg';
+        $newDish->price  = 24.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  6;
+        $newDish->name = "Merluzzo, noci e finocchio";
+        $newDish->ingredients = "Merluzzo, noci e finocchio";
+        $newDish->image = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/5dd750bf-7f87-4e34-a07a-91ffe506f6f2/3f18a5ff-3d71-42ca-82f8-80c6d91d21f9.jpg';
+        $newDish->price  = 30.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  6;
+        $newDish->name = "Maialino all'arancia";
+        $newDish->ingredients = 'Pancia di maiale, arancia';
+        $newDish->image = 'https://www.chateauvieux.ch/sites/chateauvieux/files/styles/home_panel/public/panneaux/AUTOMNE_04_0.jpg?itok=oiF9vILi';
+        $newDish->price  = 27.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //MORELLI
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  7;
+        $newDish->name = "Risotto di ricoota affumicata,gamberi e tartufo";
+        $newDish->ingredients = 'Riso, Ricotta, Tartufo, Gamberi';
+        $newDish->image = 'https://vivimilano.corriere.it/wp-content/uploads/2017/03/giancarlo-morelli-700x472.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  7;
+        $newDish->name = "Patate e cavolo nero";
+        $newDish->ingredients = 'Farina, mozarella, patate, cavolo nero';
+        $newDish->image = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/come-un-pizzochero-1646919483.jpg?crop=1xw:1xh;center,top&resize=480:*';
+        $newDish->price  = 14.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  7;
+        $newDish->name = "Club Sandwich";
+        $newDish->ingredients = "Pane, Tacchino CBT, Insalata, Uovo, Maionese, Bacon";
+        $newDish->image = 'https://static.cosaporto.it/media/2021/03/5V9A6828.jpg';
+        $newDish->price  = 19.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  7;
+        $newDish->name = "Caramelle alla carbonara";
+        $newDish->ingredients = 'Farina, Uovo, Pancetta, Pecorino, Pepe ';
+        $newDish->image = 'https://www.pomiroeu.com/wp-content/uploads/2018/05/pomiroeu-2203.jpg';
+        $newDish->price  = 22.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //CITTAMANI
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  8;
+        $newDish->name = "Pollo, paprika e polvere di rabarbaro";
+        $newDish->ingredients = 'Pollo, Paprika, Rabarbaro';
+        $newDish->image = 'https://www.cibovagare.it/uploads/2021/10/25/cittamanimilano.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  8;
+        $newDish->name = "Agnello e riso indiano";
+        $newDish->ingredients = 'Agnello, riso indiano';
+        $newDish->image = 'https://www.scattidigusto.it/wp-content/uploads/2017/10/Cittamani-ristorante-indiano-Milano-costoletta-agnello.jpg';
+        $newDish->price  = 14.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  8;
+        $newDish->name = "L'india in primavera";
+        $newDish->ingredients = "Riso indiano, Piselli, Anacardi; Alici, Pomodori";
+        $newDish->image = 'https://www.italiaatavola.net/images/contenutiarticoli/khikhdi.jpg';
+        $newDish->price  = 19.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  8;
+        $newDish->name = "Zuppa di zafferano con biscotti al rosmarino";
+        $newDish->ingredients = 'Zafferano, Miele , Farina, Rosmarino';
+        $newDish->image = 'https://static.gamberorosso.it/media/k2/items/src/792f1e82f9cf4c3783987063d733cf40-768x508.jpg';
+        $newDish->price  = 19.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //IYO
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  9;
+        $newDish->name = "Sashimi misto";
+        $newDish->ingredients = 'riso, Tonno, Salmone, Seppia, Spigola';
+        $newDish->image = 'https://flawless.life/wp-content/uploads/2018/03/iyo-nagiri.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  9;
+        $newDish->name = "Anguilla in salsa BBQ";
+        $newDish->ingredients = 'Anguilla, Salsa BBQ';
+        $newDish->image = 'https://www.identitagolose.it/public/images/xmedium/1-iyo-experience-unagi-sumibiyaki-ph-brambilla-serrani.jpg';
+        $newDish->price  = 21.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  9;
+        $newDish->name = "Uramaki di gamberi in salsa di piselli";
+        $newDish->ingredients = "Riso, Gamberi, piselli";
+        $newDish->image = 'https://flawless.life/wp-content/uploads/2018/03/iyo-uramaki-1.jpg';
+        $newDish->price  = 23.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  9;
+        $newDish->name = "Mele e sfera di meringa";
+        $newDish->ingredients = 'Mele, Uova, Farina';
+        $newDish->image = 'https://flawless.life/wp-content/uploads/2018/03/iyo-sfera.jpg';
+        $newDish->price  = 12.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //Pepe IN GRANI
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  10;
+        $newDish->name = "La Margherita Vegana";
+        $newDish->ingredients = 'Farina, Pomodoro, Basilico, Mozarella Vegana';
+        $newDish->image = 'https://www.mysocialrecipe.com/files/admin/immagini/margheritavegana1-master.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  10;
+        $newDish->name = "Funghi, Bresaola e Puntarelle";
+        $newDish->ingredients = 'Farina, Funghi, Bresaola e Puntarelle';
+        $newDish->image = 'https://assets.airmail.news/static/images/BAh7CEkiCGdpZAY6BkVUSSIzZ2lkOi8vYWlyLW1haWwvQXJ0aWNsZTo6UGhvdG8vNTc0NzU_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiDGRlZmF1bHQGOwBUSSIPZXhwaXJlc19hdAY7AFQw--d06b53650cd16d3f8f8570f341503ddf5bb985b4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpQ1RneU1ENEdPd1pVT2hCaGRYUnZYMjl5YVdWdWRGUTZESEYxWVd4cGRIbHBhUT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--9f1042b9c088c6ba97f7b06fd8c724bd4cf39745/photo-1634324629.jpeg';
+        $newDish->price  = 15.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  10;
+        $newDish->name = "Zucca, Provola e radicchio";
+        $newDish->ingredients = "Farina, Zucca, Provola e radicchio";
+        $newDish->image = 'https://www.foodandwineitalia.com/wp-content/uploads/2020/04/Bucolica-Pepe.png';
+        $newDish->price  = 16.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  10;
+        $newDish->name = "Datterino giallo, Speck e provola";
+        $newDish->ingredients = 'Farina, Datterino giallo, Speck e provola';
+        $newDish->image = 'https://img1.wsimg.com/isteam/ip/af173eb3-52f7-44a5-935c-c93146643436/fb_1478689839133633_822x823.jpg';
+        $newDish->price  = 12.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //HEALTHY COLOR
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  11;
+        $newDish->name = "Poke GREEN";
+        $newDish->ingredients = 'Edamame, Avocado, Fragole, Mango, Tofu';
+        $newDish->image = 'https://10619-2.s.cdn12.com/rests/original/337_508249086.jpg';
+        $newDish->price  = 13.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  11;
+        $newDish->name = "Poke ORANGE";
+        $newDish->ingredients = 'Edamame, Avocado, Salmone, Germoii di soia, Uva, Mango';
+        $newDish->image = 'https://i2.wp.com/www.puntarellarossa.it/wp/wp-content/uploads/2019/10/WhatsApp-Image-2019-10-16-at-15.07.46.jpeg?resize=678%2C678&ssl=1';
+        $newDish->price  = 15.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  11;
+        $newDish->name = "Poke YELLOW";
+        $newDish->ingredients = "Avocado, Pomodori gualli, Noci, Pollo, Carote, Rucola";
+        $newDish->image = 'https://10619-2.s.cdn12.com/rests/original/337_508249085.jpg';
+        $newDish->price  = 13.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  11;
+        $newDish->name = "Poke WHITE";
+        $newDish->ingredients = 'Avocado, Tonno, Gabero, Salmone, Spigola';
+        $newDish->image = 'https://10619-2.s.cdn12.com/rests/original/337_508249089.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        //O Rei do Marisco
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  12;
+        $newDish->name = "El Crudo";
+        $newDish->ingredients = 'Pane, Songino, Prociutto crudo, Carote';
+        $newDish->image = 'https://www.mangiaebevi.it/wp-content/uploads/2019/07/la-ricciola-do-mar-e1562581103121.jpg';
+        $newDish->price  = 13.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  12;
+        $newDish->name = "El Salmon";
+        $newDish->ingredients = 'Pane, Salmone, Zucchine, Mozzarella';
+        $newDish->image = 'https://www.effettofood.com/wp-content/uploads/2020/09/Ristorante-Fast-food-pesce-Pescaria-Roma-nuova-apertura-2020-1024x1024.jpg';
+        $newDish->price  = 15.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  12;
+        $newDish->name = "Il Panino del Mare";
+        $newDish->ingredients = "Pane, Gamberi, Rucola, Melanzane, Salsa di pomodoro";
+        $newDish->image = 'https://www.effettofood.com/wp-content/uploads/2020/09/Panino-gamberoni-menu-Fast-Food-pesce-Pescaria-Nuova-apertura-Roma-2020-Prati-1024x768.jpg';
+        $newDish->price  = 13.00;
+        $newDish->visible  = true;
+        $newDish->save();
+
+        $newDish = new Dish();
+        $newDish->restaurant_id =  12;
+        $newDish->name = "David Jhons";
+        $newDish->ingredients = 'Pane, Polpo, Stracciatella, Cime di rapa';
+        $newDish->image = 'https://qbquantobasta.it/images/foto/chef/2021/10/panino-polpo-fritto.jpg';
+        $newDish->price  = 18.00;
+        $newDish->visible  = true;
+        $newDish->save();
     }
 }
