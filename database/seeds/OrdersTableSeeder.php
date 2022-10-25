@@ -24,7 +24,7 @@ class OrdersTableSeeder extends Seeder
                 // CREO GRAZIE HAI FAKER LA STRUTTURA DELL'0RDINE
                 $newOrder = new Order();
                 $newOrder->restaurant_id = $restaurant->id;
-                $newOrder->order_code = $faker->numerify('code-######');
+                $newOrder->order_code = $faker->numerify('code-########');
                 $newOrder->total_price = 0;
                 $newOrder->customer_name = $faker->name();
                 $newOrder->customer_address =  $faker->streetAddress();

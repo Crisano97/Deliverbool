@@ -3,7 +3,7 @@
 @section('content')
     <div class="form_page">
         <div class="container py-5">
-            <div class="row justify-content-center align-items-center vh-100">
+            <div class="row justify-content-center align-items-center custom_padding">
                 <div class="col-md-12  align-self-center">
                     <div class="form_content p-5">
                         <h2 class="card_header text-center ">Benvenuto/a in DELIVERBOOL</h2>
