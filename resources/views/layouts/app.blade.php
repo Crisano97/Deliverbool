@@ -14,8 +14,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('DElivebool.ico') }}">
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.bundle.js" integrity="sha512-Q9b0myMAI+IqHh5ldQJTh3ZXkVHwlcVF+H6+LF/QU3n0XmQp7w/kjapf+I3os0GhvJcZXCr5dAhhs5AbiZafwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.bundle.js" integrity="sha512-Q9b0myMAI+IqHh5ldQJTh3ZXkVHwlcVF+H6+LF/QU3n0XmQp7w/kjapf+I3os0GhvJcZXCr5dAhhs5AbiZafwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script defer src="{{ asset('js/app.js') }}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link

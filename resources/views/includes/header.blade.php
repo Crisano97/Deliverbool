@@ -19,9 +19,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.restaurants.index') }}">IL TUO RISTORANTE</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.restaurants.stats') }}">STATISTICHE</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                 @endguest
