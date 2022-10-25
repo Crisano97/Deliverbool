@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
 import axios from "axios";
 
 export default {
@@ -122,7 +123,7 @@ export default {
                 token: 'fake-valid-nonce',
                 amount: this.totlaPrice,
             }).then((result)=>{
-                window.alert('PAGAMENTO AVVENUTO CON SUCCESSO');
+                window.swal("Good job!", "il pagamento è avenuto con successo", "success");
                 if((result.data.success === true)){
                     let order = [];
                 this.arr.forEach((element)=>{
@@ -138,13 +139,13 @@ export default {
                     restaurant_id: this.restaurant_id,
                     
                 }).then((results)=>console.log(results)).catch(error => {
-                    window.alert('ERRORE: ALCUNI DEI CAMPI INSERITI NON SONO VALIDI, RIPROVA')
+                    window.swal("ERRORE!", "ALCUNI DEI CAMPI INSERITI NON SONO VALIDI, RIPROVA", "warning");
                     console.log("ERRRR:: ",error.response.data);
                 });
                 }
             }).catch(error => {
                     console.log("ERRRR:: ",error.response.data);
-                    window.alert('ERRORE: ALCUNI DEI CAMPI INSERITI NON SONO VALIDI, RIPROVA')
+                    window.swal("ERRORE!", "ALCUNI DEI CAMPI INSERITI NON SONO VALIDI, RIPROVA", "warning")
                 });
         },
         onError(error) {
