@@ -20,7 +20,7 @@
                     </a>
                 </div>
             </div>
-            <div class="height">
+            <div class="custom_padding">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
                     @forelse ($dishes as $dish)
                         <div class="p-2">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     @empty
-                        <div class="vh-100 d-flex align-items-center ">
+                        <div class="d-flex align-items-center ">
                             <h3 class="text-white card_style p-4">Non ci sono piatti presenti nel cestino</h3>
                         </div>
                     @endforelse

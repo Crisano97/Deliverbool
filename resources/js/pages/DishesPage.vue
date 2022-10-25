@@ -6,7 +6,7 @@
        <LoaderComponent/>
       </div>
          <!-- RISTORANTE FORMA -->
-      <div v-else class="bg-rest-container">
+      <div v-else class="bg-rest-container py-4">
         <div class="container ">
            <div class="row">
             <div class="col-12 col-md-5">
@@ -15,12 +15,12 @@
             <div class="col-12 col-md-7 d-flex align-items-center">
 
               <div>
-                <h4 class="text-white fst-italic">Grazie per aver scelto il nostro ristorante; spero che i nostri piatti ti piacciano.
-                  Offiamo molte categorie : 
-                  <span v-for="category in categories" :key="category.id" class="text-brand">
-                     - {{ category.name }} 
+                <h1 class="text-white fst-italic">Grazie per aver scelto il nostro ristorante! 
+                  <span class="d-block my-2">Le nostre categorie : </span>
+                  <span v-for="category in categories" :key="category.id" class="ml-3 text-brand">
+                      &bull; {{ category.name }} 
                   </span>
-                </h4>
+                </h1>
                 <h3 class="text-white pt-3"><span class="fw-bolder ">Indirizzo: </span>{{ restaurant.address }}</h3>
               </div>
                 
@@ -29,13 +29,13 @@
         </div>
       </div>
 
-      <div class="container">
+      <div class="container custom_padding">
+        <h1>Questa è la pagina lista piatti</h1>
         <div class="row p-4">
-            <h1>Questa è la pagina lista piatti</h1>
-            <div v-if="dishes.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 h-100">
+            <div v-if="dishes.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
                 <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'"  @addToCart="addToCart($event)" />
             </div>
-            <div v-else class="text-center pt-5 my_h">
+            <div v-else class="text-center pt-5 custom_padding">
               <h1>Al momento non sono disponibili piatti per questo ristorante</h1>
             </div>
         </div>
