@@ -15,6 +15,15 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(){
+        {
+            $restaurants = Restaurant::all();
+            return response()->json([
+                'response' => true,
+                'results' => $restaurants
+            ]);
+        }
+    }
     public function filter(Request $request)
     {
 
