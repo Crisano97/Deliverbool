@@ -30,11 +30,15 @@ class OrderController extends Controller
 
     public function stats()
     {
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        $array = $restaurants->toArray();
+        $restaurantsId = array_column($array, 'id');
+        $arrayStringa = implode($restaurantsId);
         $orders = Order::select(
             DB::raw('sum(total_price) as sums, count(id) as orders'),
             DB::raw("DATE_FORMAT(order_date,'%Y %m') as months")
         )
-            ->groupBy('months')->where([['orders.restaurant_id', Auth::id()]])->where('order_date', '>', Carbon::now()->endOfMonth()->subtract(1, 'year'))
+            ->groupBy('months')->where([['restaurant_id', $arrayStringa]])->where('order_date', '>', Carbon::now()->endOfMonth()->subtract(2, 'year'))
             ->get();
 
         return view('admin.restaurants.stats', compact(['orders',]));

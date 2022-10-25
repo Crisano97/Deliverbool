@@ -107,7 +107,7 @@
         const confirm = document.getElementById('password-confirm');
         if (confirm.value != password.value) {
             // aggiungere div in display none
-            alert('Le password non coincidono')
+            window.swal('Le password non coincidono')
             confirm.value = '';
         }
     }

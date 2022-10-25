@@ -14,6 +14,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('DElivebool.ico') }}">
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
