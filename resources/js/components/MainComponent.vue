@@ -3,7 +3,7 @@
     <HeroComponent />
     <CategoryComponent @click="getFilterRestaurant" />
     <section v-if="restaurantsFilter.length != 0 " class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
-      <h1 class="text-center">I nostri partner....</h1>
+      <h1 class="text-center">I nostri partner corrispondenti alla tua ricerca:</h1>
       <div v-if="isLoading">
         <LoaderComponent /> 
       </div>
@@ -12,7 +12,7 @@
       </div>
     </section>
     <section v-else>
-      <div class="container my-5">
+      <div class="container my-5 text-center">
         <h1>Nessun Risultato</h1>
       </div>
     </section>

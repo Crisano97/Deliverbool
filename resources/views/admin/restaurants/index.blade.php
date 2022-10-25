@@ -70,7 +70,7 @@
                                     <div class="mt-2 card_style p-2 info">
                                         <h5>Categorie:</h5>
                                         @foreach ($restaurant->categories as $category)
-                                            <span>{{ $category->name }} ; </span>
+                                            <span> &bull; {{ $category->name }} </span>
                                         @endforeach
                                     </div>
                                 </div>

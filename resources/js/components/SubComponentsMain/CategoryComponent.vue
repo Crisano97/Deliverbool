@@ -8,9 +8,6 @@
 
         <!-- SLIDER CATEGORIE -->
         <div class="custom_container py-3 text-white d-md-none">
-           <div class="text_category">
-            <h1 class="text-center">La selezione di delivebool...</h1>
-          </div>
           <div class="scroll d-flex ">
               <div class="p-2 py-3" v-for="(category, index) in categories" :key="`category-${index}`">
                
@@ -41,8 +38,8 @@
                   <div>
                     <img :src="category.image" class="card-img-top" :alt="category.name">
                   </div>
-                  <div class="m-1 text-center">
-                    <h5>{{category.name}}</h5>
+                  <div class="pt-4 text-center">
+                    <h6>{{category.name}}</h6>
                   </div> 
               </label>
             <input :id="category.id" class="mb-2 d-none" type="checkbox" name="categories[]" :value="category.id" v-model="selectedCategories" @change="getSelectedCategories()" />
@@ -167,6 +164,8 @@ div.custom_container{
 
 .border_custom{
   border: 3px solid white ;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 </style>

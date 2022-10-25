@@ -16,9 +16,9 @@
 
          <!-- COMPONENT CHECKOUT -->
         <form class="row" @submit.prevent="payement()">
-            <div class="row vh-100">
-                <div class="col-12 col-md-7">
-                    <div class="form_content p-3 rounded my-5">
+            <div class="row custom_padding align-items-center">
+                <div class="col-12 col-md-7 mt-3 ">
+                    <div class="form_content p-3 rounded">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Il tuo nome *</label>
                             <input minlength="3" type="text" class="form-control"  v-model="name" id="exampleFormControlInput1" placeholder="Inserisci il tuo nome" required>
@@ -44,7 +44,7 @@
                         </div>  
                     </div>
                 </div>
-                <div class="col-12 col-md-5 mt-5">
+                <div class="col-12 col-md-5">
                     <div>
 
                     </div>
@@ -53,7 +53,7 @@
                             
                             <div id="dropin-container"></div>
                             <div class="d-flex justify-content-center">
-                                <button id="submit-button" type="submit" class="btn btn-outline-success col-3">Acquista</button>
+                                <button id="submit-button" type="submit" class="btn btn-success col-3">Acquista</button>
                             </div>
                         </div>
                 </div>
