@@ -3,12 +3,15 @@
 
 @section('script-content')
 <div class="container py-5">
-    <div class="row">
-        <div class="col-6 offset-3">
-            <h1 class="text-center">Statistiche</h1>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <h1>Statistiche</h1>
         </div>
-        <canvas id="ordersChart" width="800" height="200"></canvas>
-        <canvas id="myChart" width="800" height="200" class="pb-5"></canvas>
+
+        <div class="chart-container" style="position: relative; width:80vw">
+            <canvas id="ordersChart"></canvas>
+            <canvas id="myChart" class="pt-5"></canvas>
+        </div>
     </div>
 </div>
 
@@ -43,7 +46,8 @@
     console.log(chartData)
   
     const myOrdersChart = new Chart(cty, {
-        type: 'line',
+        responsive: true,
+        type: 'bar',
         data: {
             labels: chartLabels,
             datasets: [
@@ -68,7 +72,8 @@
     });
 
     const myChart = new Chart(ctx, {
-        type: 'line',
+        responsive: true,
+        type: 'bar',
         data: {
             labels: chartLabels,
             datasets: [
