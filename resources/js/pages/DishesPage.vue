@@ -106,6 +106,7 @@ export default {
                     this.cart.push(dish);
                     dish.quantity = 1;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
+                     this.$emit('click', this.cart);
                 }
                 //!  se il carrello non e' vuoto controlliamo che stiamo ordinando dallo stesso ristorante in caso contrario resettiamo il cart e pushamo il piatto
                 else if (this.cart[0].restaurant_id != this.$route.params.id) {
@@ -118,6 +119,7 @@ export default {
                         this.cart.push(dish);
                          dish.quantity = 1;
                         localStorage.setItem("cart", JSON.stringify(this.cart));
+                        this.$emit('click', this.cart);
                     }
                 }
                 //! pushamo il piatto aggiuntivo
@@ -125,8 +127,9 @@ export default {
                     this.cart.push(dish);
                      dish.quantity = 1;
                     localStorage.setItem("cart", JSON.stringify(this.cart));
+                    this.$emit('click', this.cart);
                 }
-                this.$emit('click', this.cart);
+               
                 // this.total = this.total + dish.price;
                 // localStorage.setItem("total", this.total);
             },
