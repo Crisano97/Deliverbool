@@ -122,6 +122,7 @@ export default {
                 token: 'fake-valid-nonce',
                 amount: this.totlaPrice,
             }).then((result)=>{
+                window.alert('PAGAMENTO AVVENUTO CON SUCCESSO');
                 if((result.data.success === true)){
                     let order = [];
                 this.arr.forEach((element)=>{
