@@ -35,10 +35,6 @@ class CategoriesTableSeeder extends Seeder
                 'image' => 'https://cartzilla.createx.studio/img/food-delivery/category/06.jpg',
             ],
             [
-                'name' => 'DOLCI',
-                'image' => 'https://static.cookist.it/wp-content/uploads/sites/21/2021/11/Cheesecake-ai-frutti-di-bosco.jpg',
-            ],
-            [
                 'name' => 'CINESE',
                 'image' => 'https://cartzilla.createx.studio/img/food-delivery/category/02.jpg',
             ],
