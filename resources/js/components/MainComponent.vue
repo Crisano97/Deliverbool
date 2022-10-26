@@ -1,6 +1,7 @@
 <template>
   <main>
     <HeroComponent />
+    <div id="anchorCategories"></div>
     <CategoryComponent @click="getFilterRestaurant" />
     <section v-if="restaurantsFilter.length != 0 " class="container py-5" :class=" restaurantsFilter != '' ? '' : 'd-none' ">
       <h1 class="text-center">I nostri partner corrispondenti alla tua ricerca:</h1>
@@ -17,6 +18,7 @@
       </div>
     </section>
     <DownloadAppComponent />
+    <div id="anchorPartner"></div>
     <section class="container py-5">
       <h1 class="text-center">I partner più amati....</h1>
       <div v-if="isLoading">

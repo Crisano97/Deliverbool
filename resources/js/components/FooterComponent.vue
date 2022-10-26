@@ -1,19 +1,40 @@
 <template>
   <footer>
-    <div class="container style_footer">
-        <div class="row">
-        <div class="p-5 col-6 col-lg-4 fw-light">
+    <div class="container pb-4">
+      <div class="row">
+        <div class="p-5 col-6 col-lg-4">
           <h5>Scopri e ordina</h5>
-          <p class="my-0">Home</p>
-          <p class="my-0">La selezione di delivebool...</p>
-          <p class="my-0">I partner più amati...</p>
+          <ul class="p-0">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="#anchorCategories"
+                >La selezione di delivebool...</a
+              >
+            </li>
+            <li>
+              <a href="#anchorPartner">I nostri partner più amati...</a>
+            </li>
+            <li>
+              <a href="/allrestaurants">I nostri partner...</a>
+            </li>
+          </ul>
         </div>
 
-        <div class="p-5 col-6 col-lg-4 fw-light">
+        <div class="p-5 col-6 col-lg-4">
           <h5>Seguici</h5>
-          <p class="my-0">Facebook</p>
-          <p class="my-0">Twitter</p>
-          <p class="my-0">Instagram</p>
+          <ul class="p-0">
+            <li>
+              <a href="#">Facebook</a>
+            </li>
+            <li>
+              <a href="#">Twitter</a>
+            </li>
+            <li>
+              <a href="#">Instagram</a>
+            </li>
+          </ul>
         </div>
 
         <div class="p-5 col-12 col-lg-4">
@@ -21,19 +42,22 @@
           <div class="d-flex justify-content-evenly pt-3">
             <div>
               <!-- <a href=""> -->
-                <i class="fa-brands fa-apple banner-icon"></i>
+              <i class="fa-brands fa-apple banner-icon"></i>
               <!-- </a> -->
             </div>
             <div>
               <!-- <a href=""> -->
-                <i class="fa-brands fa-google-play banner-icon"></i>
+              <i class="fa-brands fa-google-play banner-icon"></i>
               <!-- </a> -->
             </div>
           </div>
         </div>
-        </div>
-            
       </div>
+
+      <section class="arrow_up">
+        <a href="#anchorHeader"><i class="fa-solid fa-chevron-up"></i></a>
+      </section>
+    </div>
   </footer>
 </template>
 
@@ -42,13 +66,34 @@ export default {};
 </script>
 
 <style scoped lang="scss">
-footer{
-    background-color: #2E3333;
-    color: white;
+footer {
+  background-color: #2e3333;
+  color: white;
+}
+li {
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
 
-.banner-icon{
-    font-size: 70px;
-    color: #758d75;
+.banner-icon {
+  font-size: 70px;
+  color: #758d75;
+}
+
+.arrow_up {
+  text-align: end;
+  padding: 1rem;
+  border-radius: 5px;
+  a {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
 }
 </style>
