@@ -142,6 +142,7 @@ export default {
                     window.swal("ERRORE!", "ALCUNI DEI CAMPI INSERITI NON SONO VALIDI, RIPROVA", "warning");
                     console.log("ERRRR:: ",error.response.data);
                 });
+                    this.$router.push({path: '/payementSuccess'})
                 }
             }).catch(error => {
                     console.log("ERRRR:: ",error.response.data);
