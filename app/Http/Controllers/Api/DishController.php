@@ -21,13 +21,27 @@ class DishController extends Controller
         $categories = $restaurant->categories;
         $dishes = $restaurant->dishes;
         //dd($dishes);
-        return response()->json([
-            'response' => true,
-            'results' => [
-                'dishes' => $dishes,
-                'restaurant' => $restaurant,
-                'categories' => $categories,
-            ]
-        ]);
+        foreach ($dishes as $dish) {
+            if ($dish->visible) {
+                
+                return response()->json([
+                    'response' => true,
+                    'results' => [
+                        'dishes' => $dishes,
+                        'restaurant' => $restaurant,
+                        'categories' => $categories,
+                    ]
+                ]);
+            } else {
+                return response()->json([
+                    'response' => true,
+                    'results' => [
+                        // 'dishes' => $dishes,
+                        'restaurant' => $restaurant,
+                        'categories' => $categories,
+                    ]
+                ]);
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@
                             v-on:keyup="countCharRestName"
                             class="form-control text_form" id="exampleFormControlInput1" placeholder="ES. Nome Attiviá"
                             name="name" required minlength="3">
-                        <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z,
+                        <small id="emailHelp" class="form-text text-muted">Inserisci almeno 3 caratteri (a-z,
                             A-Z,0-9)</small>
                         @error('name')
                             <p class="text-danger fs-6">

@@ -17,10 +17,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

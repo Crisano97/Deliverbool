@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Livvic:wght@100;200;300;400;500;600;700;900&display=swap');
 
 // Variables
 @import 'variables';
@@ -42,3 +42,8 @@ div.height{
 .custom_padding{
     padding: 9rem 0;
 }
+
+body{
+    font-family: 'Livvic', sans-serif;
+}
+
