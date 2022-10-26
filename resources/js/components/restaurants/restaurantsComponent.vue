@@ -6,7 +6,7 @@
         <div v-else class="container py-4">
             <h1 class="text-center pt-2 text-uppercase">I nostri partner</h1>
             <div class="row row-cols-3 justify-content-center">
-                <div class="m_fit mx-2 mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
+                <div class="my_fit mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
                     <RestaurantComponent class="ms_img" :restaurant="restaurant"/>
                 </div>
            </div>
@@ -58,6 +58,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.my_fit{
+  width: fit-content;
+}
   .ms_img{
   object-fit: cover;
   transition: 1s;
