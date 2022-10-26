@@ -30,9 +30,9 @@
       </div>
     </nav> -->
 
-    <nav class="navbar navbar-expand-lg">
+    <nav id="anchorHeader" class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand logo-brand" href="/">
+        <a id="anchorHome" class="navbar-brand logo-brand" href="/">
           <img
             class="img-brand border border-warning border-3 rounded-circle"
             src="../../../public/assets/images/DElivebool.png"
