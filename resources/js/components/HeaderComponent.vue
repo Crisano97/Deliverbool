@@ -30,7 +30,7 @@
       </div>
     </nav> -->
 
-    <nav id="anchorHeader" class="navbar navbar-expand-lg">
+    <nav id="anchorHeader" class="navbar navbar-expand-lg px-4">
       <div class="container-fluid">
         <a id="anchorHome" class="navbar-brand logo-brand" href="/">
           <img
@@ -99,7 +99,7 @@ header {
   background-color: #ffbd59;
 }
 .logo-brand {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Livvic', sans-serif;
   font-size: x-large;
 }
 .img-brand {

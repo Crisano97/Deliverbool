@@ -23,9 +23,9 @@ class RestaurantController extends Controller
     ];
 
     protected $validationCustomMessages = [
-        'name.required' => 'Il nome del piatto é obbligatorio',
-        'name.min' => 'Il nome del piatto deve essere di almeno 3 caratteri',
-        'name.unique' => 'Il nome del piatto é giá presente',
+        'name.required' => 'Il nome del ristorante é obbligatorio',
+        'name.min' => 'Il nome del ristorante deve essere di almeno 3 caratteri',
+        'name.unique' => 'Il nome del ristorante é giá presente',
         'name.regex' => 'Il nome puó contenere solo lettere',
         'address.required' => 'L\'Indirizzo é obbligatorio',
         'address.min' => 'L\'Indirizzo deve essere di almeno 5 caratteri',

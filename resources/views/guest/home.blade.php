@@ -11,8 +11,9 @@
     <!-- Scripts Brain Tree-->
     <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
     <!--FAVICON-->
     <link rel="icon" type="image/x-icon" href="{{ asset('DElivebool.ico') }}">
 

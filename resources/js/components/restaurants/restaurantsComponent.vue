@@ -3,7 +3,7 @@
         <div v-if="isLoading">
            <LoaderComponent />
         </div>
-        <div v-else class="container">
+        <div v-else class="container py-4">
             <h1 class="text-center pt-2">I nostri partner più amati....</h1>
             <div class="row row-cols-3 justify-content-center">
                 <div class="m_fit mx-2 mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
