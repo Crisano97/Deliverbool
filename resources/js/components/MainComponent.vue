@@ -88,4 +88,7 @@ export default {
 </script>
 
 <style>
+body{
+  font-family: 'Livvic', sans-serif;
+}
 </style>

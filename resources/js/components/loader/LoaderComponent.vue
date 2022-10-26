@@ -122,7 +122,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #758d75;
+  /* background-color: #758d75; */
 }
 
 svg {

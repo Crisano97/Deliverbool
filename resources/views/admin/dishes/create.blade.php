@@ -21,7 +21,7 @@
                                     required id="exampleFormControlInput1" placeholder="ES. Nome Piatto" name="name" minlength="3"
                                 >
 
-                                <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
+                                <small id="emailHelp" class="form-text text-muted">Inserisci almeno 3 caratteri (a-z, A-Z,
                                     0-9)</small>
                                 @error('name')
                                     <p class="text-danger fs-6">
@@ -33,10 +33,10 @@
                                 <label for="exampleFormControlInput1" class="form-label">Ingredienti *</label>
                                 <input type="text" value="{{ old('ingredients', $dish->ingredients) }}" required
                                     class="form-control text_form" id="exampleFormControlInput1"
-                                    placeholder="ES. Carne, pomodoro, mozzarella..." name="ingredients" minlength="3"
+                                    placeholder="ES. Carne, pomodoro, mozzarella..." name="ingredients" minlength="5"
                                 >
 
-                                <small id="emailHelp" class="form-text text-muted">Inserisci più di 3 caratteri (a-z, A-Z,
+                                <small id="emailHelp" class="form-text text-muted">Inserisci almeno 5 caratteri (a-z, A-Z,
                                     0-9)</small>
                                 @error('ingredients')
                                     <p class="text-danger fs-6">

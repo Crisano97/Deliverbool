@@ -37,10 +37,14 @@
                 </div>
                 <div class="text-right pt-1">
                     <a class="btn btn-primary" href="{{ route('admin.dishes.create') }}">
-                        Aggiungi
+                        <span class="">
+                            Aggiungi
+                        </span>
                     </a>
                     <a class="btn btn-primary" href="{{ route('admin.dishes.deleted') }}">
-                        Cestino
+                        <span class="px-2">
+                            Cestino
+                        </span>
                     </a>
                 </div>
             </div>
