@@ -7,7 +7,8 @@ Vue.use(VueRouter)
  import CheckoutPage from './pages/CheckoutPage';
  import DishesPage from './pages/DishesPage';
  import ErrorPage from './pages/error404';
- import restaurantsComponent from './components/restaurants/restaurantsComponent'
+ import restaurantsComponent from './components/restaurants/restaurantsComponent';
+ import PayementSuccess from './pages/PayementSuccess';
 
 //Creare una nuova istanza di vueRouter
 const router = new VueRouter({
@@ -34,16 +35,22 @@ const router = new VueRouter({
             component: DishesPage
         },
         {
+            path: '/allrestaurants',
+            name: 'restaurants',
+            component: restaurantsComponent
+        },
+        {
+            path: '/payementSuccess',
+            name: 'payementSuccess',
+            component: PayementSuccess
+        },
+        {
             path: '*',
             name: 'error',
             component: ErrorPage
         },
 
-        {
-            path: '/allrestaurants',
-            name: 'restaurants',
-            component: restaurantsComponent
-        },
+      
         
     ],
 });

@@ -7,13 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Deliverbool</title>
+    <title>DELIVEBOOL</title>
     <!-- Scripts Brain Tree-->
     <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.js"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@100;200;300;400;500;600;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@100;200;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
     <!--FAVICON-->
     <link rel="icon" type="image/x-icon" href="{{ asset('DElivebool.ico') }}">
 

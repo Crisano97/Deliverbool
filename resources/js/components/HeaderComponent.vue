@@ -53,10 +53,10 @@
             </a>
             <a class="nav-link" href="/Cart">
               <i class="fa-solid fa-store p-2 icon position-relative">
-                <div class="position-absolute top-0 end-0">
+                <!-- <div class="position-absolute top-0 end-0">
                   <div v-if="dish.length > 0" class="cart-value border border-warning rounded-circle d-flex justify-content-center">{{ dish.length }}</div>
                   <div v-else class="cart-value border border-warning rounded-circle d-flex justify-content-center">{{ dishes.length }}</div>
-                </div>
+                </div> -->
               </i>Carrello
             </a>
           </div>

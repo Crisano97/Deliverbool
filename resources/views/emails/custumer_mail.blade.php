@@ -10,7 +10,7 @@
 
 <body>
     <h1> Ciao {{ $lead->name }} </h1>
-    <p>Grazie per aver scelto Deliverbool il tuo ordine è stato inviato con successo</p>
+    <p>Grazie per aver scelto Deliverbool il tuo ordine è stato inviato con successo.</p>
 </body>
 
 </html>

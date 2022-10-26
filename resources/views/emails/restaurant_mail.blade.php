@@ -16,7 +16,8 @@
     </div>
     <div class="content">
         <p>
-            Hai ricevuto un nuovo ordine; buona giornata
+            Hai ricevuto un nuovo ordine.
+            Buona giornata da DELIVEBOOL
         </p>
     </div>
 </body>
