@@ -7,9 +7,9 @@
               <img  :src="isValidUrl(restaurant.image) ? restaurant.image : '/storage/' + restaurant.image " class="card-img-top border rounded-pill" alt="image-restaurant">
               <div
                 class="card position-absolute top-100 start-50 translate-middle card-title text-center">
-                <h5>{{ restaurant.name }}</h5>
+                <h6>{{ restaurant.name }}</h6>
                 <div>
-                  <span v-for="category in restaurant.categories" :key="category.id">
+                  <span class="card-text" v-for="category in restaurant.categories" :key="category.id">
                    &bull; {{category.name}}
                   </span>
                 </div>
@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .rest-card{
   width: 15rem;
   height: 15rem;
@@ -63,6 +63,7 @@ export default {
 }
 .card-title {
   width: 14rem;
+  height: 90px;
   padding: 0.5rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -71,6 +72,11 @@ export default {
 
 .my_fit{
   width: fit-content;
+}
+
+.card-text{
+  font-size: 14px;
+  padding-right: 1px;
 }
 
 </style>

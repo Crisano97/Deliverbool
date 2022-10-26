@@ -9,15 +9,7 @@
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="#anchorCategories"
-                >La selezione di delivebool...</a
-              >
-            </li>
-            <li>
-              <a href="#anchorPartner">I nostri partner più amati...</a>
-            </li>
-            <li>
-              <a href="/allrestaurants">I nostri partner...</a>
+              <a href="/allrestaurants">I nostri partner</a>
             </li>
           </ul>
         </div>

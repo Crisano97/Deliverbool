@@ -9,7 +9,7 @@
 
     <title>Deliverbool</title>
     <!-- Scripts Brain Tree-->
-    <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.js"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

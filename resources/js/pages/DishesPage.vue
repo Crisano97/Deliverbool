@@ -33,9 +33,9 @@
         <!-- <h1>Questa è la pagina lista piatti</h1> -->
         <div class="row p-4">
             <div v-if="dishes.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" :class="dish.visible === 1 ? '' : 'd-none'"  @addToCart="addToCart($event)" />
+                <DishCard v-for="dish in dishes" :key="dish.id" :dish="dish" @addToCart="addToCart($event)" />
             </div>
-            <div v-else class="text-center pt-5 custom_padding">
+            <div v-else class="pt-5 text-center custom_padding">
               <h1>Al momento non sono disponibili piatti per questo ristorante</h1>
             </div>
         </div>
@@ -86,16 +86,12 @@ export default {
         .get(`/api/dishes/${id}`)
         .then((response) => {
           console.log(response.data.results)
-          if (response.data.results.dishes) {
+          
             this.dishes = response.data.results.dishes;
             this.restaurant = response.data.results.restaurant,
             this.categories = response.data.results.categories,
             this.isLoading = false;
-          } else {
-            this.restaurant = response.data.results.restaurant,
-            this.categories = response.data.results.categories,
-            this.isLoading = false;
-          }
+          
           
           console.log(this.categories);
         //   this.isLoading = false;

@@ -1,8 +1,8 @@
 <template>
-  <div class="p-2">
+  <div v-if="dish.visible != 0" class="p-2">
     <div class="card p-3 h-100">
       <div class="box_image">
-        <img :src="isValidUrl(dish.image) ? dish.image : '/storage/' + dish.image " class="card-img-top" alt="image-post">
+        <img :src="isValidUrl(dish.image) ? dish.image : '/storage/uploads/' + dish.image " class="card-img-top" alt="image-post">
       </div>
       <div class="card-body p-0 mt-2">
         <h5 class="fw-bold text-center">
@@ -18,6 +18,30 @@
           <button class="btn btn-primary button-plus" @click="$emit('addToCart', dish), popUp()">
             <i class="fas fa-plus"></i>
           </button>
+        </div>
+        
+    </div>
+  </div>
+  <div v-else class="p-2">
+    <div class="card p-3 h-100 border-danger border border-3 ">
+      <div class="box_image">
+        <img :src="isValidUrl(dish.image) ?  dish.image : '/storage/uploads/' + dish.image " class="card-img-top" alt="image-post">
+      </div>
+      <div class="card-body p-0 mt-2">
+        <h5 class="fw-bold text-center">
+          {{ dish.name }}
+        </h5>
+          <span class="box_popUp">
+            <span class="popUpText" :id="dish.id">Per scegliere la quantità dei piatti vai al carello</span>
+          </span>
+        <p class="text-start"><span class="fw-normal fw-semibold">Ingredienti:</span> {{ dish.ingredients }} </p>
+      </div>
+        <div class="d-flex justify-content-between">
+          <p class="m-0 align-self-center"><del> € {{ dish.price.toFixed(2) }}</del></p>
+          <!-- <button class="btn btn-primary button-plus" @click="$emit('addToCart', dish), popUp()">
+            <i class="fas fa-plus"></i>
+          </button> -->
+          <span class="fst-italic">Prodotto non disponibile</span>
         </div>
         
     </div>
