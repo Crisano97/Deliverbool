@@ -6,7 +6,7 @@
             <div class="row justify-content-center align-items-center custom_padding">
                 <div class="col-md-12  align-self-center">
                     <div class="form_content p-5">
-                        <h2 class="card_header text-center ">Benvenuto/a in DELIVERBOOL</h2>
+                        <h2 class="card_header text-center ">Benvenuto/a in DELIVEBOOL</h2>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('register') }}">
